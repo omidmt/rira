@@ -1,0 +1,123 @@
+@fa-font-path : 'assets/fonts/';
+@fa-css-prefix: fa;
+@import (reference) "../lib/font-awesome/less/font-awesome.less";
+@import (less) "fstyle.css";
+//@import (less) '../lib/font-awesome/css/font-awesome.css';
+//@import 'font-awesome.css';
+
+.node-group-box
+{
+//    height: 12em;
+//    text-align: center;
+//    /*
+//    line-height: 12em;*/
+//
+//    font-size: large;
+//    background-color: #34495e; /* wet asphalt*/
+//    color: #f5f5f5;
+
+//    position: relative;
+  .srvs-block;
+}
+
+.group-box-content
+{
+//    position: absolute;
+//    top: 50%;
+//    height: 6em;
+//    margin-top: -3em
+//  .ic-srvs;
+  a
+  {
+    color: #34495E;
+  }
+}
+
+.group-icon
+{
+  .ic-srvs;
+}
+
+.fa-icon(@code)
+{
+  .fa;
+  &:before { content: @code; }
+//  font-size: 1.5em;
+}
+
+.node-group
+{
+ // .fa;
+  .fa-icon( '\f0a0' );
+//  color: #f5f5f5;
+}
+
+
+.node-group-SDP
+{
+  .fa-icon( '\f1c0' );
+}
+
+
+.node-group-AIR
+{
+  .fa-icon( '\f0ec' );
+}
+
+
+.node-group-CCN
+{
+  .fa-icon( '\f1ad' );
+}
+
+
+.node-group-VS
+{
+  .fa-icon( '\f09d' );
+}
+
+.action-group
+{
+    font-size: small;
+}
+
+.ok-group
+{
+    background-color: #3498db;
+}
+
+.failed-group
+{
+    background-color: #e74c3c;
+}
+
+.warned-group
+{
+    background-color: #d35400;
+}
+
+// Node Views
+
+.node-box
+{
+//  position: absolute;
+//  top: 50%;
+//  height: 6em;
+//  margin-top: -3em
+  .srvs-block;
+}
+
+.ok-node
+{
+  .ok-group
+}
+
+.faulty-node
+{
+  .failed-group
+}
+
+.note
+{
+  color: #879394;
+}

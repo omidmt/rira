@@ -1,0 +1,45 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS file within this directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*
+= require main
+= require mobile
+*= require_self
+*/
+
+body {
+    padding-top: 50px;
+    /*padding-bottom: 10px;*/
+    /*padding-left: 300px;*/
+}
+
+{
+    padding-bottom: 10px;
+}
+
+.navmenu
+{
+    padding-top: 50px;
+}
+
+.picker-open {
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: auto !important;
+}
+
+.select .btn
+{
+    width: 150px !important;
+}
+
+.new-item a
+{
+    /*visibility: hidden;*/
+    font-size: x-small;
+}

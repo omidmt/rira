@@ -1,0 +1,791 @@
+/*-------------------------------------------------*/
+/*		Table Of Content
+/* 		-------------------------------------------*/
+/*		01_ General Settings
+/* 		02_ Wide Content
+/* 		03_ Navbar
+/*		04_ Home Section
+/*		05_ About Section
+/*		06_ How We Work!
+/*		07_ Our Team
+/*		08_ Clients
+/*		09_ Services
+/*		10_ feature-image Settings
+/*		11_ Portfolio
+/*		12_ News
+/*		13_ Contact Section
+/*		14_ Footer Section
+ * 		15_ Single Page Blog
+/*		16_ Responsive Settings
+ */
+/*-------------------------------------------------*/
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:#fff; /* change if the mask should have another color then white */
+    z-index:99; /* makes sure it stays on top */
+}
+
+#status {
+    width:200px;
+    height:200px;
+    position:absolute;
+    left:50%; /* centers the loading animation horizontally one the screen */
+    top:50%; /* centers the loading animation vertically one the screen */
+    background-image:url(../../images/status.gif); /* path to your loading animation */
+    background-repeat:no-repeat;
+    background-position:center;
+    margin:-100px 0 0 -100px; /* is width and height divided by two */
+}
+
+/*--------------------------*/
+/*	01_General Settings
+/*--------------------------*/
+body, html{
+    height:100%;
+    min-height: 100%;
+}
+
+.row{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.startSec{	/*-- This class for every new section to padding the section from navbar --*/
+    padding-top: 50px;
+}
+
+.mrg-btm{	/*-- This class for margin bottom for allover Area for any Columns --*/
+    margin-bottom: 20px;
+}
+
+.mrg-btm-widget{	/*-- This class for margin bottom for allover widget in blog sidebar area--*/
+    margin-bottom: 50px;
+}
+
+.blg-btn{	/*-- Read More Button in Blog Section --*/
+    margin: 15px 0;
+    display: block;
+}
+
+.btn-full{	/*-- Submit Button in Contact Section --*/
+    width: 100%;
+    font-size: 18px;
+}
+
+
+.centerMrgn{
+    margin: 0 auto !important;
+}
+img{
+    width: auto;
+}
+/*--HeadLine For Sections--*/
+.bigTitle{
+    color: #1abc9c;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.dash{
+    width: 60px;
+    height: 7px;
+    display: block;
+    background: #1abc9c;
+    position: absolute;
+    bottom: -7px;
+}
+
+.parallaxRaw{
+    padding: 100px 0;
+}
+
+/*--HeadLine For Sub Section--*/
+.mdTitle{
+    margin: 50px auto;
+    text-align: center;
+    width: 40%;
+}
+
+.mdTitle h3{
+    color: #7f8c8d;
+    padding: 20px 0;
+    border: 3px solid #7f8c8d;
+}
+
+.whiteTitle{
+    margin: 50px auto;
+    text-align: center;
+    width: 40%;
+    margin-top: 0;
+    background-color: rgba(255, 255, 255, .1);
+    color: rgba(255, 255, 255, .1);
+}
+
+.whiteTitle h3{
+    color: #ffffff;
+    padding: 20px 0;
+    border: 3px solid #ffffff;
+}
+
+/*--------------------------*/
+/*	02_ Wide Content
+/*--------------------------*/
+.wideContent{
+    background: #f5f7f8;
+    overflow: hidden;
+}
+
+.img-right{
+    float: right;
+    width: 39%;
+    overflow: hidden;
+    margin-left: 2%;
+}
+
+.img-left{
+    float: left;
+    width: 39%;
+    overflow: hidden;
+    margin-right: 2%;
+}
+
+.theContentLeft{
+}
+
+.theContentRight {
+    float: right;
+    width: 59%;
+}
+
+.introduc{
+    margin-bottom: 70px;
+}
+
+.width-set{
+    width: 59%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    overflow: hidden;
+}
+
+.style-infoContact{
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+    margin-bottom: 10px !important;
+}
+/*--------------------------*/
+/*	03_ Navbar
+/*--------------------------*/
+.navbar-default{
+    background-color: #ecf0f1;
+    border-radius: 0;
+    margin-right: 0;
+}
+
+.navbar{
+    margin: 0;
+    margin-right: 0;
+}
+
+.navbar-brand{
+    font-family: 'Leckerli One', cursive;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+#sticker {
+    width: 100%;
+}
+
+/*--------------------------*/
+/*	04_ Home Section
+/*--------------------------*/
+
+/*	the style for home section depends of the header style you will Chosen..
+ *	and it will be in Separated css
+ *
+
+/*--------------------------*/
+/*	05_ About Section
+/*--------------------------*/
+.cntrColumn-grey{
+    text-align: center;
+    background: #f8f8f8;
+    padding: 60px 0;
+    margin-top: 50px;
+}
+
+.fui-photo{
+    color: #ffffff;
+    font-size: 34px;
+    line-height: 60px;
+    padding: 0 15px;
+}
+
+.blockIco{
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    background: #bdc3c7; /* Old browsers */
+    background: -moz-linear-gradient(45deg,  #bdc3c7 0%, #bdc3c7 50%, #c6cbcf 50%, #c6cbcf 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#bdc3c7), color-stop(50%,#bdc3c7), color-stop(50%,#c6cbcf), color-stop(100%,#c6cbcf)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(45deg,  #bdc3c7 0%,#bdc3c7 50%,#c6cbcf 50%,#c6cbcf 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(45deg,  #bdc3c7 0%,#bdc3c7 50%,#c6cbcf 50%,#c6cbcf 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(45deg,  #bdc3c7 0%,#bdc3c7 50%,#c6cbcf 50%,#c6cbcf 100%); /* IE10+ */
+    background: linear-gradient(45deg,  #bdc3c7 0%,#bdc3c7 50%,#c6cbcf 50%,#c6cbcf 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bdc3c7', endColorstr='#c6cbcf',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.parallax-1{
+    background: url(../../images/bg-parallax-1.html) 50% 0 no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+}
+/*--------------------------*/
+/*	06_ How We Work!
+/*--------------------------*/
+
+/*---- Tabs In Slide ----*/
+#about .nav-tabs{
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+#about .nav-tabs > li > a{
+    padding: 0;
+}
+
+#about .nav-tabs > li{
+    margin: 0 auto;
+}
+
+#about .nav > li > a{
+    border: 1px solid #ebedee;
+    -webkit-border-radius: 0 0 0 0;
+    border-radius: 0 0 0 0;
+    -webkit-transition: .2s all ease;
+    -moz-transition: .2s all ease;
+    transition: .2s all ease;
+    margin-right: 17px;
+}
+
+#about .nav > li > a:hover{
+    border: 1px solid #1abc9c;
+}
+
+#about .nav-tabs > li.active > a{
+    border: 1px solid #1abc9c;
+}
+
+.content{
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+.content p:nth-child(even){
+    color:#999;
+    font-family:Georgia,serif;
+    font-size:17px;
+    font-style:italic;
+}
+
+.content p:nth-child(3n+0){
+    color:#c96;
+}
+
+#slideTabs{
+    overflow:hidden;
+    height:276px;
+    width:100%;
+    margin: 0 auto;
+}
+
+/*---- Nested Tabs ----*/
+#about .tab-content{	/*-- Outline Of Nested Tabs --*/
+    border: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.CentrdContnt{	/*-- For The Content in the left Area in Nested Tabs --*/
+    margin: 16% auto;
+    text-align: center;
+}
+
+ul.subTab{	/*-- Tabs On The Right Area --*/
+    float: right;
+    z-index: 9999;
+    padding: 0;
+}
+
+/*-- Title For Nested Tabs --*/
+#about .nestedTab{
+
+}
+
+#about .nestedTab ul.subTab li a h6{
+    color: #1abc9c;
+    margin-top: 0;
+}
+
+#about .nestedTab ul.subTab li a:hover h6{
+    color: #ffffff;
+}
+
+/*-- Title For Nested Tabs --*/
+#about .nestedTab ul.subTab li a{
+    width: 100%;
+    padding: 30px 60px;
+    background: #ffffff;
+    border: none;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+#about .nestedTab ul.subTab li a:hover{
+    background: #1abc9c;
+    color: #ffffff;
+    border: none;
+}
+
+#about .nestedTab .nav-tabs > li.active > a,
+#about .nav-tabs > li.active > a:focus{
+    background: #1abc9c;
+    color: #ffffff;
+    border: none;
+}
+
+#about .nestedTab .nav-tabs > li.active > a h6{
+    color: #ffffff;
+}
+/*--------------------------*/
+/*	07_ Our Team
+/*--------------------------*/
+#ourTeam{
+    margin-bottom: 70px;
+}
+
+/*-- The Team Picture Style --*/
+.outr-pic{
+    border: 1px solid #bdc3c7;
+    -webkit-box-shadow: inset 0 0 0 10px #ffffff;
+    box-shadow: inset 0 0 0 10px #ffffff;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    z-index: 99999;
+    display: block;
+    float: left;
+    width: 102px;
+    height: 102px;
+}
+.tmPic{
+    margin: 0 auto;
+    padding: 5px;
+}
+
+/*-- The Info in the team columns --*/
+.tmtxt{
+    float: right;
+}
+.tm-info{
+    margin: 10px 0 20px 15px;
+    float: left;
+}
+#ourTeam h6{
+    margin: 0 0;
+    font-size: 18px;
+}
+#ourTeam .tm-info small{
+    color: #bdc3c7;
+}
+.socl-styl{
+    float: left;
+    border: 1px solid #bdc3c7;
+    padding: 0 0px;
+    margin-right: 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    color: #bdc3c7;
+    width: 28px;
+    font-size: 16px;
+    text-align: center;
+}
+.socl-styl:hover{
+    border: 1px solid #1abc9c;
+    background: #1abc9c;
+    color: #ffffff;
+}
+/*--------------------------*/
+/*	08_ Clients
+/*--------------------------*/
+.parallax-2{
+    background: url(../../images/bg-parallax-2.html) 50% 0 no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#owl-demo h1{
+    font-family: 'Leckerli One', cursive;
+    font-size: 62px;
+    font-weight: 400;
+}
+
+#owl-demo .item{
+    background-color: rgba(255, 255, 255, .3);
+    background: rgba(255, 255, 255, .3);
+    padding: 30px 0px;
+    margin: 10px;
+    color: #FFF;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-align: center;
+}
+/*--------------------------*/
+/*	09_ Services
+/*--------------------------*/
+#Services h6{
+    font-size: 18px;
+}
+
+#Services small{
+    color: #879394;
+}
+.outer-srvsblok{
+    margin-bottom: 70px;
+}
+.srvs-block{
+    background: #f5f7f8;
+    border: 2px solid #ecf0f1;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.ic-srvs{
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    background: #ffffff;
+    border: 2px solid #ecf0f1;
+    margin: 0 auto;
+    padding: 2px 14px;
+    color: #1abc9c;
+    font-size: 32px;
+}
+
+.clr-btn{
+    color: #fff;
+    margin-top: 12px;
+}
+/*------------------------*/
+/*	10_ feature-image Settings
+/*------------------------*/
+.info-contnt{
+    width: 59%;
+}
+
+.feature-image{
+    background: url(../../images/futurePic.html) 50% 0 no-repeat;
+    height: 850px;
+    float: left;
+    padding: 0;
+}
+
+.ico-flt{
+    float: left;
+    font-size: 24px;
+    color: #7f8c8d;
+    margin-right: 10px;
+    line-height: 1.3 !important;
+}
+
+.info-contnt p{
+    color: #7f8c8d;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 3;
+}
+
+.info-contnt .col-md-6{
+    padding: 0 20px 0 0;
+    margin-top: 20px;
+}
+
+.mrgn-btm-btn{
+    margin-bottom: 0;
+}
+/*--------------------------*/
+/*	11_ Portfolio
+/*--------------------------*/
+.outerfliter{
+    position: relative;
+}
+
+#filters {
+    margin:1%;
+    padding:0;
+    list-style:none;
+    position: absolute;
+    right: 0;
+    top: -115px;
+}
+
+#filters li {
+    float:left;
+}
+
+#filters li span {
+    display: block;
+    padding: 5px 20px;
+    text-decoration: none;
+    color: #34495e;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+}
+#portfoliolist{
+    overflow: hidden;
+}
+#filters li span:hover {
+    color:#1abc9c;
+}
+
+#filters li span.active {
+    color:#1abc9c;
+}
+
+#portfoliolist .portfolio {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    /*width:23%;
+    margin:1%;*/
+    display:none;
+    float:left;
+    overflow:hidden;
+}
+/*--------------------------*/
+/*	12_ News
+/*--------------------------*/
+#News{
+    margin-bottom: 70px;
+}
+
+#News a{
+    color: #34495e;
+}
+
+#News a:hover{
+    color: #1abc9c;
+}
+
+.parallax-3{
+    background: url(../../images/bg-parallax-3.html) 50% 0 no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+}
+/*--------------------------*/
+/*	13_ Contact Section
+/*--------------------------*/
+.ContactForm{
+    margin-bottom: 70px;
+}
+
+.contact_form_msg{
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #434a54;
+    padding-top: 15px;
+}
+
+.contact_form_msg error{
+    background: red;
+}
+
+.empty{
+    border: 2px solid #1abc9c !important;
+}
+/*--------------------------*/
+/*	14_ Footer Section
+/*--------------------------*/
+.white-footer{
+    background: #ffffff;
+    padding: 42px 0 42px;
+}
+
+.bottomLogo{
+    font-family: 'Leckerli One', cursive;
+    font-size: 24px;
+}
+
+.padding-links{
+    margin-top: 12px;
+}
+/*--------------------------*/
+/*	14_ Single Page Blog
+/*--------------------------*/
+.metaTag{
+    padding-bottom: 25px;
+    border-bottom: 1px solid #dfdfdf;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.imgPost{
+    margin: 0 auto;
+    width: 78%;
+}
+
+.cntrImg{
+    margin: 0 auto
+}
+
+.dividerBlog{
+    border-bottom: 1px solid #dfdfdf;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+/*--------------------------*/
+/*	15_ Shortcodes
+/*--------------------------*/
+/**
+ * Price 1 stylesheet
+ * */
+.price-1 .plan {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 3px solid #ebedee;
+    padding: 25px 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-align: center;
+    color: #bdc3c7;
+    font-size: 18px;
+    font-weight: normal;
+}
+.price-1 .plan > * {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.price-1 .plan b {
+    color: #7f8c8d;
+}
+.price-1 .plan .title {
+    color: #2c3e50;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+.price-1 .plan .description {
+    margin: 26px 0;
+    padding-top: 22px;
+    border-top: 2px solid #ebedee;
+    line-height: 28px;
+    font-weight: normal;
+}
+.price-1 .plan .description b {
+    font-weight: 500;
+}
+.price-1 .plan .btn {
+    min-width: 150px;
+}
+.price-1 .ribbon {
+    position: absolute;
+    right: -3px;
+    top: 26px;
+}
+
+.demo-icons{
+    font-size: 32px;
+}
+
+.demo-icons > span {
+    display: inline-block;
+    margin: 0 0 32px 35px;
+    width: 32px;
+}
+/*--------------------------*/
+/*	16_ Responsive Settings
+/*--------------------------*/
+
+@media (max-width: 767px) {
+    #about .nav-tabs > li {
+        display: inline-block !important;
+        float: none;}
+
+    .img-left, .img-right{
+        display: none; }
+
+    .width-set, .info-contnt, .theContentRight {
+        width: 100%; }
+
+    .mrgn-btm-btn{
+        margin-bottom: 20px;}
+
+    .outerfliter{
+        position: none;}
+
+    #filters {
+        margin:1%;
+        padding:0;
+        list-style:none;
+        position: absolute;
+        left: 0;
+        top: 0;}
+
+    #portfoliolist{
+        margin-top: 100px;}
+
+    .navbar-brand{
+        line-height: 25px;}
+
+    img{
+        width: 100%;}
+
+    #home h1{
+        font-size: 100%;}
+
+    .slide_content{
+        margin-top: 10%;}
+
+}
+
+@media (max-width: 991px){
+    #about .CentrdContnt{
+        margin: 0 auto;
+    }
+}
+
