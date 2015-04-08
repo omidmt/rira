@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <meta name="layout" content="main">
+    %{--<meta name="layout" content="rira">--}%
   <title>Notification Admin</title>
 </head>
 <body>

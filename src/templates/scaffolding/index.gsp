@@ -1,7 +1,7 @@
 <% import grails.persistence.Event %>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="rira">
 		<g:set var="entityName" value="\${message(code: '${domainClass.propertyName}.label', default: '${className}')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>

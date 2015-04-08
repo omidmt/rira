@@ -3,7 +3,7 @@
 --%>
 <html>
 <head>
-    <meta name="layout" content="main">
+    <meta name="layout" content="rira">
     <title></title>
 </head>
 

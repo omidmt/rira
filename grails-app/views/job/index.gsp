@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="rira">
 		<g:set var="entityName" value="${message(code: 'job.label', default: 'Job')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
