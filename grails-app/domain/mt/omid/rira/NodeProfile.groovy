@@ -12,21 +12,21 @@ class NodeProfile {
     int passwordMaxAge
     int passwordWarning
 
+    private static passwordValidator = { if( it < 0 ) return "Password lifetime must be positive number" }
 
     static constraints = {
-        name size: 1..100, nullable: false
-        baseDir size: 1..255, nullable: false
-        primaryGroup size: 1..255, nullable: false
-        groupId nullable: false
-        defaultShell size: 1..255, nullable: false
+        name size: 1..100
+        baseDir size: 1..255
+        primaryGroup size: 1..255
+        defaultShell size: 1..255
 
-        passwordMinAge nullable: true, validator: { if( it < 0 ) return "Password lifetime must be positive number" }
-        passwordMaxAge nullable: true, validator: { if( it < 0 ) return "Password lifetime must be positive number" }
-        passwordWarning nullable: true, validator: { if( it < 0 ) return "Password lifetime must be positive number" }
+        passwordMinAge  nullable: true, validator: passwordValidator
+        passwordMaxAge  nullable: true, validator: passwordValidator
+        passwordWarning nullable: true, validator: passwordValidator
     }
 
-    def String toString()
+    String toString()
     {
-        return "${name}"
+        name
     }
 }

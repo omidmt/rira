@@ -1,13 +1,9 @@
 package mt.omid.rira
 
+import static org.springframework.http.HttpStatus.NOT_FOUND
 
-import static org.springframework.http.HttpStatus.*
-import grails.transaction.Transactional
-
-@Transactional(readOnly = true)
 class JobController extends SecureController {
 
-    static allowedMethods = []
     static scaffold = true
 
     def index(Integer max) {

@@ -1,6 +1,5 @@
 package mt.omid.rira
 
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -25,7 +24,7 @@ class NodeController extends SecureController {
 
     @Transactional
     def save(Node nodeInstance) {
-        if (nodeInstance == null) {
+        if (!nodeInstance) {
             notFound()
             return
         }
@@ -52,7 +51,7 @@ class NodeController extends SecureController {
 
     @Transactional
     def update(Node nodeInstance) {
-        if (nodeInstance == null) {
+        if (!nodeInstance) {
             notFound()
             return
         }
@@ -76,7 +75,7 @@ class NodeController extends SecureController {
     @Transactional
     def delete(Node nodeInstance) {
 
-        if (nodeInstance == null) {
+        if (!nodeInstance) {
             notFound()
             return
         }

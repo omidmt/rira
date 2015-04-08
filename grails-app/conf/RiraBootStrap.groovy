@@ -4,11 +4,8 @@ class RiraBootStrap {
 
     def seedService
 
-    def init = { servletContext ->
+    def init = {
         Konfig.initKONFIGS()
         seedService.installSeedData()
-    }
-
-    def destroy = {
     }
 }

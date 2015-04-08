@@ -1,9 +1,12 @@
 package mt.omid.rira.utils
 
+import groovy.transform.CompileStatic
+
 /**
- * Created by eomimeh on 8/3/2014.
+ * @author eomimeh
  */
-public enum ServerType
+@CompileStatic
+enum ServerType
 {
     NetraT2000      ( 1 ),
     SunFireT5220    ( 2 ),
@@ -11,11 +14,10 @@ public enum ServerType
     SunFireT2000    ( 4 ),
     Other           ( 5 )
 
-    int id
+    final int id
 
-    ServerType( id )
+    private ServerType( int id )
     {
         this.id = id
     }
-
 }

@@ -1,13 +1,10 @@
 package mt.omid.rira
 
-import org.apache.commons.logging.LogFactory
+import groovy.util.logging.Slf4j
 
-import javax.annotation.PostConstruct
-
+@Slf4j
 class Konfig
 {
-    private static final log = LogFactory.getLog( this )
-
     static KONFIGS = [:]
 
     String key
@@ -16,7 +13,6 @@ class Konfig
     Date dateCreated
     Date lastUpdated
 
-
     static constraints = {
         key blank: false, size: 1..200
         value size: 0..1000
@@ -24,32 +20,31 @@ class Konfig
     }
 
     static mapping = {
-
         key column: 'K'
         value column: 'V'
         group column: 'G'
     }
 
-    def static initKONFIGS()
+    static initKONFIGS()
     {
         log.info "Initializing KONFGIS"
         KONFIGS.clear()
 //        log.info KONFIGS
 //        log.info Konfig.all
-        Konfig.all.each {
-            KONFIGS[ it.key ] = it.value
+        Konfig.all.each { key, value ->
+            KONFIGS[ key ] = value
         }
 
         convertValues()
 //        log.info KONFIGS
     }
 
-    def static convertValues()
+    static convertValues()
     {
         log.info( "Converting KONFIGS values" )
-        KONFIGS.debug = KONFIGS.debug?.toLowerCase() == 'true' ? true : false
+        KONFIGS.debug = KONFIGS.debug?.toLowerCase() == 'true'
 
-        KONFIGS.appName = KONFIGS.appName ? KONFIGS.appName : 'RIRA'
+        KONFIGS.appName = KONFIGS.appName ?: 'RIRA'
 
         KONFIGS.StrictHostKeyChecking = ( KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'yes' || KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'no' ) ? KONFIGS.StrictHostKeyChecking : 'no'
 
@@ -57,9 +52,9 @@ class Konfig
 
         KONFIGS.sessionInactivityTimeout = KONFIGS.sessionInactivityTimeout?.isInteger() ? KONFIGS.sessionInactivityTimeout as int : 3600
 
-        KONFIGS.defaultHome = KONFIGS.defaultHome ? KONFIGS.defaultHome : '/nodeState'
+        KONFIGS.defaultHome = KONFIGS.defaultHome ?: '/nodeState'
 
-        KONFIGS.strictAuthorization = KONFIGS.strictAuthorization?.toLowerCase() == 'true' ? true : false
+        KONFIGS.strictAuthorization = KONFIGS.strictAuthorization?.toLowerCase() == 'true'
 
         // Pattern in config shouldn't be enclosed in // when defining as string
         KONFIGS.passwordComplexity = KONFIGS.passwordComplexity ?: /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/

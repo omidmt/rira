@@ -1,9 +1,12 @@
 package mt.omid.rira.utils
-/**
- * Created by eomimeh on 8/3/2014.
- */
 
-public enum NodeType
+import groovy.transform.CompileStatic
+
+/**
+ * @author eomimeh
+ */
+@CompileStatic
+enum NodeType
 {
     SDP     ( 1 ),
     CCN     ( 2 ),
@@ -17,16 +20,16 @@ public enum NodeType
     EMA     ( 10 ),
     Other   ( 11 )
 
-    int id
+    final int id
 
-    NodeType( int id )
+    private NodeType( int id )
     {
         this.id = id
     }
 
     static NodeType valueOfName( String name )
     {
-        values().find { it.value() == name }
+        values().find { it.name() == name }
     }
 
     def modules()

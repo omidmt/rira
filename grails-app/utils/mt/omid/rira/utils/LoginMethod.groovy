@@ -1,9 +1,12 @@
 package mt.omid.rira.utils
 
+import groovy.transform.CompileStatic
+
 /**
- * Created by eomimeh on 8/4/2014.
+ * @author eomimeh
  */
-public enum LoginMethod
+@CompileStatic
+enum LoginMethod
 {
 
 //    SSHRootPassword ( 1 ),
@@ -16,11 +19,10 @@ public enum LoginMethod
 //    FDSXML          ( 8 ),
 //    Other           ( 9 )
 
-    int id
+    final int id
 
-    LoginMethod( int id )
+    private LoginMethod( int id )
     {
         this.id = id
     }
-
 }

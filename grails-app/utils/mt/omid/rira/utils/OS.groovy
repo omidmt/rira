@@ -1,9 +1,12 @@
 package mt.omid.rira.utils
 
+import groovy.transform.CompileStatic
+
 /**
- * Created by eomimeh on 8/4/2014.
+ * @author eomimeh
  */
-public enum OS
+@CompileStatic
+enum OS
 {
     SOLARIS10       ( 1 ),
     RHEL6           ( 2 ),
@@ -11,11 +14,10 @@ public enum OS
     GenericLinux    ( 4 ),
     Other           ( 5 )
 
-    int id
+    final int id
 
-    OS( int id )
+    private OS( int id )
     {
         this.id = id
     }
-
 }

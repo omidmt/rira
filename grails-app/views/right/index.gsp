@@ -1,6 +1,3 @@
-
-<%@ page import="mt.omid.rira.Right" %>
-<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
@@ -9,7 +6,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#list-right" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">
@@ -27,25 +23,17 @@
 			<table class="table table-bordered table-striped">
 			<thead>
 					<tr>
-					
 						<g:sortableColumn property="act" title="${message(code: 'right.act.label', default: 'Act')}" />
-					
 						<g:sortableColumn property="ctrl" title="${message(code: 'right.ctrl.label', default: 'Ctrl')}" />
-					
 						<th><g:message code="right.applico.label" default="Applico" /></th>
-					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${rightInstanceList}" status="i" var="rightInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
 						<td><g:link action="show" id="${rightInstance.id}">${fieldValue(bean: rightInstance, field: "act")}</g:link></td>
-					
 						<td>${fieldValue(bean: rightInstance, field: "ctrl")}</td>
-					
 						<td>${fieldValue(bean: rightInstance, field: "applico")}</td>
-					
 					</tr>
 				</g:each>
 				</tbody>

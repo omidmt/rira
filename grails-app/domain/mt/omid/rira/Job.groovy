@@ -17,7 +17,7 @@ class Job
 
     static constraints = {
 
-        name nullable: false, size: 1..50
+        name size: 1..50
         description nullable: true, size: 0..500, widget: 'textarea', editable: false
         log nullable: true, size: 0..100000, widget: 'textarea', editable: false
 
@@ -31,11 +31,10 @@ class Job
         table "r_job"
     }
 
-    def log( msg )
+    void log( msg )
     {
-        this.log += "\n${msg}"
+        log += "\n$msg"
     }
-
 }
 
 enum JobStatus
@@ -47,16 +46,16 @@ enum JobStatus
     FAILED (4),
     CANCELED( 5 )
 
-    int id
+    final int id
 
-    def JobStatus( int id )
+    private JobStatus( int id )
     {
         this.id = id
     }
 
     static JobStatus valueOfName( String name )
     {
-        values().find { it.name == name }
+        values().find { it.name() == name }
     }
 
     static JobStatus valueOf( id )
@@ -64,4 +63,3 @@ enum JobStatus
         values().find { it.id == id }
     }
 }
-

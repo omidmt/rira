@@ -9,7 +9,7 @@ abstract class RiraController
 
     protected redirectBackOr( defaultURI, notice = null )
     {
-        log.debug( "Redirect back ${defaultURI} or ${session.returnTo}" )
+        log.debug( "Redirect back $defaultURI or $session.returnTo" )
         flash.message = notice
         if( session.returnTo )
         {
@@ -25,6 +25,6 @@ abstract class RiraController
 
     protected clearReturnTo()
     {
-        session.returnTo = null
+        session.removeAttribute 'returnTo'
     }
 }

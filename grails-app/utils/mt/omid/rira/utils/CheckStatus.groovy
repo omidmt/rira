@@ -1,26 +1,28 @@
 package mt.omid.rira.utils
 
+import groovy.transform.CompileStatic
+
 /**
- * Created by eomimeh on 8/31/2014.
+ * @author eomimeh
  */
-public enum CheckStatus
+@CompileStatic
+enum CheckStatus
 {
     OK (0),
     LOGIN_FAILED (1),
     TIMEOUT (2),
     OTHER_ERROR (4)
 
+    final int id
 
-    int id
-
-    def CheckStatus( int id )
+    private CheckStatus( int id )
     {
         this.id = id
     }
 
     static CheckStatus valueOfName( String name )
     {
-        values().find { it.name == name }
+        values().find { it.name() == name }
     }
 
     static CheckStatus valueOf( id )

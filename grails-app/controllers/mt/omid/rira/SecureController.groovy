@@ -7,41 +7,36 @@ abstract class SecureController extends RiraController
 
     def sessionService
 
-
     def afterInterceptor = { model, modelAndView ->
-        model.applicos = sessionService.getCurrentUser().applicos
+        model.applicos = sessionService.currentUser.applicos
     }
 
     private authNauth()
     {
-        log.debug "Authenticate ${controllerName}/${actionName}"
-//        log.debug "Authenticate request ${session}"
+        log.debug "Authenticate $controllerName/$actionName"
+//        log.debug "Authenticate request $session"
         if( sessionService?.authenticate( session ) )
         {
             if( sessionService.authorize( controllerName, actionName ) )
             {
                 return true
             }
+
+            log.debug "Authorization failed"
+            flash.error = "You do not have enough right to access this section."
+
+            if( Konfig.KONFIGS.strictAuthorization )
+                redirect controller: "session", action: "logout"
             else
-            {
-                log.debug "Authorization failed"
-                flash.error = "You do not have enough right to access this section."
+                redirect controller: 'home', action: 'index'
 
-                if( Konfig.KONFIGS.strictAuthorization )
-                    redirect controller: "session", action: "logout"
-                else
-                    redirect controller: 'home', action: 'index'
-
-                return false
-            }
-        }
-        else
-        {
-            log.debug "Authentication failed."
-            flash.error = "Please sign in by your username & password"
-            storeLocation()
-            redirect controller: 'Session', action: 'login'
             return false
         }
+
+        log.debug "Authentication failed."
+        flash.error = "Please sign in by your username & password"
+        storeLocation()
+        redirect controller: 'Session', action: 'login'
+        return false
     }
 }

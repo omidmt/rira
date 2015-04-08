@@ -27,7 +27,7 @@ class TemplateController extends SecureController {
 
     @Transactional
     def save(Template templateInstance) {
-        if (templateInstance == null) {
+        if (!templateInstance) {
             notFound()
             return
         }
@@ -54,7 +54,7 @@ class TemplateController extends SecureController {
 
     @Transactional
     def update(Template templateInstance) {
-        if (templateInstance == null) {
+        if (!templateInstance) {
             notFound()
             return
         }
@@ -78,7 +78,7 @@ class TemplateController extends SecureController {
     @Transactional
     def delete(Template templateInstance) {
 
-        if (templateInstance == null) {
+        if (!templateInstance) {
             notFound()
             return
         }

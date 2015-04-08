@@ -1,15 +1,10 @@
-
-<%@ page import="mt.omid.rira.ntfy.Recipient" %>
-<!DOCTYPE html>
 <html>
 	<head>
-		%{--<meta name="layout" content="main">--}%
 		<g:set var="entityName" value="${message(code: 'recipient.label', default: 'Recipient')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#list-recipient" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">
@@ -27,25 +22,17 @@
 			<table class="table table-bordered table-striped">
 			<thead>
 					<tr>
-					
 						<g:sortableColumn property="email" title="${message(code: 'recipient.email.label', default: 'Email')}" />
-					
 						<g:sortableColumn property="phone" title="${message(code: 'recipient.phone.label', default: 'Phone')}" />
-					
 						<g:sortableColumn property="instantMessaging" title="${message(code: 'recipient.instantMessaging.label', default: 'Instant Messaging')}" />
-					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${recipientInstanceList}" status="i" var="recipientInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
 						<td><g:link action="show" id="${recipientInstance.id}">${fieldValue(bean: recipientInstance, field: "email")}</g:link></td>
-					
 						<td>${fieldValue(bean: recipientInstance, field: "phone")}</td>
-					
 						<td>${fieldValue(bean: recipientInstance, field: "instantMessaging")}</td>
-					
 					</tr>
 				</g:each>
 				</tbody>

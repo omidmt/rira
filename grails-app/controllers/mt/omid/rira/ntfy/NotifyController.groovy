@@ -17,18 +17,18 @@ class NotifyController extends SecureController {
         if( params.containsKey( 'user' ) ) {
             Sql sql = new Sql(dataSource)
             def rows = sql.rows("Select UserId From ECSCC_System.Users u where id = ${params.user}")
-            session["user"] = rows[0][0]
+            session.user = rows[0][0]
         }
-        else if( !session[ "user" ] )
+        else if( !session.user )
             redirect( url: "http://${request.serverName}/" )
 
-        [ notifGroups : NotificationGroup.all, templates : Template.all, history: NotificationHistory.findAllBySendDateGreaterThan( new Date().minus( 7 ), [ sort: 'sendDate', order: 'desc', readOnly: true ] ) ]
+        [ notifGroups : NotificationGroup.all, templates : Template.all,
+          history: NotificationHistory.findAllBySendDateGreaterThan( new Date() - 7, [ sort: 'sendDate', order: 'desc', readOnly: true ] ) ]
     }
 
-    def send()
+    def send(String message)
     {
         def notifGrpId = params.notifGroups
-        def msg = params.message
 
         if( notifGrpId == null )
         {
@@ -37,14 +37,14 @@ class NotifyController extends SecureController {
             return
         }
 
-        if( msg == null )
+        if( message == null )
         {
             flash.error = "Message must not be empty."
             redirect( action: "index" )
             return
         }
 
-        if( msg.size() > 700 )
+        if( message.size() > 700 )
         {
             flash.error = "Message can't be more than 700 character [English]."
             redirect( action: "index" )
@@ -58,26 +58,26 @@ class NotifyController extends SecureController {
         try
         {
 //            File file = new File( "test.log" )
-//            file << """${SEND_SMS} '${msg}'\r\n"""
-//            file << "${SEND_SMS} '${msg}'\r\n"
-//            phones.flatten().unique().each { def p = """${SEND_SMS} ${it} '${msg}'""".execute(); println "${p.text}" }
-//            phones.flatten().unique().each { print ${it} }
-            phones.flatten().unique().each { SMSService.sendSMS( it, msg ) }
+//            file << """$SEND_SMS '$message'\r\n"""
+//            file << "$SEND_SMS '$message'\r\n"
+//            phones.flatten().unique().each { def p = """$SEND_SMS $it '$message'""".execute(); log.debug p.text }
+//            phones.flatten().unique().each { print it }
+            phones.flatten().unique().each { SMSService.sendSMS( it, message ) }
 
             nh.user = session.user
-            nh.message = msg
+            nh.message = message
 
-            def recp = ""
-            phones.flatten().unique().each { recp += "${it} " }
+            String recp = ""
+            phones.flatten().unique().each { recp += "$it " }
             nh.recipients = recp
             nh.sendDate = new Date()
             nh.save( flush: true )
             flash.message = "Notification is sent."
         }
-        catch ( Exception e )
+        catch ( e )
         {
-            flash.error = "Error in sending notification [${e.getMessage()}]"
-            log.error( e.getMessage() )
+            flash.error = "Error in sending notification [$e.message]"
+            log.error( e.message, e)
         }
 
         redirect action: "index"
@@ -85,6 +85,5 @@ class NotifyController extends SecureController {
 
     def admin()
     {
-
     }
 }

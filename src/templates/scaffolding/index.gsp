@@ -1,6 +1,4 @@
 <% import grails.persistence.Event %>
-<%=packageName%>
-<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
@@ -9,7 +7,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#list-${domainClass.propertyName}" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">

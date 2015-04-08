@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
@@ -6,16 +5,15 @@
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>
-    <div class="container">
-		%{--<a href="#create-right" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
-        <div class="navbar">
-            <div class="nav">
-                <ul class="nav nav-pills">
-                    <li><a class="label label-default home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                    <li><g:link class="label label-primary list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                </ul>
-            </div>
-        </div>
+	<div class="container">
+		<div class="navbar">
+			<div class="nav">
+				<ul class="nav nav-pills">
+					<li><a class="label label-default home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+					<li><g:link class="label label-primary list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+				</ul>
+			</div>
+		</div>
 		<div id="create-right" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -29,14 +27,10 @@
 			</ul>
 			</g:hasErrors>
 			<g:form url="[resource:rightInstance, action:'save']"  class="form-horizontal" role="form" >
-				%{--<fieldset class="form">--}%
-					<g:render template="form"/>
-				%{--</fieldset>--}%
-				%{--<fieldset class="form-group">--}%
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				%{--</fieldset>--}%
+				<g:render template="form"/>
+				<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 			</g:form>
 		</div>
-    </div>
+	</div>
 	</body>
 </html>

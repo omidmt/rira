@@ -1,11 +1,6 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: eomimeh
-  Date: 10/31/2014
-  Time: 6:07 PM
+  @author eomimeh
 --%>
-
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="main">
@@ -42,9 +37,7 @@
                         <input type="password" class="form-control login-field" value="" placeholder="Confirm Password" id="confPass" name="confPass" />
                     </div>
                     <input type="hidden" value="" id="cyph" name="cyph" />
-                    %{--<a class="btn btn-primary btn-lg btn-block" href="#" onclick="signin()">Sign in</a>--}%
                     <input type="submit" value="Save" name="submit" id="submit" >
-                %{--<a class="login-link" href="#">Lost your password?</a>--}%
                 </g:form>
             </div>
         </div>

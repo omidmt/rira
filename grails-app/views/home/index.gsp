@@ -1,11 +1,7 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: eomimeh
-  Date: 10/3/2014
-  Time: 11:13 PM
+  @author eomimeh
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="main">
@@ -13,6 +9,5 @@
 </head>
 
 <body>
-
 </body>
 </html>

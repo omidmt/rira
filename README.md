@@ -14,9 +14,7 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
 ### Install
     plugins {
         compile ":rira:0.1.1"
-        }
-
-This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
+    }
 
 ### Version
 0.1.1
@@ -25,7 +23,6 @@ This text you see here is *actually* written in Markdown! To get a feel for Mark
 
 RIRA depends on a number of projects to work properly:
 
-* [Grails] - A powerful Groovy-based web application framework for the JVM
 * [Twitter Bootstrap] - great UI boilerplate for modern web apps
 * [jQuery]
 * ...
