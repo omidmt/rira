@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
@@ -7,7 +6,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#create-nodeProfile" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
         <div class="navbar">
             <div class="nav">
                 <ul class="nav nav-pills">
@@ -29,12 +27,8 @@
 			</ul>
 			</g:hasErrors>
 			<g:form url="[resource:nodeProfileInstance, action:'save']"  class="form-horizontal" role="form" >
-				%{--<fieldset class="form">--}%
-					<g:render template="form"/>
-				%{--</fieldset>--}%
-				%{--<fieldset class="form-group">--}%
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				%{--</fieldset>--}%
+				<g:render template="form"/>
+				<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 			</g:form>
 		</div>
     </div>

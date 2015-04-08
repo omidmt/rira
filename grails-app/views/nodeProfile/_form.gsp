@@ -1,7 +1,3 @@
-<%@ page import="mt.omid.rira.NodeProfile" %>
-
-
-
 <div class="row">
     <div class="form-group col-md-6 col-lg-6 ${hasErrors(bean: nodeProfileInstance, field: 'name', 'error')} required">
         <label for="name">
@@ -9,7 +5,6 @@
             <span class="required-indicator">*</span>
         </label>
         <g:textField name="name" maxlength="100" required="" value="${nodeProfileInstance?.name}"/>
-
     </div>
 </div>
 
@@ -20,7 +15,6 @@
             <span class="required-indicator">*</span>
         </label>
         <g:textArea name="baseDir" cols="40" rows="5" maxlength="255" required="" value="${nodeProfileInstance?.baseDir}"/>
-
     </div>
 </div>
 
@@ -31,7 +25,6 @@
             <span class="required-indicator">*</span>
         </label>
         <g:textArea name="primaryGroup" cols="40" rows="5" maxlength="255" required="" value="${nodeProfileInstance?.primaryGroup}"/>
-
     </div>
 </div>
 
@@ -42,7 +35,6 @@
             <span class="required-indicator">*</span>
         </label>
         <g:field name="groupId" type="number" value="${nodeProfileInstance.groupId}" required=""/>
-
     </div>
 </div>
 
@@ -53,7 +45,6 @@
             <span class="required-indicator">*</span>
         </label>
         <g:textArea name="defaultShell" cols="40" rows="5" maxlength="255" required="" value="${nodeProfileInstance?.defaultShell}"/>
-
     </div>
 </div>
 
@@ -64,7 +55,6 @@
             <span class="required-indicator">*</span>
         </label>
         <g:field name="passwordMinAge" type="number" value="${nodeProfileInstance.passwordMinAge}" required=""/>
-
     </div>
 </div>
 
@@ -75,7 +65,6 @@
             <span class="required-indicator">*</span>
         </label>
         <g:field name="passwordMaxAge" type="number" value="${nodeProfileInstance.passwordMaxAge}" required=""/>
-
     </div>
 </div>
 
@@ -86,7 +75,5 @@
             <span class="required-indicator">*</span>
         </label>
         <g:field name="passwordWarning" type="number" value="${nodeProfileInstance.passwordWarning}" required=""/>
-
     </div>
 </div>
-

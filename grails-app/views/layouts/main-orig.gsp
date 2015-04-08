@@ -23,7 +23,6 @@
         <asset:stylesheet href="font-awesome/css/font-awesome.min.css" />
         <asset:stylesheet src="flatui/flat-ui.css" />
 
-
         <asset:javascript src="flatui/jquery-ui-1.10.3.custom.min.js" />
         <asset:javascript src="flatui/jquery.ui.touch-punch.min.js" />
         <asset:javascript src="flatui/bootstrap-select.js" />
@@ -39,7 +38,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>--}%
         <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <g:if test="${flash.error}">
@@ -56,14 +54,10 @@
                 <div class="">
                     <g:layoutBody/>
                 </div>
-                %{--<div class="">--}%
-                    %{--Test<br>--}%
-                %{--</div>--}%
             </div>
         </div>
         </div>
 		<div class="footer" role="contentinfo"></div>
-		%{--<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>--}%
     </div>
     <r:layoutResources />
 	</body>

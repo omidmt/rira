@@ -1,110 +1,86 @@
-
-<%@ page import="mt.omid.rira.ntfy.Recipient" %>
-<!DOCTYPE html>
 <html>
 	<head>
-		%{--<meta name="layout" content="main">--}%
 		<g:set var="entityName" value="${message(code: 'recipient.label', default: 'Recipient')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-    <div class="container">
-		%{--<a href="#show-recipient" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
+	<div class="container">
 		<br/>
-        <div class="navbar">
-            <div class="nav">
-                <ul class="nav nav-pills">
-                    <li><a class="label label-default home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                    <li><g:link class="label label-primary list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                    <li><g:link class="label label-primary  create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-                </ul>
-            </div>
-        </div>
+		<div class="navbar">
+			<div class="nav">
+				<ul class="nav nav-pills">
+					<li><a class="label label-default home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+					<li><g:link class="label label-primary list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+					<li><g:link class="label label-primary  create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				</ul>
+			</div>
+		</div>
 		<div id="show-recipient" class="content scaffold-show" role="main">
-			%{--<h1><g:message code="default.show.label" args="[entityName]" /></h1>--}%
 			<g:if test="${flash.message}">
 			<div class="alert message" role="status">${flash.message}</div>
 			</g:if>
-			%{--<ol class="property-list recipient">--}%
-            <form class="form-horizontal" role="form">
-			
+			<form class="form-horizontal" role="form">
+
 				<g:if test="${recipientInstance?.email}">
-				%{--<li class="fieldcontain">--}%
 
-                    <div class="form-group">
-                    %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputemail" class="col-sm-2 control-label">email</label>
-					%{--<span id="email-label" class="input-group-addon property-label"><g:message code="recipient.email.label" default="Email" /></span>--}%
-                    <div class="col-sm-10">
-					
+					<div class="form-group">
+					<label for="inputemail" class="col-sm-2 control-label">email</label>
+					<div class="col-sm-10">
+
 						<p class="form-control-static disabled" aria-labelledby="email-label"><g:fieldValue bean="${recipientInstance}" field="email"/></p>
-					
-                    </div>
-				%{--</li>--}%
-                    </div>
+
+					</div>
+					</div>
 				</g:if>
-			
+
 				<g:if test="${recipientInstance?.phone}">
-				%{--<li class="fieldcontain">--}%
 
-                    <div class="form-group">
-                    %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputphone" class="col-sm-2 control-label">phone</label>
-					%{--<span id="phone-label" class="input-group-addon property-label"><g:message code="recipient.phone.label" default="Phone" /></span>--}%
-                    <div class="col-sm-10">
-					
+					<div class="form-group">
+					<label for="inputphone" class="col-sm-2 control-label">phone</label>
+					<div class="col-sm-10">
+
 						<p class="form-control-static disabled" aria-labelledby="phone-label"><g:fieldValue bean="${recipientInstance}" field="phone"/></p>
-					
-                    </div>
-				%{--</li>--}%
-                    </div>
+
+					</div>
+					</div>
 				</g:if>
-			
+
 				<g:if test="${recipientInstance?.instantMessaging}">
-				%{--<li class="fieldcontain">--}%
 
-                    <div class="form-group">
-                    %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputinstantMessaging" class="col-sm-2 control-label">instantMessaging</label>
-					%{--<span id="instantMessaging-label" class="input-group-addon property-label"><g:message code="recipient.instantMessaging.label" default="Instant Messaging" /></span>--}%
-                    <div class="col-sm-10">
-					
+					<div class="form-group">
+					<label for="inputinstantMessaging" class="col-sm-2 control-label">instantMessaging</label>
+					<div class="col-sm-10">
+
 						<p class="form-control-static disabled" aria-labelledby="instantMessaging-label"><g:fieldValue bean="${recipientInstance}" field="instantMessaging"/></p>
-					
-                    </div>
-				%{--</li>--}%
-                    </div>
-				</g:if>
-			
-				<g:if test="${recipientInstance?.notifGroup}">
-				%{--<li class="fieldcontain">--}%
 
-                    <div class="form-group">
-                    %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputnotifGroup" class="col-sm-2 control-label">notifGroup</label>
-					%{--<span id="notifGroup-label" class="input-group-addon property-label"><g:message code="recipient.notifGroup.label" default="Notif Group" /></span>--}%
-                    <div class="col-sm-10">
-					
+					</div>
+					</div>
+				</g:if>
+
+				<g:if test="${recipientInstance?.notifGroup}">
+
+					<div class="form-group">
+					<label for="inputnotifGroup" class="col-sm-2 control-label">notifGroup</label>
+					<div class="col-sm-10">
+
 						<g:each in="${recipientInstance.notifGroup}" var="n">
 						<p class="form-control-static disabled" aria-labelledby="notifGroup-label"><g:link controller="notificationGroup" action="show" id="${n.id}">${n?.encodeAsHTML()}</g:link></p>
 						</g:each>
-					
-                    </div>
-				%{--</li>--}%
-                    </div>
+
+					</div>
+					</div>
 				</g:if>
-			
-            </form>
-			%{--</ol>--}%
+
+			</form>
 			<g:form url="[resource:recipientInstance, action:'delete']" method="DELETE">
-                <div class="btn-group">
-                <fieldset class="form-group">
+				<div class="btn-group">
+				<fieldset class="form-group">
 					<g:link class="edit btn btn-default" action="edit" resource="${recipientInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete btn btn-default" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
-                </div>
+				</div>
 			</g:form>
 		</div>
-    </div>
+	</div>
 	</body>
 </html>

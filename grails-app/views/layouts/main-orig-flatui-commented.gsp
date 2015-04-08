@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <%@ import="mt.omid.rira.Konfig" %>
+<!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
@@ -22,24 +22,9 @@
         <asset:javascript src="bootstrap/bootstrap.js" />
 
         <asset:stylesheet href="font-awesome/css/font-awesome.min.css" />
-        %{-- Make FlatUI Activate below --}%
-        %{--<asset:stylesheet src="flatui/flat-ui.css" />--}%
-        %{--<asset:stylesheet src="flatui/flat-ui-normal.css" />--}%
-        %{-- END OF FlatUI Activation --}%
         <asset:stylesheet src="fstyle.css" />
 
-
         <asset:javascript src="util.js" />
-        %{-- Make FlatUI Activate below --}%
-        %{--<asset:javascript src="flatui/jquery-ui-1.10.3.custom.min.js" />--}%
-        %{--<asset:javascript src="flatui/jquery.ui.touch-punch.min.js" />--}%
-        %{--<asset:javascript src="flatui/bootstrap-select.js" />--}%
-        %{--<asset:javascript src="flatui/bootstrap-switch.js" />--}%
-        %{--<asset:javascript src="flatui/flatui-checkbox.js" />--}%
-        %{--<asset:javascript src="flatui/flatui-radio.js" />--}%
-        %{--<asset:javascript src="flatui/jquery.tagsinput.js" />--}%
-        %{--<asset:javascript src="flatui/jquery.placeholder.js" />--}%
-        %{-- END OF FlatUI Activation --}%
 
         <asset:javascript src="sticky/jquery.sticky.js" />
         <asset:javascript src="sticky/jquery.localscroll-1.2.7-min.js" />
@@ -54,51 +39,21 @@
     <r:layoutResources />
 	</head>
 	<body>
-    %{--<div id="sticker-sticky-wrapper" class="sticky-wrapper" style="height: 56px;">--}%
-    %{--<nav class="navbar navbar-default navbar-static-top navbar-lg" role="navigation" id="sticker">--}%
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container ">
             <div class="navbar-header centerMrgn">
-                %{--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">--}%
-                    %{--<span class="sr-only">Toggle navigation</span>--}%
-                %{--</button>--}%
                 <a class="navbar-brand" data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#home">${Konfig.KONFIGS.appName}</a>
             </div>
             <div class="collapse navbar-collapse " id="navbar-collapse-01">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#home">Home</a></li>
                     <li><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#about">About</a></li>
-                    %{--<li><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#Services">Services</a></li>--}%
-                    %{--<li><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#Portfolio">Portfolio</a></li>--}%
-                    %{--<li><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#News">News</a></li>--}%
-                    %{--<li><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#contact">Contact</a></li>--}%
-                    %{--<li><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#" data-toggle="dropdown">Other Pages--}%
-                        %{--<span class="caret"></span>--}%
-                    %{--</a>--}%
-                        %{--<span class="dropdown-arrow"></span>--}%
-                        %{--<ul class="dropdown-menu">--}%
-                            %{--<li><a href="index1.html">Wide Screen Slider Bottom Bar</a></li>--}%
-                            %{--<li><a href="index2.html">Wide Screen Slider Top Bar</a></li>--}%
-                            %{--<li><a href="index3.html">Full Screen Image</a></li>--}%
-                            %{--<li><a href="index4.html">Full Screen Pattern</a></li>--}%
-                            %{--<li><a href="index5.html">Full Screen Video</a></li>--}%
-                            %{--<li><a href="blog_full_Width.html">Blog Full Width</a></li>--}%
-                            %{--<li><a href="blog_full_Width_TwoColumns.html">Blog Two Columns</a></li>--}%
-                            %{--<li><a href="blog_full_Width_ThreeColumns.html">Blog Three Columns</a></li>--}%
-                            %{--<li><a href="blog_full_Width_RightSideBar.html">Right SideBar</a></li>--}%
-                            %{--<li><a href="blog_full_Width_LeftSideBar.html">Left SideBar</a></li>--}%
-                            %{--<li><a href="SinglePageBlog.html">Single Page Blog</a></li>--}%
-                            %{--<li><a href="shortcodes.html">Shortcodes</a></li>--}%
-                        %{--</ul>--}%
-                    %{--</li>--}%
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
-    %{--</nav>--}%
     </div>
     <br/><br/>
     <div class="container">
-		%{--<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>--}%
         <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <g:if test="${flash.error}">
@@ -122,7 +77,6 @@
         </div>
         </div>
 		<div class="footer" role="contentinfo"></div>
-		%{--<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>--}%
     </div>
     <r:layoutResources />
 	</body>

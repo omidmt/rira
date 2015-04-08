@@ -1,7 +1,5 @@
 package mt.omid.rira
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -27,7 +25,7 @@ class KonfigController extends SecureController {
 
     @Transactional
     def save(Konfig konfigInstance) {
-        if (konfigInstance == null) {
+        if (!konfigInstance) {
             notFound()
             return
         }
@@ -54,7 +52,7 @@ class KonfigController extends SecureController {
 
     @Transactional
     def update(Konfig konfigInstance) {
-        if (konfigInstance == null) {
+        if (!konfigInstance) {
             notFound()
             return
         }
@@ -78,7 +76,7 @@ class KonfigController extends SecureController {
     @Transactional
     def delete(Konfig konfigInstance) {
 
-        if (konfigInstance == null) {
+        if (!konfigInstance) {
             notFound()
             return
         }

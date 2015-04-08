@@ -10,8 +10,8 @@ class Template {
         content blank: false, size: 1..1000
     }
 
-    public String toString()
+    String toString()
     {
-        return name
+        name
     }
 }

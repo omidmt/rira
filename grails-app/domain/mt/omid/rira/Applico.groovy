@@ -16,9 +16,8 @@ class Applico {
         family nullable: true, size: 0..50
     }
 
-    def String toString()
+    String toString()
     {
-        return "${name} [${path}]"
+        "$name [$path]"
     }
-
 }

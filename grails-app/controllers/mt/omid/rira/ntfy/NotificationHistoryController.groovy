@@ -27,7 +27,7 @@ class NotificationHistoryController extends SecureController {
 
     @Transactional
     def save(NotificationHistory notificationHistoryInstance) {
-        if (notificationHistoryInstance == null) {
+        if (!notificationHistoryInstance) {
             notFound()
             return
         }
@@ -54,7 +54,7 @@ class NotificationHistoryController extends SecureController {
 
     @Transactional
     def update(NotificationHistory notificationHistoryInstance) {
-        if (notificationHistoryInstance == null) {
+        if (!notificationHistoryInstance) {
             notFound()
             return
         }
@@ -78,7 +78,7 @@ class NotificationHistoryController extends SecureController {
     @Transactional
     def delete(NotificationHistory notificationHistoryInstance) {
 
-        if (notificationHistoryInstance == null) {
+        if (!notificationHistoryInstance) {
             notFound()
             return
         }

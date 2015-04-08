@@ -20,8 +20,8 @@ class Right {
         table 'r_right'
     }
 
-    public String toString()
+    String toString()
     {
-        return "${ctrl}/${act}"
+        "$ctrl/$act"
     }
 }

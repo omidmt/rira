@@ -1,6 +1,3 @@
-
-<%@ page import="mt.omid.rira.NodeProfile" %>
-<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
@@ -9,7 +6,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#list-nodeProfile" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">
@@ -27,37 +23,23 @@
 			<table class="table table-bordered table-striped">
 			<thead>
 					<tr>
-					
 						<g:sortableColumn property="name" title="${message(code: 'nodeProfile.name.label', default: 'Name')}" />
-					
 						<g:sortableColumn property="baseDir" title="${message(code: 'nodeProfile.baseDir.label', default: 'Base Dir')}" />
-					
 						<g:sortableColumn property="primaryGroup" title="${message(code: 'nodeProfile.primaryGroup.label', default: 'Primary Group')}" />
-					
 						<g:sortableColumn property="groupId" title="${message(code: 'nodeProfile.groupId.label', default: 'Group Id')}" />
-					
 						<g:sortableColumn property="defaultShell" title="${message(code: 'nodeProfile.defaultShell.label', default: 'Default Shell')}" />
-					
 						<g:sortableColumn property="passwordMinAge" title="${message(code: 'nodeProfile.passwordMinAge.label', default: 'Password Min Age')}" />
-					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${nodeProfileInstanceList}" status="i" var="nodeProfileInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
 						<td><g:link action="show" id="${nodeProfileInstance.id}">${fieldValue(bean: nodeProfileInstance, field: "name")}</g:link></td>
-					
 						<td>${fieldValue(bean: nodeProfileInstance, field: "baseDir")}</td>
-					
 						<td>${fieldValue(bean: nodeProfileInstance, field: "primaryGroup")}</td>
-					
 						<td>${fieldValue(bean: nodeProfileInstance, field: "groupId")}</td>
-					
 						<td>${fieldValue(bean: nodeProfileInstance, field: "defaultShell")}</td>
-					
 						<td>${fieldValue(bean: nodeProfileInstance, field: "passwordMinAge")}</td>
-					
 					</tr>
 				</g:each>
 				</tbody>

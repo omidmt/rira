@@ -1,14 +1,9 @@
-<%@ page import="mt.omid.rira.ntfy.NotificationHistory" %>
-
-
-
 <div class="form-group ${hasErrors(bean: notificationHistoryInstance, field: 'user', 'error')} required">
 	<label for="user">
 		<g:message code="notificationHistory.user.label" default="User" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="user" maxlength="50" required="" value="${notificationHistoryInstance?.user}"/>
-
 </div>
 
 <div class="form-group ${hasErrors(bean: notificationHistoryInstance, field: 'message', 'error')} required">
@@ -17,7 +12,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textArea name="message" cols="40" rows="5" maxlength="1000" required="" value="${notificationHistoryInstance?.message}"/>
-
 </div>
 
 <div class="form-group ${hasErrors(bean: notificationHistoryInstance, field: 'recipients', 'error')} required">
@@ -26,7 +20,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textArea name="recipients" cols="40" rows="5" maxlength="2000" required="" value="${notificationHistoryInstance?.recipients}"/>
-
 </div>
 
 <div class="form-group ${hasErrors(bean: notificationHistoryInstance, field: 'sendDate', 'error')} required">
@@ -35,6 +28,4 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:datePicker name="sendDate" precision="day"  value="${notificationHistoryInstance?.sendDate}"  />
-
 </div>
-

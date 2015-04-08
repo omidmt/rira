@@ -1,5 +1,5 @@
 package mt.omid.rira
 
-abstract class UnSecureController  extends RiraController
+abstract class UnSecureController extends RiraController
 {
 }
