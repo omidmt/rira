@@ -16,8 +16,8 @@ class Role {
         table 'r_role'
     }
 
-    public String toString()
+    String toString()
     {
-        return name;
+        name
     }
 }

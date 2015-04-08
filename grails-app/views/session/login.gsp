@@ -1,11 +1,7 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: eomimeh
-  Date: 9/24/2014
-  Time: 12:31 PM
+  @author eomimeh
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta name="layout" content="main">
@@ -30,7 +26,6 @@
             <input type="hidden" value="" id="cyph" name="cyph" />
             <input type="submit" class="hide">
             <a class="btn btn-primary btn-lg btn-block" href="#" onclick="$(this).closest('form').submit();">Sign in</a>
-            %{--<a class="login-link" href="#">Lost your password?</a>--}%
             </g:form>
         </div>
       </div>
@@ -38,7 +33,7 @@
 </div>
 
 <script type="application/javascript">
-    $( "#loginForm" ).submit( signin );
+$( "#loginForm" ).submit( signin );
 </script>
 
 </body>

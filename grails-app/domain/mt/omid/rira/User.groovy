@@ -34,49 +34,41 @@ class User {
     static transients = [ 'password', 'passwordConfirmation' ]
 
     static constraints = {
-        name nullable: false, blank: false, size: 1..100
+        name blank: false, size: 1..100
         email email: true, unique: true, blank: false
 
-        password size: 8..255, password: true, bindable: true, nullable: true,
-                validator:
-                        {
-                            val, self ->
+        password size: 8..255, password: true, bindable: true, nullable: true, validator: { val, self ->
+            // Is it update ?
+            if( self.id )
+            {
+                if( val )
+                {
+                    self.version += 1
+                    if( !( val ==~ Konfig.KONFIGS.passwordComplexity ) )
+                    {
+                        // log.error "Validating password [${val ==~ Konfig.KONFIGS.passwordComplexity}]"
+                        return [ 'User.password.complexity.mismatch' ]
+                    }
+                }
+                return
+            }
 
-                                // Is it update ?
-                                if( self.id )
-                                {
-                                    if( val )
-                                    {
-                                        self.version += 1
-                                        if( !( val ==~ Konfig.KONFIGS.passwordComplexity ) )
-                                        {
-                                            // log.error "Validating password [${val ==~ Konfig.KONFIGS.passwordComplexity}]"
-                                            return [ 'User.password.complexity.mismatch' ]
-                                        }
-                                    }
-                                    return
-                                }
-                                else
-                                {
-                                    if( val )
-                                    {
-                                        if( !( val ==~ Konfig.KONFIGS.passwordComplexity ) )
-                                        {
-                                            // log.error "Validating password [${val ==~ Konfig.KONFIGS.passwordComplexity}]"
-                                            return ['User.password.complexity.mismatch']
-                                        }
-                                        return
-                                    }
-                                    else
-                                        return [ 'default.blank.message' ]
-                                }
-                        }
-        passwordConfirmation password: true, bindable: true, nullable: true,
-                validator:
-                        {
-                            val, self ->
-                                val == self.password ? true : [ 'User.passwordConfirmation.invalid.matchingpasswords' ]
-                        }
+            if( val )
+            {
+                if( !( val ==~ Konfig.KONFIGS.passwordComplexity ) )
+                {
+                    // log.error "Validating password [${val ==~ Konfig.KONFIGS.passwordComplexity}]"
+                    return ['User.password.complexity.mismatch']
+                }
+                return
+            }
+
+            return [ 'default.blank.message' ]
+        }
+
+        passwordConfirmation password: true, bindable: true, nullable: true, validator: { val, self ->
+            val == self.password ? true : [ 'User.passwordConfirmation.invalid.matchingpasswords' ]
+        }
 
         passwd size: 0..100, display: false, bindable: false, nullable: true
 
@@ -92,8 +84,6 @@ class User {
         failedLogins editable: false, bindable: false
         forcePasswordChange()
 
-        roles nullable: true
-        notifGroup nullable: true
         phone blank:false, matches: "[0-9]+", nullable: true
         instantMessaging nullable: true
     }
@@ -108,9 +98,9 @@ class User {
 
 //    static mappedBy = [ roles: "members" ]
 
-    public String toString()
+    String toString()
     {
-        return "${this.name} [${this.email}]"
+        "$name [$email]"
     }
 
     def beforeInsert()
@@ -134,26 +124,26 @@ class User {
 //        }
     }
 
-    protected def encodePassword()
+    protected void encodePassword()
     {
-        this.salt = makeSalt()
-        this.passwd = encode "Password: ${this.password} ${salt}"
+        salt = makeSalt()
+        passwd = encode "Password: $password $salt"
     }
 
-    protected def makeSalt()
+    protected String makeSalt()
     {
 //        encode "SALTe"
-        encode "${(new Date()).getTime()}--Omid--${password}"
+        encode "${System.currentTimeMillis()}--Omid--$password"
     }
 
-    protected encode( String msg )
+    protected String encode( String msg )
     {
         MessageDigest md = MessageDigest.getInstance( "SHA-512" )
-        md.update( msg.getBytes() )
-        return (String) md.digest().encodeBase64()
+        md.update( msg.bytes )
+        return md.digest().encodeBase64()
     }
 
-    def static authenticate( String username, String password )
+    static authenticate( String username, String password )
     {
         def user = User.findByEmailIlike( username )
 
@@ -162,40 +152,39 @@ class User {
 
         if( user.hasPassword( password ) )
             return user.clearLoginFailed()
-        else
-            user.loginFailed()
+
+        user.loginFailed()
     }
 
-    def static authenticateWithSalt( id, salt )
+    static boolean authenticateWithSalt( id, salt )
     {
         def user = User.findById( id )
-        return ( user && user.salt == salt && !user.locked && ( user.accountExpiry ? user.accountExpiry > new Date() : true ) ) ? user : null
+        return ( user && user.salt == salt && !user.locked && ( user.accountExpiry ? user.accountExpiry.after(new Date()) : true ) ) ? user : null
     }
 
-
-    def hasPassword( pass )
+    boolean hasPassword( pass )
     {
-        passwd == encode( "Password: ${pass} ${salt}" )
+        passwd == encode( "Password: $pass $salt" )
     }
 
     def clearLoginFailed()
     {
-        this.failedLogins = 0
+        failedLogins = 0
 
-        if( this.isDirty() )
-            this.save()
+        if( isDirty() )
+            save()
         return this
     }
 
     def loginFailed()
     {
-        this.failedLogins += 1
+        failedLogins ++
 
         // bypass if konfig is zero, means no fail checking
-        if( Konfig.KONFIGS [ 'allowedFailedLogin' ] != 0 && this.failedLogins > Konfig.KONFIGS [ 'allowedFailedLogin' ] )
-            this.locked = true
+        if( Konfig.KONFIGS [ 'allowedFailedLogin' ] != 0 && failedLogins > Konfig.KONFIGS [ 'allowedFailedLogin' ] )
+            locked = true
 
-        this.save()
+        save()
         return null
     }
 
@@ -208,5 +197,4 @@ class User {
     {
         roles.rights.flatten().applico - null
     }
-
 }

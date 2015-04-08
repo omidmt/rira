@@ -27,7 +27,7 @@ class NotificationGroupController extends SecureController {
 
     @Transactional
     def save(NotificationGroup notificationGroupInstance) {
-        if (notificationGroupInstance == null) {
+        if (!notificationGroupInstance) {
             notFound()
             return
         }
@@ -54,7 +54,7 @@ class NotificationGroupController extends SecureController {
 
     @Transactional
     def update(NotificationGroup notificationGroupInstance) {
-        if (notificationGroupInstance == null) {
+        if (!notificationGroupInstance) {
             notFound()
             return
         }
@@ -78,7 +78,7 @@ class NotificationGroupController extends SecureController {
     @Transactional
     def delete(NotificationGroup notificationGroupInstance) {
 
-        if (notificationGroupInstance == null) {
+        if (!notificationGroupInstance) {
             notFound()
             return
         }

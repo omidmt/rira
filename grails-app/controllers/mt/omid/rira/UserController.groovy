@@ -1,7 +1,5 @@
 package mt.omid.rira
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -27,7 +25,7 @@ class UserController extends SecureController {
 
     @Transactional
     def save(User userInstance) {
-        if (userInstance == null) {
+        if (!userInstance) {
             notFound()
             return
         }
@@ -54,7 +52,7 @@ class UserController extends SecureController {
 
     @Transactional
     def update(User userInstance) {
-        if (userInstance == null) {
+        if (!userInstance) {
             notFound()
             return
         }
@@ -80,11 +78,8 @@ class UserController extends SecureController {
     }
 
     @Transactional
-    def updatePassword()
+    def updatePassword(String curPass, String newPass, String confPass)
     {
-        def curPass = params.curPass
-        def newPass = params.newPass
-        def confPass = params.confPass
 
         User user = User.get( sessionService.currentUser.id )
 //
@@ -121,7 +116,7 @@ class UserController extends SecureController {
     @Transactional
     def delete(User userInstance) {
 
-        if (userInstance == null) {
+        if (!userInstance) {
             notFound()
             return
         }

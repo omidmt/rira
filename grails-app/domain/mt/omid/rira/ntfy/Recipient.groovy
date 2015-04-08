@@ -12,14 +12,14 @@ class Recipient {
     static belongsTo = NotificationGroup
 
     static constraints = {
-        name size: 1..45, blank: false, nullable: false
-        email email: true, nullable: false
+        name size: 1..45, blank: false
+        email email: true
         phone nullable: true, matches: "[0-9]+"
         instantMessaging nullable: true
     }
 
-    public String toString()
+    String toString()
     {
-        return "${email} [${phone}]"
+        "$email [$phone]"
     }
 }

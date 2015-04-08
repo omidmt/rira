@@ -27,7 +27,7 @@ class RecipientController extends SecureController {
 
     @Transactional
     def save(Recipient recipientInstance) {
-        if (recipientInstance == null) {
+        if (!recipientInstance) {
             notFound()
             return
         }
@@ -54,7 +54,7 @@ class RecipientController extends SecureController {
 
     @Transactional
     def update(Recipient recipientInstance) {
-        if (recipientInstance == null) {
+        if (!recipientInstance) {
             notFound()
             return
         }
@@ -78,7 +78,7 @@ class RecipientController extends SecureController {
     @Transactional
     def delete(Recipient recipientInstance) {
 
-        if (recipientInstance == null) {
+        if (!recipientInstance) {
             notFound()
             return
         }
