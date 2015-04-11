@@ -24,7 +24,7 @@ grails.project.dependency.resolution = {
 
         compile ':scaffolding:2.1.2'
         compile ':asset-pipeline:2.1.5'
-        compile ':seed-me:0.6.7'
+        compile ':seed-me:0.6.5'
         compile ':console:1.5.4'  // Should be removed for production
 //        compile ':quartz:1.0.2'
         compile ':quartz:1.0-RC11'

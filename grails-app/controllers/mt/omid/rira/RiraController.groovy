@@ -25,6 +25,6 @@ abstract class RiraController
 
     protected clearReturnTo()
     {
-        session.removeAttribute 'returnTo'
+        session.returnTo = null
     }
 }

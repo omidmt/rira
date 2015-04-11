@@ -29,7 +29,6 @@ RIRA depends on a number of projects to work properly:
 
 ### Todo's
 
- - Many other ideas
  - Write Tests cases
  - Use BDD to test
 
