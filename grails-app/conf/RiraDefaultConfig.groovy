@@ -2,17 +2,16 @@ grails {
     plugin {
         rira {
             appName = 'RIRA'
+            schema = 'rira'
+            ntfy
             {
-                ntfy
-                {
-                    smscIP = '127.0.0.1'
-                    smppPort = 2775
-                    sysId = 'sysid'
-                    sysType = 'systype'
-                    sysPass = 'sysPass'
-                    typeOfNumber = 2
-                    npIndicator = 0
-                }
+                smscIP = '127.0.0.1'
+                smppPort = 2775
+                sysId = 'sysid'
+                sysType = 'systype'
+                sysPass = 'sysPass'
+                typeOfNumber = 2
+                npIndicator = 0
             }
         }
     }

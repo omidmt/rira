@@ -1,5 +1,6 @@
 package mt.omid.rira
 
+import grails.util.Holders
 import mt.omid.rira.utils.LoginMethod
 import mt.omid.rira.utils.NodeType
 import mt.omid.rira.utils.OS
@@ -106,6 +107,7 @@ class Node
         active defaultValue: 'true'
         master defaultValue: 'false'
         profile lazy: false
+        table name: 'r_node', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
     def beforeInsert()

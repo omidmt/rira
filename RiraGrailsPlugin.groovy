@@ -3,7 +3,7 @@ class RiraGrailsPlugin {
     def grailsVersion = "2.4 > *"
     def title = "RIRA Plugin"
     def author = "Omid Mehdizadeh"
-    def authorEmail = "omid.mt@gmail.com"
+    def authorEmail = "omid . mt @ gmail . com"
     def description = 'A framework to use in apps to provide security, notification, configuration and node management. It also render a theme.'
     def documentation = "http://grails.org/plugin/rira"
     def license = "APACHE"

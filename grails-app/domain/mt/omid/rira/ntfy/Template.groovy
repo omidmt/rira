@@ -1,5 +1,7 @@
 package mt.omid.rira.ntfy
 
+import grails.util.Holders
+
 class Template {
 
     String name
@@ -13,5 +15,9 @@ class Template {
     String toString()
     {
         name
+    }
+
+    static mapping = {
+        table name: 'r_template', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 }

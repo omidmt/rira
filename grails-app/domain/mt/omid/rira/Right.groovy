@@ -1,5 +1,7 @@
 package mt.omid.rira
 
+import grails.util.Holders
+
 class Right {
 
     String act
@@ -17,7 +19,7 @@ class Right {
 //    static belongsTo = [ Role ]
 
     static mapping = {
-        table 'r_right'
+        table name: 'r_right', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
     String toString()

@@ -1,5 +1,7 @@
 package mt.omid.rira.ntfy
 
+import grails.util.Holders
+
 class Recipient {
 
     String name
@@ -16,6 +18,10 @@ class Recipient {
         email email: true
         phone nullable: true, matches: "[0-9]+"
         instantMessaging nullable: true
+    }
+
+    static mapping = {
+        table name: 'r_recipient', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
     String toString()

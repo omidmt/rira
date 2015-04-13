@@ -2,6 +2,8 @@ package mt.omid.rira
 
 abstract class RiraController
 {
+    static layout = "rira"
+
     protected storeLocation()
     {
         session.returnTo = request.forwardURI - request.contextPath

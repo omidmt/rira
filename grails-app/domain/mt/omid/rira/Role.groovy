@@ -1,5 +1,7 @@
 package mt.omid.rira
 
+import grails.util.Holders
+
 class Role {
 
     String name
@@ -13,7 +15,7 @@ class Role {
     }
 
     static mapping = {
-        table 'r_role'
+        table name: 'r_role', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
     String toString()

@@ -1,5 +1,7 @@
 package mt.omid.rira
 
+import grails.util.Holders
+
 class NodeProfile {
 
     String name
@@ -28,5 +30,9 @@ class NodeProfile {
     String toString()
     {
         name
+    }
+
+    static mapping = {
+        table name: 'r_node_profile', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 }

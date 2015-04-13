@@ -1,5 +1,7 @@
 package mt.omid.rira.ntfy
 
+import grails.util.Holders
+
 class NotificationHistory {
 
     String message
@@ -19,6 +21,7 @@ class NotificationHistory {
         sendDate defaultValue: "now()"
         version false
         sort sendDate: "desc"
+        table name: 'r_notification_history', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
     String toString()

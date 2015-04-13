@@ -1,5 +1,6 @@
 package mt.omid.rira
 
+import grails.util.Holders
 import mt.omid.rira.ntfy.NotificationGroup
 
 import java.security.MessageDigest
@@ -93,7 +94,7 @@ class User {
         locked defaultValue: 'false'
         failedLogins defaultValue: '0'
         forcePasswordChange defaulValue: 'false'
-        table "r_user"
+        table name: "r_user", schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
 //    static mappedBy = [ roles: "members" ]

@@ -1,5 +1,7 @@
 package mt.omid.rira
 
+import grails.util.Holders
+
 class Applico {
 
     String name
@@ -19,5 +21,9 @@ class Applico {
     String toString()
     {
         "$name [$path]"
+    }
+
+    static mapping = {
+        table name:'r_applico', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 }

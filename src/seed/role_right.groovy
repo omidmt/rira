@@ -150,8 +150,8 @@ seed = {
 //    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'accessHistory' )
 
 
-    print "Adding CADMIN Role"
-    role( meta: [key: [ 'name' ], update: false], name: 'Cadmin', rights: [ [act: 'index'],
+    print "Adding RADMIN Role"
+    role( meta: [key: [ 'name' ], update: false], name: 'Radmin', rights: [ [act: 'index'],
                                                                             [act: 'show', ctrl: 'user'],
                                                                             [act: 'edit', ctrl: 'user'],
                                                                             [act: 'create', ctrl: 'user' ],
@@ -167,8 +167,8 @@ seed = {
                                                                             [act: 'save', ctrl: 'role'],
                                                                             [act: 'delete', ctrl: 'role'] ])
 
-    print "Adding CADMIN User"
-    user( meta: [key: [ 'email' ], update: false], email: 'cadmin@camp.com', name: 'Cadmin', password: 'Camp@1234', passwordConfirmation: 'Camp@1234', roles: [ [name: 'Cadmin'] ]  )
+    print "Adding RADMIN User"
+    user( meta: [key: [ 'email' ], update: false], email: 'radmin@rira.com', name: 'Radmin', password: 'Rira@1234', passwordConfirmation: 'Rira@1234', roles: [ [name: 'Radmin'] ]  )
 
     print "Seeding is finished."
 }

@@ -1,5 +1,7 @@
 package mt.omid.rira
 
+import grails.util.Holders
+
 class Job
 {
     String name
@@ -28,7 +30,7 @@ class Job
     }
 
     static mapping = {
-        table "r_job"
+        table name: "r_job", schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
     void log( msg )

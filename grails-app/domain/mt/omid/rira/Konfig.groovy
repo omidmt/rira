@@ -1,5 +1,6 @@
 package mt.omid.rira
 
+import grails.util.Holders
 import groovy.util.logging.Slf4j
 
 @Slf4j
@@ -23,6 +24,7 @@ class Konfig
         key column: 'K'
         value column: 'V'
         group column: 'G'
+        table name: 'r_konfig', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
     static initKONFIGS()
@@ -31,8 +33,8 @@ class Konfig
         KONFIGS.clear()
 //        log.info KONFIGS
 //        log.info Konfig.all
-        Konfig.all.each { key, value ->
-            KONFIGS[ key ] = value
+        Konfig.all.each {
+            KONFIGS[ it.key ] = it.value
         }
 
         convertValues()
@@ -72,7 +74,7 @@ class Konfig
 
     static
     {
-        log.info "Initing KONFIGS"
+//        log.info "Initing KONFIGS"
 //        initKONFIGS()
     }
 }
