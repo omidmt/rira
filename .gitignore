@@ -6,6 +6,7 @@
 /target
 /web-app
 /out
+/.idea
 .classpath
 .project
 rira.iml

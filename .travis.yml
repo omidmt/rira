@@ -12,4 +12,4 @@ env:
     - GRAILS_VERSION=2.3.11
 matrix:
   fast_finish: false
-script: ./travis-build.sh
+script: chmod ogu+x ; ./travis-build.sh
