@@ -39,6 +39,8 @@ All controller which extends RiraController (and of course its child, Secure and
 
 The main layout meta tag should be removed from views if rira layout should be used for rendering.
 
+To use RIRA scaffolding templates which make field compatible with this layout you can install scaffold templates (grails install-templates) and then replace with rira templates in src directory.  
+
 ### Security
 Each controller can be secured to be authenticated and authorized by extending the SecureController class. It is recommended to extend others by UnSecureController class to use common features of framework.
 Having a secure controller means user of this should has the rights of each action to use them. While it is possible to add them after booting application through GUI, but they can be added through a seed file in src/seed directory like the following sample. A default user or applico (menu item) to provide the link to access in menu also can be defined in seed file .
