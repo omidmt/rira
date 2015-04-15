@@ -5,3 +5,11 @@
 /plugin.xml
 /target
 /web-app
+/out
+.classpath
+.project
+rira.iml
+rira-grailsPlugins.iml
+mergePullChangesConflict.txt
+
+
