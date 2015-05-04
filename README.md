@@ -34,6 +34,12 @@ It is possible to overwrite the default schema with grails.plugin.rira.schema co
     
 If application domains have dependency like association to framework tables (like usr or node domains), the schema must be overwritten for having all of the tables in the same schema and keep foreign key constraints working.    
 
+## UI
+### Application Name
+The application name that appear at top left corner of the every pages can be changed by the following configuration.
+    grails.plugin.rira.appName = 'NewAppName'
+In fact it sets a default value for KONFIGS.appName, so in run-time through the Konfig page you can set the appName property and change it.
+
 ### Layout
 All controller which extends RiraController (and of course its child, Secure and UnSecure) can use rira layout by default through controller.
 

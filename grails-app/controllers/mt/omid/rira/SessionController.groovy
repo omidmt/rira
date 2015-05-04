@@ -25,7 +25,7 @@ class SessionController extends UnSecureController {
 
         if( !user )
         {
-            flash.error = "Invalid email/password combination."
+            flash.error = "Login failed; Invalid userID or password."
             def title = "Sign in"
             log.debug "Invalid login"
             redirect action: 'login'

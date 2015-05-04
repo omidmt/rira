@@ -1,8 +1,8 @@
 package mt.omid.rira
 
-class HomeController {
+class HomeController extends SecureController {
 
-    static scaffold = true
+//    static scaffold = true
 
     def index() {}
 }

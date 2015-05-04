@@ -1,13 +1,16 @@
 package mt.omid.rira
 
+
+import mt.omid.rira.SecureController
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import mt.omid.rira.SecureController
 
 @Transactional(readOnly = true)
 class NodeController extends SecureController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    static scaffold = true
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -22,9 +25,13 @@ class NodeController extends SecureController {
         respond new Node(params)
     }
 
+    def createEmbeded() {
+        render(template: "embededForm", model: [nodeInstance: new Node(params)])
+    }
+
     @Transactional
     def save(Node nodeInstance) {
-        if (!nodeInstance) {
+        if (nodeInstance == null) {
             notFound()
             return
         }
@@ -49,9 +56,13 @@ class NodeController extends SecureController {
         respond nodeInstance
     }
 
+    def editEmbeded(Node nodeInstance) {
+        render(template: "embededForm", model: [nodeInstance: nodeInstance])
+    }
+
     @Transactional
     def update(Node nodeInstance) {
-        if (!nodeInstance) {
+        if (nodeInstance == null) {
             notFound()
             return
         }
@@ -75,7 +86,7 @@ class NodeController extends SecureController {
     @Transactional
     def delete(Node nodeInstance) {
 
-        if (!nodeInstance) {
+        if (nodeInstance == null) {
             notFound()
             return
         }

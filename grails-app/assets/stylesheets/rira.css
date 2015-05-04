@@ -43,3 +43,26 @@ body {
     /*visibility: hidden;*/
     font-size: x-small;
 }
+
+.r-modal
+{
+    /*height: 70%;*/
+    top: 10% !important;
+}
+
+.r-modal-dialog
+{
+    overflow-y: initial !important
+}
+
+.r-modal-content
+{
+    /*overflow-y:scroll;*/
+    /*overflow: auto;*/
+}
+
+.r-modal-body
+{
+    height: 300px;
+    overflow-y: auto;
+}

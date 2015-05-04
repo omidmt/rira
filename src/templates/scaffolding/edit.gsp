@@ -1,3 +1,5 @@
+<%=packageName%>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="rira">
@@ -6,6 +8,7 @@
 	</head>
 	<body>
     <div class="container">
+		%{--<a href="#edit-${domainClass.propertyName}" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
         <div class="navbar">
             <div class="nav">
                 <ul class="nav nav-pills">
@@ -16,6 +19,7 @@
             </div>
         </div>
 		<div id="edit-${domainClass.propertyName}" class="content scaffold-edit" role="main">
+			%{--<h1><g:message code="default.edit.label" args="[entityName]" /></h1>--}%
 			<g:if test="\${flash.message}">
 			<div class="alert message" role="status">\${flash.message}</div>
 			</g:if>
@@ -26,14 +30,10 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:${propertyName}, action:'update']" method="PUT" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
+			<g:form id="${propertyName}" url="[resource:${propertyName}, action:'update']" method="PUT" class="form-horizontal" role="form" <%= multiPart ? ' enctype="multipart/form-data"' : '' %>>
 				<g:hiddenField name="version" value="\${${propertyName}?.version}" />
-				<fieldset class="form">
 					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="form-group">
-					<g:actionSubmit class="save" action="update" value="\${message(code: 'default.button.update.label', default: 'Update')}" />
-				</fieldset>
+					<g:actionSubmit class="save" form="${propertyName}" action="update" value="\${message(code: 'default.button.update.label', default: 'Update')}" />
 			</g:form>
 		</div>
     </div>

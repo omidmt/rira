@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="rira">
@@ -6,6 +7,7 @@
 	</head>
 	<body>
     <div class="container">
+		%{--<a href="#create-${domainClass.propertyName}" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
         <div class="navbar">
             <div class="nav">
                 <ul class="nav nav-pills">
@@ -26,9 +28,9 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:${propertyName}, action:'save']" <%= multiPart ? ' enctype="multipart/form-data"' : '' %> class="form-horizontal" role="form" >
-				<g:render template="form"/>
-				<g:submitButton name="create" class="save" value="\${message(code: 'default.button.create.label', default: 'Create')}" />
+			<g:form id="${propertyName}" url="[resource:${propertyName}, action:'save']" <%= multiPart ? ' enctype="multipart/form-data"' : '' %> class="form-horizontal" role="form" >
+					<g:render template="form"/>
+					<g:submitButton name="create" form="${propertyName}" class="save" value="\${message(code: 'default.button.create.label', default: 'Create')}" />
 			</g:form>
 		</div>
     </div>

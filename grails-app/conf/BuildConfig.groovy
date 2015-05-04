@@ -14,6 +14,11 @@ grails.project.dependency.resolution = {
 
     dependencies {
         compile 'org.jsmpp:jsmpp:2.2.1'
+
+        build('org.bouncycastle:bcpg-jdk15on:1.47') {
+            excludes 'bcprov-jdk15on'
+        }
+        build 'org.bouncycastle:bcprov-ext-jdk15on:1.47'
     }
 
     plugins {
@@ -34,5 +39,7 @@ grails.project.dependency.resolution = {
         compile ':rest:0.8'
 
         compile ':plugin-config:0.2.0'
+
+        runtime ":hibernate4:4.3.6.1"
     }
 }

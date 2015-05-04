@@ -36,13 +36,13 @@ private renderFieldForProperty(p, owningClass, prefix = "") {
 		required = (cp ? !(cp.propertyType in [boolean, Boolean]) && !cp.nullable : false)
 	}
 	%>
-<div class="row">
-    <div class="form-group col-md-6 col-lg-6 \${hasErrors(bean: ${propertyName}, field: '${prefix}${p.name}', 'error')} ${required ? 'required' : ''}">
-        <label for="${prefix}${p.name}">
+    <div class="form-group \${hasErrors(bean: ${propertyName}, field: '${prefix}${p.name}', 'error')} ${required ? 'required' : ''}">
+        <label for="${prefix}${p.name}" class="col-sm-3 control-label">
             <g:message code="${domainClass.propertyName}.${prefix}${p.name}.label" default="${p.naturalName}" />
             <% if (required) { %><span class="required-indicator">*</span><% } %>
         </label>
-        ${renderEditor(p)}
+		<div class="col-sm-6">
+        	${renderEditor(p)}
+		</div>
     </div>
-</div>
 <%  } %>

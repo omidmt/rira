@@ -46,7 +46,7 @@ class Konfig
         log.info( "Converting KONFIGS values" )
         KONFIGS.debug = KONFIGS.debug?.toLowerCase() == 'true'
 
-        KONFIGS.appName = KONFIGS.appName ?: 'RIRA'
+        KONFIGS.appName = KONFIGS.appName ?: Holders.grailsApplication.mergedConfig.grails.plugin.rira.appName
 
         KONFIGS.StrictHostKeyChecking = ( KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'yes' || KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'no' ) ? KONFIGS.StrictHostKeyChecking : 'no'
 
@@ -54,7 +54,7 @@ class Konfig
 
         KONFIGS.sessionInactivityTimeout = KONFIGS.sessionInactivityTimeout?.isInteger() ? KONFIGS.sessionInactivityTimeout as int : 3600
 
-        KONFIGS.defaultHome = KONFIGS.defaultHome ?: '/nodeState'
+        KONFIGS.defaultHome = KONFIGS.defaultHome ?: '/home'
 
         KONFIGS.strictAuthorization = KONFIGS.strictAuthorization?.toLowerCase() == 'true'
 

@@ -1,0 +1,44 @@
+_form:
+
+</form>
+
+<form class="form-horizontal" role="form">
+<div class="form-group">
+    <label for="serverType" class="col-sm-3 control-label">
+        Connections
+    </label>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            %{--<div class="panel-heading" role="tab" id="heading">--}%
+            %{--<h4 class="panel-title">--}%
+            %{--Connections--}%
+            %{--</h4>--}%
+            %{--</div>--}%
+            <div class="panel-body">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" onclick="loadNAppendAsCollapsiblePanel( 'New Connection ' + $('#accordion .panel').length, '${request.contextPath}/connectivityPlan/createEmbeded', '#accordion' )">Add+</button>
+                    </div>
+                    <br>
+                    <br>
+                    <g:each in="${nodeInstance?.connectivityPlans}" var="conn" >
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        ${conn?.name}
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    ${conn}
+                                </div>
+                            </div>
+                        </div>
+                    </g:each>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -107,12 +107,14 @@ class User {
     def beforeInsert()
     {
 //        log.info( "Before insert, encode password" )
+        email = email.toLowerCase()
         encodePassword()
     }
 
     def beforeUpdate()
     {
 //        log.debug "Is password dirty ? ${isDirty( 'password' )}"
+        email = email.toLowerCase()
 
         // encode password to passwd if it is present in request
         if( password )

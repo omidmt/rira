@@ -6,25 +6,32 @@ class NodeProfile {
 
     String name
     String baseDir
-    String primaryGroup
-    int groupId
+    String defaultGroup
+    int defaultGroupId
     String defaultShell
 
-    int passwordMinAge
-    int passwordMaxAge
-    int passwordWarning
+    int defaultPasswordMinAge
+    int defaultPasswordMaxAge
+    int defaultPasswordWarning
+
+    // Comma separated list of connectivity plan names that nodes may have with this profile
+    String defaultConnectivityPlans
+
 
     private static passwordValidator = { if( it < 0 ) return "Password lifetime must be positive number" }
 
     static constraints = {
-        name size: 1..100
-        baseDir size: 1..255
-        primaryGroup size: 1..255
-        defaultShell size: 1..255
+        name unique: true, size: 1..100
+        baseDir size: 1..255, widget: 'text'
+        defaultGroup size: 1..255, widget: 'text'
+        defaultGroupId range: 1..65500
+        defaultShell size: 1..255, widget: 'text'
 
-        passwordMinAge  nullable: true, validator: passwordValidator
-        passwordMaxAge  nullable: true, validator: passwordValidator
-        passwordWarning nullable: true, validator: passwordValidator
+        defaultPasswordMinAge  nullable: true, validator: passwordValidator
+        defaultPasswordMaxAge  nullable: true, validator: passwordValidator
+        defaultPasswordWarning nullable: true, validator: passwordValidator
+
+        defaultConnectivityPlans nullable: true, size: 0..1500 // comma separated list
     }
 
     String toString()

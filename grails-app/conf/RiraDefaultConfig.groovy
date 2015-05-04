@@ -17,6 +17,7 @@ grails {
     }
 }
 
+
 grails.exceptionresolver.params.exclude = ['password', 'passwd']
 
 //grails.app.context = '/'

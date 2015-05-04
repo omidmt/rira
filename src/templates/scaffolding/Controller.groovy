@@ -1,13 +1,16 @@
 <%=packageName ? "package ${packageName}\n\n" : ''%>
 
+
+import mt.omid.rira.SecureController
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import mt.omid.rira.SecureController
 
 @Transactional(readOnly = true)
-class ${className}Controller {
+class ${className}Controller extends SecureController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    static scaffold = true
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -20,6 +23,11 @@ class ${className}Controller {
 
     def create() {
         respond new ${className}(params)
+    }
+
+    def createEmbeded()
+    {
+        render( template: "embededForm", model: [ ${propertyName}: new ${className}(params) ] )
     }
 
     @Transactional
@@ -47,6 +55,11 @@ class ${className}Controller {
 
     def edit(${className} ${propertyName}) {
         respond ${propertyName}
+    }
+
+    def editEmbeded(${className} ${propertyName})
+    {
+        render( template: "embededForm", model: [ ${propertyName}: ${propertyName} ] )
     }
 
     @Transactional

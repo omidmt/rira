@@ -1,3 +1,6 @@
+
+<%@ page import="mt.omid.rira.Role" %>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="rira">
@@ -6,6 +9,7 @@
 	</head>
 	<body>
     <div class="container">
+		%{--<a href="#list-role" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">
@@ -23,13 +27,17 @@
 			<table class="table table-bordered table-striped">
 			<thead>
 					<tr>
+					
 						<g:sortableColumn property="name" title="${message(code: 'role.name.label', default: 'Name')}" />
+					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${roleInstanceList}" status="i" var="roleInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+					
 						<td><g:link action="show" id="${roleInstance.id}">${fieldValue(bean: roleInstance, field: "name")}</g:link></td>
+					
 					</tr>
 				</g:each>
 				</tbody>
