@@ -13,11 +13,11 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
 
 ### Install
     plugins {
-        compile ":rira:0.1.1"
+        compile ":rira:0.2.0"
     }
 
 ### Version
-0.1.1
+0.2.0
 
 ### Tech
 
@@ -32,12 +32,14 @@ It is possible to overwrite the default schema with grails.plugin.rira.schema co
   
     grails.plugin.rira.schema = 'myschema'
     
-If application domains have dependency like association to framework tables (like usr or node domains), the schema must be overwritten for having all of the tables in the same schema and keep foreign key constraints working.    
+If application domains have dependency like association to framework tables (like User or Node domains), the schema must be overwritten for having all of the tables in the same schema and keep foreign key constraints working.    
 
 ## UI
 ### Application Name
 The application name that appear at top left corner of the every pages can be changed by the following configuration.
-    grails.plugin.rira.appName = 'NewAppName'
+```groovy
+grails.plugin.rira.appName = 'NewAppName'
+```
 In fact it sets a default value for KONFIGS.appName, so in run-time through the Konfig page you can set the appName property and change it.
 
 ### Layout
@@ -45,7 +47,10 @@ All controller which extends RiraController (and of course its child, Secure and
 
 The main layout meta tag should be removed from views if rira layout should be used for rendering.
 
-To use RIRA scaffolding templates which make field compatible with this layout you can install scaffold templates (grails install-templates) and then replace with rira templates in src directory.  
+To use RIRA scaffolding templates which is matched with the theme and make the fields compatible with it follow the following steps:
+
+ 1. Install scaffold templates (grails install-templates)
+ 2. Replace scaffold files with rira templates in src directory (src/templates/scaffolding/).  
 
 ### Security
 Each controller can be secured to be authenticated and authorized by extending the SecureController class. It is recommended to extend others by UnSecureController class to use common features of framework.
