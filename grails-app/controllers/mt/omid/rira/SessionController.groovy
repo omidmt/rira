@@ -7,7 +7,6 @@ import grails.transaction.Transactional
 class SessionController extends UnSecureController {
 
     static allowedMethods = [save: "POST", delete: "DELETE"]
-    static scaffold = true
 
     def sessionService
 
@@ -76,7 +75,7 @@ class SessionController extends UnSecureController {
     def login()
     {
         // display login page
-        log.info "Render loging page"
+        log.info "Render login page"
     }
 
     protected void notFound() {

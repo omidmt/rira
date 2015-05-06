@@ -27,10 +27,10 @@ RIRA depends on a number of projects to work properly:
 * [jQuery]
 
 ### Domains
-The default schema of domains is rira, so the defined data source user must has access to that schema.
+The default schema of rira domains is rira, so the defined data source user must has access to that schema.
 It is possible to overwrite the default schema with grails.plugin.rira.schema config, like the following sample in Config.groovy
   
-```grails
+```groovy
 grails.plugin.rira.schema = 'myschema'
 ```
     
@@ -44,7 +44,7 @@ The application name that appear at top left corner of the every pages can be ch
 grails.plugin.rira.appName = 'NewAppName'
 ```
 
-In fact it sets a default value for KONFIGS.appName, so in run-time through the Konfig page you can set the appName property and change it.
+In fact it sets a default value for KONFIGS.appName, so in run-time through the Konfig page you can set the `appName` property and change it.
 
 ### Layout
 All controller which extends RiraController (and of course its child, Secure and UnSecure) can use rira layout by default through controller.
@@ -54,7 +54,9 @@ The main layout meta tag should be removed from views if rira layout should be u
 To use RIRA scaffolding templates which is matched with the theme and make the fields compatible with it follow the following steps:
 
  1. Install scaffold templates (grails install-templates)
- 2. Replace scaffold files with rira templates in src directory (src/templates/scaffolding/).  
+ 2. Replace scaffold files with rira templates in src directory (src/templates/scaffolding/).
+   
+It is possible to use home controller for index page. To use it, remove `/` in your grails URlMappings to use rira default one.
 
 ### Security
 Each controller can be secured to be authenticated and authorized by extending the SecureController class. It is recommended to extend others by UnSecureController class to use common features of framework.
