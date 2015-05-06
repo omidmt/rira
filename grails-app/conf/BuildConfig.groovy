@@ -39,6 +39,7 @@ grails.project.dependency.resolution = {
         compile ':rest:0.8'
 
         compile ':plugin-config:0.2.0'
+        compile ":runtime-datasources:0.2"
 
         runtime ":hibernate4:4.3.6.1"
     }
