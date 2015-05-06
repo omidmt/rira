@@ -16,8 +16,24 @@ class DataSourceService {
         ds = [:]
     }
 
-    def getDS( String name ) {
 
+    def addDS( name, Class<javax.sql.DataSource> dsClass, driver, url, username, password, others )
+    {
+        if( ds[ name ] ) {
+            runtimeDataSourceService.removeDataSource( name )
+        }
+
+        ds[ name ] = runtimeDataSourceService.addDataSource( name, dsClass ) {
+            driverClassName = driver
+            url = url
+            username = username
+            password = password
+        }
+    }
+
+
+    def getDS( String name ) {
+        ds[ name ]
     }
 
     def execute( query, String dsName )
@@ -36,16 +52,6 @@ class DataSourceService {
         finally
         {
             sql.close()
-        }
-    }
-
-    def addDS( name, Class<javax.sql.DataSource> dsClass, driver, url, username, password, others )
-    {
-        ds[ name ] = runtimeDataSourceService.addDataSource( name, dsClass ) {
-            driverClassName = driver
-            url = url
-            username = username
-            password = password
         }
     }
 
