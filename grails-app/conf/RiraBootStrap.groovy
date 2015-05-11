@@ -7,8 +7,7 @@ class RiraBootStrap {
     def seedService
 
     def init = {
-        Konfig.findExternalConverters()
-        Konfig.initKONFIGS()
+        Konfig.initKonfig()
         Node.refreshCache()
         DataConnection.refreshCache()
         seedService.installSeedData()

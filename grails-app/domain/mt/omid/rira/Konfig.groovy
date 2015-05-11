@@ -29,7 +29,13 @@ class Konfig
         table name: 'r_konfig', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
-    static initKONFIGS()
+    static initKonfig()
+    {
+        findExternalConverters()
+        refreshCache()
+    }
+
+    static refreshCache()
     {
         log.info "Initializing KONFGIS"
         KONFIGS.clear()
@@ -92,12 +98,12 @@ class Konfig
 
     def afterInsert()
     {
-        initKONFIGS()
+        refreshCache()
     }
 
     static
     {
 //        log.info "Initing KONFIGS"
-//        initKONFIGS()
+//        refreshCache()
     }
 }
