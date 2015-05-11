@@ -18,7 +18,8 @@ enum NodeType
     EMMFE   ( 8 ),
     EMMOLM  ( 9 ),
     EMA     ( 10 ),
-    Other   ( 11 )
+    Other   ( 11 ),
+    OCC     ( 12 )
 
     final int id
 

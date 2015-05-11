@@ -1,10 +1,10 @@
 
-<%@ page import="mt.omid.rira.DataSource" %>
+<%@ page import="mt.omid.rira.DataConnection" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="rira">
-		<g:set var="entityName" value="${message(code: 'dataSource.label', default: 'DataSource')}" />
+		<g:set var="entityName" value="${message(code: 'dataSource.label', default: 'DataConnection')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>

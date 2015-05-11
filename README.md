@@ -84,6 +84,42 @@ src/seed/access.groovy:
         user( meta: [key: [ 'email' ], update: false], email: 'user@app.com', name: 'UserTest', password: 'User@1234', passwordConfirmation: 'User@1234', roles: [ [name: 'TestRole'] ]  )
     }
     
+### Data Sources
+The data sources can be added in run-time through the DataConnection page or its classes as domain. By adding new data 
+connection it will try to add it to application context by the defined name. That name can be used when using 
+DataConnectionService to execute queries.     
+
+### Caches
+In order to reduce number of DB transactions for the configurations which are mostly readable than changeable some hash 
+maps are defined as follow to ease access and improve performance of framework. They are refresh automatically on every 
+change in those domain.
+
+Global Configuration (Class.MapName)
+
+Konfig.KONFIGS The key/value of configurations that can be used anywhere and edited in GUI
+Node.NODES The hostname/Node dictionary
+Node.NODES_IP the hostname/[IP1,...] dictionary that include an array of all connectivity plans' IP of the node
+ DataConnection.DATASOURCES name/DataSource keep datasource
+
+### Konfig
+Konfig domain allows to cache configuration that may be used in application that mentioned in Cache section. The value 
+of the this cache can be any kind of objects, but they are kept in DB as String, so a converter method may be required 
+to convert and make those object in run-time. Also that converter methos can initialize the default values in case it is 
+not added. If a key/value is not initialized it may raise an exception in run-time where it is referenced.
+
+Having own converter for own configuration, a converter must be defined as a class that suffixed by KonfigConverter and 
+the method must be static, like the following class  
+
+'''groovy
+class XYZKonfigConverter
+{
+    def static convert(){
+        KONFIGS.debug = KONFIGS.debug?.toLowerCase() == 'true'
+        KONFIGS.appName = KONFIGS.appName ?: Holders.grailsApplication.mergedConfig.grails.plugin.rira.appName
+        KONFIGS.StrictHostKeyChecking = ( KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'yes' || KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'no' ) ? KONFIGS.StrictHostKeyChecking : 'no'
+    }    
+}
+'''
 
 ### Todo's
 

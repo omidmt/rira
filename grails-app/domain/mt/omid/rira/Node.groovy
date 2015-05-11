@@ -1,6 +1,7 @@
 package mt.omid.rira
 
 import grails.util.Holders
+import groovy.util.logging.Slf4j
 import mt.omid.rira.utils.LoginMethod
 import mt.omid.rira.utils.NodeType
 import mt.omid.rira.utils.OS
@@ -8,8 +9,12 @@ import mt.omid.rira.utils.ServerType
 import mt.omid.rira.utils.security.Encoder
 import org.codehaus.groovy.grails.validation.routines.InetAddressValidator
 
+@Slf4j
 class Node
 {
+    static NODES = [:]
+    static NODES_IP = [:]
+
     String name
     NodeProfile profile
 
@@ -45,5 +50,37 @@ class Node
     String toString()
     {
         name
+    }
+
+    def static refreshCache()
+    {
+        log.info "Refreshing NODES Cache"
+        NODES.clear()
+
+        Node.all.each { node ->
+            NODES[ node.name ] = node
+        }
+        refreshIPCache()
+    }
+
+    def static refreshIPCache()
+    {
+        log.info "Refreshing NODES_IP Cache"
+        NODES_IP.clear()
+
+        Node.all.each { node ->
+            NODES_IP[ node.name ] = []
+            node.connectivityPlans.each { cp ->
+                NODES_IP[ node.name ] << cp.ip
+            }
+        }
+    }
+
+    def afterUpdate = this.&afterInsert
+    def afterDelete = this.&afterInsert
+
+    def afterInsert()
+    {
+        refreshCache()
     }
 }

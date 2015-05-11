@@ -2,11 +2,13 @@ package mt.omid.rira
 
 import grails.util.Holders
 import groovy.util.logging.Slf4j
+import mt.omid.rira.utils.KonfigConvertorFinder
 
 @Slf4j
 class Konfig
 {
     static KONFIGS = [:]
+    static EXTERNAL_CONVERTERS = []
 
     String key
     String value
@@ -38,6 +40,7 @@ class Konfig
         }
 
         convertValues()
+        convertExternalValues()
 //        log.info KONFIGS
     }
 
@@ -62,6 +65,26 @@ class Konfig
         KONFIGS.passwordComplexity = KONFIGS.passwordComplexity ?: /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/
 
         KONFIGS.muPasswordComplexity = KONFIGS.muPasswordComplexity ?: /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/
+    }
+
+    def static findExternalConverters()
+    {
+        EXTERNAL_CONVERTERS = KonfigConvertorFinder.findKonfigConvertorClass()
+    }
+
+    static convertExternalValues()
+    {
+        EXTERNAL_CONVERTERS.each { clsName ->
+            try {
+                Object beanObj
+                Class beanClass = Class.forName( clsName )
+                beanClass.invokeMethod( KonfigConvertorFinder.KONFIG_CONVERTOR_METHOD_NAME, null )
+            }
+            catch( e )
+            {
+                log.error "Static convert() method of class [$clsName] could not be invoked successfully [$e.message]"
+            }
+        }
     }
 
     def afterUpdate = this.&afterInsert

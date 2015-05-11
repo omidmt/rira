@@ -69,6 +69,14 @@ class ConnectivityPlan {
 //        log.debug "Pass enced $password"
     }
 
+    def afterUpdate = this.&afterInsert
+    def afterDelete = this.&afterInsert
+
+    def afterInsert()
+    {
+        Node.refreshIPCache()
+    }
+
     String getPasswordDecrypted(  )
     {
         decrypt password

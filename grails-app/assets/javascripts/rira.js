@@ -208,6 +208,7 @@ function loadDialog( url, target )
     }
 
     $( '#' + rDialogBody ).data( 'target', target );
+    $( '#' + rDialogLabel ).html( target.camelCase() );
 }
 
 function dialogSuccessSubmission( data )

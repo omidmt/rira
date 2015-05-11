@@ -13,4 +13,5 @@
 var rDialog = 'rDialog';
 var rDialogSaveBtn = 'rDialogSaveBtn';
 var rDialogBody = 'rDialogBody';
+var rDialogLabel = 'rDialogLabel';
 

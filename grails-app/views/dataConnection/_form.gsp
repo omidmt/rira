@@ -1,4 +1,4 @@
-<%@ page import="mt.omid.rira.DataSource" %>
+<%@ page import="mt.omid.rira.DataConnection" %>
 
 
 
