@@ -63,7 +63,8 @@ Each controller can be secured to be authenticated and authorized by extending t
 Having a secure controller means user of this should has the rights of each action to use them. While it is possible to add them after booting application through GUI, but they can be added through a seed file in src/seed directory like the following sample. A default user or applico (menu item) to provide the link to access in menu also can be defined in seed file .
 
 src/seed/access.groovy:
-    
+
+```groovy
     seed = {
         applico( meta: [key: 'name', update: false ], name: 'User Management', path: 'user', family: 'Admin' )
         // Applicp path should not start with /
@@ -83,6 +84,7 @@ src/seed/access.groovy:
         print "Adding User"
         user( meta: [key: [ 'email' ], update: false], email: 'user@app.com', name: 'UserTest', password: 'User@1234', passwordConfirmation: 'User@1234', roles: [ [name: 'TestRole'] ]  )
     }
+```
     
 ### Data Sources
 The data sources can be added in run-time through the DataConnection page or its classes as domain. By adding new data 
@@ -113,7 +115,7 @@ Same mechanism can be used for calling cache refresh methods. Method name should
 Having own converter for own configuration, a converter must be defined as a class that suffixed by Konfig and 
 the method must be static, like the following class  
 
-'''groovy
+```groovy
 class XYZKonfig
 {
     def static convert() {
@@ -126,7 +128,7 @@ class XYZKonfig
         SomeClass.refresh()
     }
 }
-'''
+```
 
 ### Audit Trail
 Evert subclass controller of RiraController activity with save and update action is saved as Audit instance. Other actions 
