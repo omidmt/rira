@@ -104,22 +104,34 @@ Node.NODES_IP the hostname/[IP1,...] dictionary that include an array of all con
 ### Konfig
 Konfig domain allows to cache configuration that may be used in application that mentioned in Cache section. The value 
 of the this cache can be any kind of objects, but they are kept in DB as String, so a converter method may be required 
-to convert and make those object in run-time. Also that converter methos can initialize the default values in case it is 
+to convert and make those object in run-time. Also that converter methods can initialize the default values in case it is 
 not added. If a key/value is not initialized it may raise an exception in run-time where it is referenced.
 
-Having own converter for own configuration, a converter must be defined as a class that suffixed by KonfigConverter and 
+Same mechanism can be used for calling cache refresh methods. Method name should be "refreshCaches" on the same class.
+ The refresh method of Konfig controller is calling this method on demand.
+
+Having own converter for own configuration, a converter must be defined as a class that suffixed by Konfig and 
 the method must be static, like the following class  
 
 '''groovy
-class XYZKonfigConverter
+class XYZKonfig
 {
-    def static convert(){
+    def static convert() {
         KONFIGS.debug = KONFIGS.debug?.toLowerCase() == 'true'
         KONFIGS.appName = KONFIGS.appName ?: Holders.grailsApplication.mergedConfig.grails.plugin.rira.appName
         KONFIGS.StrictHostKeyChecking = ( KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'yes' || KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'no' ) ? KONFIGS.StrictHostKeyChecking : 'no'
     }    
+        
+    def static refreshCaches() {
+        SomeClass.refresh()
+    }
 }
 '''
+
+### Audit Trail
+Evert subclass controller of RiraController activity with save and update action is saved as Audit instance. Other actions 
+should be handled manually inside its controller. 
+
 
 ### Todo's
 

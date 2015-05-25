@@ -14,8 +14,10 @@ import java.util.regex.Pattern
 @Slf4j
 public class KonfigConvertorFinder
 {
-    final static String KONFIG_CLASS_PATTERN = ".*KonfigConverter"
-    final static String KONFIG_CONVERTOR_METHOD_NAME = "convert"
+    final static String KONFIG_CLASS_PATTERN = ".*Konfig"
+    final static String KONFIG_CONVERTER_METHOD_NAME = "convert"
+    final static String KONFIG_REFRESH_CACHE_METHOD_NAME = "refreshCaches"
+    final static String RIRA_KONFOG_CLASS_NAME = "mt.omid.rira.Konfig"
 
     def static findKonfigConvertorClass() {
 
@@ -27,7 +29,10 @@ public class KonfigConvertorFinder
 
         for (BeanDefinition bd : scanner.findCandidateComponents( "" ) )
         {
-            beans << bd.getBeanClassName()
+            if( bd.beanClassName != RIRA_KONFOG_CLASS_NAME )
+            {
+                beans << bd.beanClassName
+            }
         }
 
         return beans

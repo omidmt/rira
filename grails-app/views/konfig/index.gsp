@@ -16,6 +16,7 @@
                 <ul class="nav nav-pills">
                     <li><a class="label label-default home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                     <li><g:link class="label label-primary create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+					<li><g:link class="label label-warning" action="refreshCache">Refresh Cache</g:link></li>
                 </ul>
             </div>
         </div>

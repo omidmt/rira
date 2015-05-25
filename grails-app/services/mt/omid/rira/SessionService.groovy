@@ -93,6 +93,6 @@ class SessionService
 
     User getCurrentUser()
     {
-        return User.get( WebUtils.retrieveGrailsWebRequest().session.token[ 0 ] )
+        return User.get( WebUtils.retrieveGrailsWebRequest()?.session?.token?.getAt( 0 ) )
     }
 }

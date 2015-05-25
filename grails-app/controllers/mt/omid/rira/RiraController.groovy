@@ -1,7 +1,10 @@
 package mt.omid.rira
 
+import org.codehaus.groovy.grails.web.util.WebUtils
+
 abstract class RiraController
 {
+    def sessionService
     static layout = "rira"
 
     protected storeLocation()
@@ -28,5 +31,20 @@ abstract class RiraController
     protected clearReturnTo()
     {
         session.returnTo = null
+    }
+
+
+    protected auditActivity() {
+        if( actionName == 'save' || actionName == 'update' ) {
+            Audit a = new Audit(dateTime: new Date(), user: sessionService.currentUser, origin: WebUtils.retrieveGrailsWebRequest().request.remoteAddr, message: "$controllerName/$actionName [$params]")
+            if (!a.save())
+                log.error("Audit Failed: ${sessionService.currentUser} IP: ${WebUtils.retrieveGrailsWebRequest().request.remoteAddr} $controllerName/$actionName [$params]")
+        }
+    }
+
+    protected auditActivity( String msg ) {
+        Audit a = new Audit( dateTime: new Date(), user: sessionService.currentUser, origin: WebUtils.retrieveGrailsWebRequest().request.remoteAddr, message: msg )
+        if( !a.save() )
+            log.error( "Audit Failed: ${sessionService.currentUser} IP: ${WebUtils.retrieveGrailsWebRequest().request.remoteAddr} $controllerName/$actionName [$params]" )
     }
 }

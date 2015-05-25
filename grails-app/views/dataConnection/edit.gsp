@@ -3,12 +3,12 @@
 <html>
 	<head>
 		<meta name="layout" content="rira">
-		<g:set var="entityName" value="${message(code: 'dataSource.label', default: 'DataConnection')}" />
+		<g:set var="entityName" value="${message(code: 'dataConnection.label', default: 'DataConnection')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#edit-dataSource" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
+		%{--<a href="#edit-dataConnection" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
         <div class="navbar">
             <div class="nav">
                 <ul class="nav nav-pills">
@@ -18,22 +18,22 @@
                 </ul>
             </div>
         </div>
-		<div id="edit-dataSource" class="content scaffold-edit" role="main">
+		<div id="edit-dataConnection" class="content scaffold-edit" role="main">
 			%{--<h1><g:message code="default.edit.label" args="[entityName]" /></h1>--}%
 			<g:if test="${flash.message}">
 			<div class="alert message" role="status">${flash.message}</div>
 			</g:if>
-			<g:hasErrors bean="${dataSourceInstance}">
+			<g:hasErrors bean="${dataConnectionInstance}">
 			<ul class="errors" role="alert">
-				<g:eachError bean="${dataSourceInstance}" var="error">
+				<g:eachError bean="${dataConnectionInstance}" var="error">
 				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form id="dataSourceInstance" url="[resource:dataSourceInstance, action:'update']" method="PUT" class="form-horizontal" role="form" >
-				<g:hiddenField name="version" value="${dataSourceInstance?.version}" />
+			<g:form id="dataConnectionInstance" url="[resource:dataConnectionInstance, action:'update']" method="PUT" class="form-horizontal" role="form" >
+				<g:hiddenField name="version" value="${dataConnectionInstance?.version}" />
 					<g:render template="form"/>
-					<g:actionSubmit class="save" form="dataSourceInstance" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:actionSubmit class="save" form="dataConnectionInstance" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 			</g:form>
 		</div>
     </div>

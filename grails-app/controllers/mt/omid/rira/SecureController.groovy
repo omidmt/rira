@@ -1,15 +1,17 @@
 package mt.omid.rira
 
 import static org.springframework.http.HttpStatus.UNAUTHORIZED
-import static org.springframework.http.HttpStatus.UNAUTHORIZED
-import static org.springframework.http.HttpStatus.UNAUTHORIZED
 
 abstract class SecureController extends RiraController
 {
 
-    def beforeInterceptor = [ action: this.&authNauth ]
+//    def beforeInterceptor = [ action: this.&authNauth ]
+    def beforeInterceptor = {
+        auditActivity()
+        authNauth()
+    }
 
-    def sessionService
+//    def sessionService
 
     def afterInterceptor = { model, modelAndView ->
         model.applicos = sessionService.currentUser.applicos

@@ -3,12 +3,14 @@ package mt.omid.rira
 import grails.util.Holders
 import groovy.util.logging.Slf4j
 import mt.omid.rira.utils.KonfigConvertorFinder
+import org.apache.log4j.Level
+import org.apache.log4j.Logger
 
 @Slf4j
 class Konfig
 {
     static KONFIGS = [:]
-    static EXTERNAL_CONVERTERS = []
+    static EXTERNAL_KONFIG_CLASSES = []
 
     String key
     String value
@@ -38,22 +40,24 @@ class Konfig
     static refreshCache()
     {
         log.info "Initializing KONFGIS"
-        KONFIGS.clear()
-//        log.info KONFIGS
-//        log.info Konfig.all
-        Konfig.all.each {
-            KONFIGS[ it.key ] = it.value
+        synchronized ( KONFIGS ) {
+            KONFIGS.clear()
+
+            Konfig.all.each {
+                KONFIGS[it.key] = it.value
+            }
+            convertValues()
         }
 
-        convertValues()
         convertExternalValues()
-//        log.info KONFIGS
     }
 
     static convertValues()
     {
         log.info( "Converting KONFIGS values" )
-        KONFIGS.debug = KONFIGS.debug?.toLowerCase() == 'true'
+        KONFIGS.debug = new Boolean( KONFIGS.debug )
+        if( KONFIGS.debug ) { Logger.getLogger( "grails.app.services.mt.omid" ).setLevel( Level.DEBUG ); Logger.getLogger( "mt.omid" ).setLevel( Level.DEBUG ) }
+        else { Logger.getLogger( "grails.app.services.mt.omid" ).setLevel( Level.ERROR ); Logger.getLogger( "mt.omid" ).setLevel( Level.ERROR ) }
 
         KONFIGS.appName = KONFIGS.appName ?: Holders.grailsApplication.mergedConfig.grails.plugin.rira.appName
 
@@ -65,7 +69,7 @@ class Konfig
 
         KONFIGS.defaultHome = KONFIGS.defaultHome ?: '/home'
 
-        KONFIGS.strictAuthorization = KONFIGS.strictAuthorization?.toLowerCase() == 'true'
+        KONFIGS.strictAuthorization = new Boolean( KONFIGS.strictAuthorization )
 
         // Pattern in config shouldn't be enclosed in // when defining as string
         KONFIGS.passwordComplexity = KONFIGS.passwordComplexity ?: /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/
@@ -75,20 +79,40 @@ class Konfig
 
     def static findExternalConverters()
     {
-        EXTERNAL_CONVERTERS = KonfigConvertorFinder.findKonfigConvertorClass()
+        EXTERNAL_KONFIG_CLASSES = KonfigConvertorFinder.findKonfigConvertorClass()
     }
 
     static convertExternalValues()
     {
-        EXTERNAL_CONVERTERS.each { clsName ->
+        EXTERNAL_KONFIG_CLASSES.each { clsName ->
             try {
                 Object beanObj
                 Class beanClass = Class.forName( clsName )
-                beanClass.invokeMethod( KonfigConvertorFinder.KONFIG_CONVERTOR_METHOD_NAME, null )
+                if( beanClass.getMethod( KonfigConvertorFinder.KONFIG_CONVERTER_METHOD_NAME, (Class<?>[]) null) ) {
+                    beanClass.invokeMethod(KonfigConvertorFinder.KONFIG_CONVERTER_METHOD_NAME, null)
+                }
             }
             catch( e )
             {
-                log.error "Static convert() method of class [$clsName] could not be invoked successfully [$e.message]"
+                log.error "convert() method of class [$clsName] could not be invoked successfully [$e.message]"
+            }
+        }
+    }
+
+    static refreshExternalCaches()
+    {
+        EXTERNAL_KONFIG_CLASSES.each { clsName ->
+            try {
+                Object beanObj
+                Class beanClass = Class.forName( clsName )
+                if( beanClass.getMethod( KonfigConvertorFinder.KONFIG_REFRESH_CACHE_METHOD_NAME, (Class<?>[]) null) )
+                {
+                    beanClass.invokeMethod( KonfigConvertorFinder.KONFIG_REFRESH_CACHE_METHOD_NAME, null )
+                }
+            }
+            catch( e )
+            {
+                log.error "convert() method of class [$clsName] could not be invoked successfully [$e.message]"
             }
         }
     }

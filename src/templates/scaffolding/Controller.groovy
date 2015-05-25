@@ -46,7 +46,7 @@ class ${className}Controller extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), ${propertyName}.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: '${domainClass.propertyName}.label', default: '${className}'), ${propertyName}])
                 redirect ${propertyName}
             }
             '*' { respond ${propertyName}, [status: CREATED] }
@@ -78,7 +78,7 @@ class ${className}Controller extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}])
                 redirect ${propertyName}
             }
             '*'{ respond ${propertyName}, [status: OK] }
@@ -97,7 +97,7 @@ class ${className}Controller extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

@@ -20,7 +20,9 @@ seed = {
     applico( meta: [key: 'name', update: false ], name: 'Rights & Permissions', path: 'right', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Node Profile', path: 'nodeProfile', family: 'Node' )
     applico( meta: [key: 'name', update: false ], name: 'Nodes', path: 'node', family: 'Node' )
+    applico( meta: [key: 'name', update: false ], name: 'Audit Log', path: 'audit', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Connectivity Plan', path: 'connectivityPlan', family: 'Node' )
+    applico( meta: [key: 'name', update: false ], name: 'Data Connection', path: 'dataConnection', family: 'Admin' )
 
 
     print "Seeding Rights"
@@ -45,6 +47,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'konfig' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'konfig' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'konfig' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'refreshCache', ctrl: 'konfig' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'node', applico: [ name: 'Nodes' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'node' )
@@ -97,6 +100,19 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'user' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'settings', ctrl: 'user' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'updatePassword', ctrl: 'user' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'dataConnection', applico: [ name: 'Data Connection' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'dataConnection' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'dataConnection' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'dataConnection' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'dataConnection' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'dataConnection' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'updateEmbeded', ctrl: 'dataConnection' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'dataConnection' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'dataConnection' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'audit', applico: [ name: 'Audit Log' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'audit' )
 
 
     print "Adding RADMIN Role"

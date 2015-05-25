@@ -4,12 +4,12 @@
 <html>
 	<head>
 		<meta name="layout" content="rira">
-		<g:set var="entityName" value="${message(code: 'dataSource.label', default: 'DataConnection')}" />
+		<g:set var="entityName" value="${message(code: 'dataConnection.label', default: 'DataConnection')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#show-dataSource" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
+		%{--<a href="#show-dataConnection" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">
@@ -20,120 +20,119 @@
                 </ul>
             </div>
         </div>
-		<div id="show-dataSource" class="content scaffold-show" role="main">
+		<div id="show-dataConnection" class="content scaffold-show" role="main">
 			%{--<h1><g:message code="default.show.label" args="[entityName]" /></h1>--}%
 			<g:if test="${flash.message}">
 			<div class="alert message" role="status">${flash.message}</div>
 			</g:if>
-			%{--<ol class="property-list dataSource">--}%
+			%{--<ol class="property-list dataConnection">--}%
             <form class="form-horizontal" role="form">
 			
-				<g:if test="${dataSourceInstance?.name}">
+				<g:if test="${dataConnectionInstance?.name}">
 				%{--<li class="fieldcontain">--}%
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
                     <label for="inputname" class="col-sm-2 control-label">name</label>
-					%{--<span id="name-label" class="input-group-addon property-label"><g:message code="dataSource.name.label" default="Name" /></span>--}%
+					%{--<span id="name-label" class="input-group-addon property-label"><g:message code="dataConnection.name.label" default="Name" /></span>--}%
                     <div class="col-sm-10">
 					
-						<p class="form-control-static disabled" aria-labelledby="name-label"><g:fieldValue bean="${dataSourceInstance}" field="name"/></p>
+						<p class="form-control-static disabled" aria-labelledby="name-label"><g:fieldValue bean="${dataConnectionInstance}" field="name"/></p>
                     
                     </div>
 				%{--</li>--}%
                     </div>
 				</g:if>
 			
-				<g:if test="${dataSourceInstance?.dsClass}">
+				<g:if test="${dataConnectionInstance?.dsClass}">
 				%{--<li class="fieldcontain">--}%
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
                     <label for="inputdsClass" class="col-sm-2 control-label">dsClass</label>
-					%{--<span id="dsClass-label" class="input-group-addon property-label"><g:message code="dataSource.dsClass.label" default="Ds Class" /></span>--}%
+					%{--<span id="dsClass-label" class="input-group-addon property-label"><g:message code="dataConnection.dsClass.label" default="Ds Class" /></span>--}%
                     <div class="col-sm-10">
 					
-						<p class="form-control-static disabled" aria-labelledby="dsClass-label"><g:fieldValue bean="${dataSourceInstance}" field="dsClass"/></p>
+						<p class="form-control-static disabled" aria-labelledby="dsClass-label"><g:fieldValue bean="${dataConnectionInstance}" field="dsClass"/></p>
                     
                     </div>
 				%{--</li>--}%
                     </div>
 				</g:if>
 			
-				<g:if test="${dataSourceInstance?.driver}">
+				<g:if test="${dataConnectionInstance?.driver}">
 				%{--<li class="fieldcontain">--}%
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
                     <label for="inputdriver" class="col-sm-2 control-label">driver</label>
-					%{--<span id="driver-label" class="input-group-addon property-label"><g:message code="dataSource.driver.label" default="Driver" /></span>--}%
+					%{--<span id="driver-label" class="input-group-addon property-label"><g:message code="dataConnection.driver.label" default="Driver" /></span>--}%
                     <div class="col-sm-10">
 					
-						<p class="form-control-static disabled" aria-labelledby="driver-label"><g:fieldValue bean="${dataSourceInstance}" field="driver"/></p>
+						<p class="form-control-static disabled" aria-labelledby="driver-label"><g:fieldValue bean="${dataConnectionInstance}" field="driver"/></p>
                     
                     </div>
 				%{--</li>--}%
                     </div>
 				</g:if>
 			
-				<g:if test="${dataSourceInstance?.url}">
+				<g:if test="${dataConnectionInstance?.url}">
 				%{--<li class="fieldcontain">--}%
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
                     <label for="inputurl" class="col-sm-2 control-label">url</label>
-					%{--<span id="url-label" class="input-group-addon property-label"><g:message code="dataSource.url.label" default="Url" /></span>--}%
+					%{--<span id="url-label" class="input-group-addon property-label"><g:message code="dataConnection.url.label" default="Url" /></span>--}%
                     <div class="col-sm-10">
 					
-						<p class="form-control-static disabled" aria-labelledby="url-label"><g:fieldValue bean="${dataSourceInstance}" field="url"/></p>
+						<p class="form-control-static disabled" aria-labelledby="url-label"><g:fieldValue bean="${dataConnectionInstance}" field="url"/></p>
                     
                     </div>
 				%{--</li>--}%
                     </div>
 				</g:if>
 			
-				<g:if test="${dataSourceInstance?.username}">
+				<g:if test="${dataConnectionInstance?.username}">
 				%{--<li class="fieldcontain">--}%
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
                     <label for="inputusername" class="col-sm-2 control-label">username</label>
-					%{--<span id="username-label" class="input-group-addon property-label"><g:message code="dataSource.username.label" default="Username" /></span>--}%
+					%{--<span id="username-label" class="input-group-addon property-label"><g:message code="dataConnection.username.label" default="Username" /></span>--}%
                     <div class="col-sm-10">
 					
-						<p class="form-control-static disabled" aria-labelledby="username-label"><g:fieldValue bean="${dataSourceInstance}" field="username"/></p>
+						<p class="form-control-static disabled" aria-labelledby="username-label"><g:fieldValue bean="${dataConnectionInstance}" field="username"/></p>
                     
                     </div>
 				%{--</li>--}%
                     </div>
 				</g:if>
 			
-				<g:if test="${dataSourceInstance?.password}">
+				<g:if test="${dataConnectionInstance?.password}">
 				%{--<li class="fieldcontain">--}%
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
                     <label for="inputpassword" class="col-sm-2 control-label">password</label>
-					%{--<span id="password-label" class="input-group-addon property-label"><g:message code="dataSource.password.label" default="Password" /></span>--}%
+					%{--<span id="password-label" class="input-group-addon property-label"><g:message code="dataConnection.password.label" default="Password" /></span>--}%
                     <div class="col-sm-10">
 					
-						<p class="form-control-static disabled" aria-labelledby="password-label"><g:fieldValue bean="${dataSourceInstance}" field="password"/></p>
                     
                     </div>
 				%{--</li>--}%
                     </div>
 				</g:if>
 			
-				<g:if test="${dataSourceInstance?.others}">
+				<g:if test="${dataConnectionInstance?.others}">
 				%{--<li class="fieldcontain">--}%
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
                     <label for="inputothers" class="col-sm-2 control-label">others</label>
-					%{--<span id="others-label" class="input-group-addon property-label"><g:message code="dataSource.others.label" default="Others" /></span>--}%
+					%{--<span id="others-label" class="input-group-addon property-label"><g:message code="dataConnection.others.label" default="Others" /></span>--}%
                     <div class="col-sm-10">
 					
-						<p class="form-control-static disabled" aria-labelledby="others-label"><g:fieldValue bean="${dataSourceInstance}" field="others"/></p>
+						<p class="form-control-static disabled" aria-labelledby="others-label"><g:fieldValue bean="${dataConnectionInstance}" field="others"/></p>
                     
                     </div>
 				%{--</li>--}%
@@ -142,10 +141,10 @@
 			
             </form>
 			%{--</ol>--}%
-			<g:form url="[resource:dataSourceInstance, action:'delete']" method="DELETE">
+			<g:form url="[resource:dataConnectionInstance, action:'delete']" method="DELETE">
                 <div class="btn-group">
                 <fieldset class="form-group">
-					<g:link class="edit btn btn-default" action="edit" resource="${dataSourceInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:link class="edit btn btn-default" action="edit" resource="${dataConnectionInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete btn btn-default" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
                 </div>

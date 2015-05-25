@@ -39,7 +39,7 @@ class KonfigController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'konfig.label', default: 'Konfig'), konfigInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'konfig.label', default: 'Konfig'), konfigInstance])
                 redirect konfigInstance
             }
             '*' { respond konfigInstance, [status: CREATED] }
@@ -66,7 +66,7 @@ class KonfigController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Konfig.label', default: 'Konfig'), konfigInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Konfig.label', default: 'Konfig'), konfigInstance])
                 redirect konfigInstance
             }
             '*' { respond konfigInstance, [status: OK] }
@@ -85,7 +85,7 @@ class KonfigController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Konfig.label', default: 'Konfig'), konfigInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Konfig.label', default: 'Konfig'), konfigInstance])
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }
@@ -99,6 +99,22 @@ class KonfigController extends SecureController {
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NOT_FOUND }
+        }
+    }
+
+    def refreshCache() {
+        Konfig.initKonfig()
+        Node.refreshCache()
+        DataConnection.refreshCache()
+
+        Konfig.refreshExternalCaches()
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = "All caches refreshed"
+                redirect action: "index", method: "GET"
+            }
+            '*' { render status: NO_CONTENT }
         }
     }
 }

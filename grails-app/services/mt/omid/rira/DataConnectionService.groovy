@@ -1,46 +1,110 @@
 package mt.omid.rira
 
-import grails.transaction.Transactional
 import groovy.sql.Sql
-import static mt.omid.rira.DataConnection.DATASOURCES as ds
+import static mt.omid.rira.DataConnection.DATASOURCES
 
-import javax.annotation.PostConstruct
-
-@Transactional
 class DataConnectionService {
 
-    def execute( query, String dsName )
-    {
-        Sql sql = new Sql( ds[ dsName ] )
+    static transactional = false
 
+    int [] batchInsert( String dsName, int size, String query, Closure closure )
+    {
+        Sql sql
         try
         {
-            return sql.execute( query )
-        }
-        catch ( Exception e )
-        {
-            log.error( "Error in executing query $query [$e.message]", e )
-            return null
+            sql = new Sql( DATASOURCES[ dsName ] )
+            return sql.withBatch( size, query, closure )
         }
         finally
         {
-            sql.close()
+            sql?.close()
         }
     }
 
-    def executeQuery( query, String dsName )
+    int [] batchInsert( String dsName, int size, Closure closure )
     {
-        Sql sql = new Sql( ds[ dsName ] )
+        Sql sql
+        try
+        {
+            sql = new Sql( DATASOURCES[ dsName ] )
+            return sql.withBatch( size, closure )
+        }
+        finally
+        {
+            sql?.close()
+        }
+    }
+
+    def executeUpdate( String query, String dsName )
+    {
+        Sql sql
+        try
+        {
+            sql = new Sql( DATASOURCES[ dsName ] )
+            return sql.executeUpdate( query )
+        }
+//        catch ( Exception e )
+//        {
+//            log.error( "Error in executing query $query [$e.message]", e )
+//            return null
+//        }
+        finally
+        {
+            sql?.close()
+        }
+    }
+
+    def executeInsert( String query, String dsName )
+    {
+        Sql sql
+        try
+        {
+            sql = new Sql( DATASOURCES[ dsName ] )
+            return sql.executeInsert( query )
+        }
+//        catch ( Exception e )
+//        {
+//            log.error( "Error in executing query $query [$e.message]", e )
+//            return null
+//        }
+        finally
+        {
+            sql?.close()
+        }
+    }
+
+    def execute( String query, String dsName )
+    {
+        Sql sql
+        try
+        {
+            sql = new Sql( DATASOURCES[ dsName ] )
+            return sql.execute( query )
+        }
+//        catch ( Exception e )
+//        {
+//            log.error( "Error in executing query $query [$e.message]", e )
+//            return null
+//        }
+        finally
+        {
+            sql?.close()
+        }
+    }
+
+    def executeQuery( String query, String dsName )
+    {
+        Sql sql = new Sql( DATASOURCES[ dsName ] )
 
         try
         {
             return sql.executeQuery( query )
         }
-        catch( Exception e )
-        {
-            log.error( "Error in executing query $query [$e.message]", e )
-            return null
-        }
+//        catch( Exception e )
+//        {
+//            log.error( "Error in executing query $query [$e.message]", e )
+//            return null
+//        }
         finally
         {
             sql.close()
