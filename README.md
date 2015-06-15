@@ -13,11 +13,11 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
 
 ### Install
     plugins {
-        compile ":rira:0.2.0"
+        compile ":rira:0.2.22"
     }
 
 ### Version
-0.2.0
+0.2.22
 
 ### Tech
 
