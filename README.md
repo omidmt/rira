@@ -13,11 +13,11 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
 
 ### Install
     plugins {
-        compile ":rira:0.2.22"
+        compile ":rira:0.3.0"
     }
 
 ### Version
-0.2.22
+0.3.0
 
 ### Tech
 
@@ -95,7 +95,24 @@ src/seed/access.groovy:
 ### Data Sources
 The data sources can be added in run-time through the DataConnection page or its classes as domain. By adding new data 
 connection it will try to add it to application context by the defined name. That name can be used when using 
-DataConnectionService to execute queries.     
+DataConnectionService to execute queries.
+
+For defining a new data connection or data source the following parameters should be clear to add:
+
+name like 'CAMP', it is the reference to use it in the classes that requires this data source 
+data source class (dsClass) like 'org.apache.tomcat.jdbc.pool.DataSource'
+driver like 'com.mysql.jdbc.Driver'
+url like 'jdbc:mysql://localhost/CAMP?zeroDateTimeBehavior=convertToNull'
+username and password
+other is reserved for future use to add some extra connection parameters.
+
+#### How to execute query
+```groovy
+  // inject data connection service
+  def dataConnectionService
+  // call executer with data source name
+  dataConnectionService.executeQuery( sqlString, dataSrc?.name )
+```
 
 ### Caches
 In order to reduce number of DB transactions for the configurations which are mostly readable than changeable some hash 

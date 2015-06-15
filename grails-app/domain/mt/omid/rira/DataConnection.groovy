@@ -104,4 +104,8 @@ class DataConnection {
         }
     }
 
+    String toString() {
+        name
+    }
+
 }
