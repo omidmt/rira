@@ -99,11 +99,16 @@ DataConnectionService to execute queries.
 
 For defining a new data connection or data source the following parameters should be clear to add:
 
-name like 'CAMP', it is the reference to use it in the classes that requires this data source 
+name like 'CAMP', it is the reference to use it in the classes that requires this data source
+
 data source class (dsClass) like 'org.apache.tomcat.jdbc.pool.DataSource'
+
 driver like 'com.mysql.jdbc.Driver'
+
 url like 'jdbc:mysql://localhost/CAMP?zeroDateTimeBehavior=convertToNull'
+
 username and password
+
 other is reserved for future use to add some extra connection parameters.
 
 #### How to execute query
