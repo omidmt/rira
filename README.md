@@ -33,6 +33,12 @@ It is possible to overwrite the default schema with grails.plugin.rira.schema co
 ```groovy
 grails.plugin.rira.schema = 'myschema'
 ```
+
+In case of H2 db you may need to add the following SQL statement at the end of data source url to create schema on db initializing.
+
+```sql
+;INIT=CREATE SCHEMA IF NOT EXISTS myschema
+```
     
 If application domains have dependency like association to framework tables (like User or Node domains), the schema must be overwritten for having all of the tables in the same schema and keep foreign key constraints working.    
 
@@ -131,8 +137,8 @@ class XYZKonfig
 ```
 
 ### Audit Trail
-Evert subclass controller of RiraController activity with save and update action is saved as Audit instance. Other actions 
-should be handled manually inside its controller. 
+Each save and update action of subclass controllers of SecureController is saved as Audit instance with IP, parameters and username. Other actions 
+should be handled manually inside its controller, but they inherited the auditActivity method from RiraController.
 
 
 ### Todo's

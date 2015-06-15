@@ -1,8 +1,6 @@
 <%=packageName ? "package ${packageName}\n\n" : ''%>
 
 
-import mt.omid.rira.SecureController
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import mt.omid.rira.SecureController
