@@ -34,7 +34,7 @@ grails.project.dependency.resolution = {
 //        compile ':quartz:1.0.2'
         compile ':quartz:1.0-RC11'
         compile ':quartz-monitor:1.0'
-        compile ':cookie-session:2.0.17'
+        compile ':cookie-session:2.0.18'
         compile ':less-asset-pipeline:2.1.0'
         compile ':rest:0.8'
 

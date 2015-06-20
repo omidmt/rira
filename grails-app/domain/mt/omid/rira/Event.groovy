@@ -1,5 +1,7 @@
 package mt.omid.rira
 
+import grails.util.Holders
+
 class Event {
 
     Date time
@@ -28,5 +30,9 @@ class Event {
         INTERMEDIATE,
         MAJOR,
         CRITICAL
+    }
+
+    static mapping = {
+        table name: 'r_event', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 }

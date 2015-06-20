@@ -58,7 +58,7 @@ class Node
         NODES.clear()
 
         Node.all.each { node ->
-            NODES[ node.name ] = node
+            NODES[ node.name.toLowerCase() ] = node
         }
         refreshIPCache()
     }
@@ -69,9 +69,9 @@ class Node
         NODES_IP.clear()
 
         Node.all.each { node ->
-            NODES_IP[ node.name ] = []
+            NODES_IP[ node.name.toLowerCase() ] = []
             node.connectivityPlans.each { cp ->
-                NODES_IP[ node.name ] << cp.ip
+                NODES_IP[ node.name.toLowerCase() ] << cp.ip
             }
         }
     }

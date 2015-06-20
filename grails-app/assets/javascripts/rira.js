@@ -1,5 +1,5 @@
 // This is a manifest file that'll be compiled into application.js.
-//
+// Omid Mehdizadeh omid . mt |@| gmail . com
 // Any JavaScript file within this directory can be referenced here using a relative path.
 //
 // You're free to add application-wide JavaScript to this file, but it's generally better
@@ -218,6 +218,7 @@ function dialogSuccessSubmission( data )
 
     if( typeof target === 'undefined' )
     {
+        console.log( 'Type of taget is undefined.' );
         return;
     }
 
@@ -236,6 +237,14 @@ function dialogSuccessSubmission( data )
             var html = '<li><a href="' + link + data.id + '">' + 'name' in data ? data.name : data.id + '</li>';
             $( target ).prepend( html );
         }
+        else
+        {
+            console.log( 'Type of taget is not supported: ' + typeOfTarget );
+        }
+    }
+    else
+    {
+        console.log( 'Type of target is undefined.' );
     }
 
 }
