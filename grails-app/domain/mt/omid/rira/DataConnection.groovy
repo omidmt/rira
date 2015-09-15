@@ -78,10 +78,10 @@ class DataConnection {
                 url = dc.url
                 username = dc.username ?: ""
                 password = dc.password ?: ""
+                testWhileIdle = true
 
 //                initialSize = 42
 //                testOnBorrow = true
-//                testWhileIdle = false
 //                testOnReturn = false
 //                validationQuery = 'SELECT 1'
             }

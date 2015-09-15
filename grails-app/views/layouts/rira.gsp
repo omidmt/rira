@@ -66,7 +66,7 @@
 			</div><!-- /.navbar-collapse -->
 		</div>
 	</div>
-	<div class="navmenu navmenu-default navmenu-inverse navmenu-fixed-left" id="navmenu">
+	<div class="navmenu navmenu-default navmenu-inverse navmenu-fixed-left col-md-4" id="navmenu">
 	<g:if test="${applicos}" >
 		<g:each in="${applicos.groupBy( {it.family} ).sort({it.key})}" var="group">
 		<ul class="nav navmenu-nav nav-sidebar">
@@ -83,7 +83,7 @@
 		</g:each>
 	</g:if>
 	</div>
-	<div class="canvas" id="canvas">
+	<div class="canvas col-md-8" id="canvas">
 	<div class="">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
