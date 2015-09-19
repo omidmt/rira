@@ -76,7 +76,6 @@
 					<g:each in="${group.value.sort({it.name})}" var="applico">
 					<li data-toggle="expand" data-target=".nav-collapse" title="${applico.description}"><a href="${request.contextPath}/${applico.path}">${applico.name}</a></li>
 					</g:each>
-					<li class="divider"></li>
 				</ul>
 			</li>
 		</ul>

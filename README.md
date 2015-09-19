@@ -157,11 +157,18 @@ class XYZKonfig
 Each save and update action of subclass controllers of SecureController is saved as Audit instance with IP, parameters and username. Other actions 
 should be handled manually inside its controller, but they inherited the auditActivity method from RiraController.
 
+### Hiding Menu
+To hide the menu at page load the following javascript method can be used. It seems it disable toggling it, and cannot 
+be shown again.
+```javascript
+$( '#navmenu' ).offcanvas( 'hide' );
+```
 
 ### Todo's
 
- - Write Tests cases
+ - Write Test cases
  - Use BDD to test
+ - Change class to md12 when menu is off
 
 ##### Author
 Omid Mehdizadeh
