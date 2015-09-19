@@ -52,11 +52,6 @@ class DataConnectionService {
             sql = new Sql( DATASOURCES[ dsName ] )
             return sql.executeUpdate( query )
         }
-//        catch ( Exception e )
-//        {
-//            log.error( "Error in executing query $query [$e.message]", e )
-//            return null
-//        }
         finally
         {
             sql?.close()
@@ -74,11 +69,6 @@ class DataConnectionService {
             sql = new Sql( DATASOURCES[ dsName ] )
             return sql.executeInsert( query )
         }
-//        catch ( Exception e )
-//        {
-//            log.error( "Error in executing query $query [$e.message]", e )
-//            return null
-//        }
         finally
         {
             sql?.close()
@@ -96,14 +86,10 @@ class DataConnectionService {
             sql = new Sql( DATASOURCES[ dsName ] )
             return sql.execute( query )
         }
-//        catch ( Exception e )
-//        {
-//            log.error( "Error in executing query $query [$e.message]", e )
-//            return null
-//        }
         finally
         {
-            sql?.close()
+            // It cannot be closed here, as it affect the result set operation with not allowed on resultset
+            //sql?.close()
         }
     }
 
@@ -116,15 +102,12 @@ class DataConnectionService {
 
         try
         {
-            return sql.executeQuery( query )
+            return sql.rows( query )
         }
-//        catch( Exception e )
-//        {
-//            log.error( "Error in executing query $query [$e.message]", e )
-//            return null
-//        }
         finally
         {
+            // It cannot be closed here, as it affect the result set operation with not allowed on resultset
+            // ignore the above comments as the code changed to use rows method
             sql.close()
         }
     }
