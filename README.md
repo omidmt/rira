@@ -114,6 +114,9 @@ For defining a new data connection or data source the following parameters shoul
   dataConnectionService.executeQuery( sqlString, dataSrc?.name )
 ```
 
+The query result can be limited by using the sqlLimit Konfig. The default value is " limit 50000" that is mysql 
+expression that covers more than one month data of minutely data.   
+
 ### Caches
 In order to reduce number of DB transactions for the configurations which are mostly readable than changeable some hash 
 maps are defined as follow to ease access and improve performance of framework. They are refresh automatically on every 

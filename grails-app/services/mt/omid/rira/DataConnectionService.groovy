@@ -102,7 +102,7 @@ class DataConnectionService {
 
         try
         {
-            return sql.rows( query )
+            return sql.rows( query + Konfig.KONFIGS.sqlLimit )
         }
         finally
         {

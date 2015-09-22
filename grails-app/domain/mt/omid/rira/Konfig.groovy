@@ -75,6 +75,8 @@ class Konfig
         KONFIGS.passwordComplexity = KONFIGS.passwordComplexity ?: /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/
 
         KONFIGS.muPasswordComplexity = KONFIGS.muPasswordComplexity ?: /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/
+
+        KONFIGS.sqlLimit = KONFIGS.sqlLimit ?: ' limit 50000'
     }
 
     def static findExternalConverters()
