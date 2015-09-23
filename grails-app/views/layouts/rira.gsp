@@ -60,8 +60,9 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#home">Home</a></li>
 					<li><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#about">About</a></li>
-					<li><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="/user/settings">Setting</a></li>
-					<li><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="/logout">Sign Out</a></li>
+					<li><g:link controller="user" action="settings" data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true">Setting</g:link></li>
+					<li><g:link mapping="logout" data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true">Sign Out</g:link></li>
+
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div>

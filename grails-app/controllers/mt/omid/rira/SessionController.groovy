@@ -74,7 +74,7 @@ class SessionController extends UnSecureController {
     @Transactional
     def logout()
     {
-        sessionService.signOut()
+        sessionService.signOut(session)
         redirect url: '/login'
     }
 
