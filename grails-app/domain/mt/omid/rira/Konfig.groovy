@@ -5,6 +5,7 @@ import groovy.util.logging.Slf4j
 import mt.omid.rira.utils.KonfigConvertorFinder
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
+import org.codehaus.groovy.grails.plugins.GrailsPlugin
 
 @Slf4j
 class Konfig
@@ -61,6 +62,8 @@ class Konfig
 
         KONFIGS.appName = KONFIGS.appName ?: Holders.grailsApplication.mergedConfig.grails.plugin.rira.appName
 
+        if(!KONFIGS.localAddress) try { KONFIGS.localAddress = java.net.InetAddress.getLocalHost().getHostAddress() } catch(e) { log.error("Setting localAddress Konfig failed: " + e.message) }
+
         KONFIGS.StrictHostKeyChecking = ( KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'yes' || KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'no' ) ? KONFIGS.StrictHostKeyChecking : 'no'
 
         KONFIGS.allowedFailedLogin = KONFIGS.allowedFailedLogin?.isInteger() ? KONFIGS.allowedFailedLogin as int : 0
@@ -77,6 +80,26 @@ class Konfig
         KONFIGS.muPasswordComplexity = KONFIGS.muPasswordComplexity ?: /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/
 
         KONFIGS.sqlLimit = KONFIGS.sqlLimit ?: ' limit 50000'
+
+        def mailConfig = [ grails: [ mail: [:] ]  ]
+        KONFIGS.smtpServer = KONFIGS.smtpServer ?: 'localhost'
+        mailConfig.grails.mail.host = KONFIGS.smtpServer
+
+        KONFIGS.smtpPort = KONFIGS.smtpPort ?: 25
+        mailConfig.grails.mail.port = KONFIGS.smtpPort
+
+        KONFIGS.smtpUser = KONFIGS.smtpUser ?: ''
+        mailConfig.grails.mail.username = KONFIGS.smtpUser
+
+        KONFIGS.smtpPassword = KONFIGS.smtpPassword ?: ''
+        mailConfig.grails.mail.password = KONFIGS.smtpPassword
+
+        KONFIGS.mailFromAddress = KONFIGS.mailFromAddress ?: 'radmin@rira.app'
+
+        try{ Holders.pluginManager.getGrailsPlugin('mail').notifyOfEvent(GrailsPlugin.EVENT_ON_CONFIG_CHANGE, mailConfig) }
+        catch(e){ log.error( "Reconfiguring mail plugin failed: " + e.message ) }
+
+        KONFIGS.sendPasswordInMail = new Boolean(KONFIGS.sendPasswordInMail)
     }
 
     def static findExternalConverters()

@@ -3,6 +3,8 @@ grails {
         rira {
             appName = 'RIRA'
             schema = 'rira'
+            logoSmall = 'rira-logo-128.png'
+            logoLarg = 'rira-logo-256.png'
             ntfy
             {
                 smscIP = '127.0.0.1'
@@ -60,6 +62,32 @@ log4j.main = {
 //    trace 'groovyx.net.http'
 //    debug 'org.apache.http'
 }
+
+// mail plugin config
+grails {
+    mail {
+        host = "localhost"
+        port = 25
+        username = ""
+        password = ""
+        props = []
+    }
+}
+
+// async-mail plugin config
+asynchronous.mail.default.attempt.interval=300000l       // Five minutes
+asynchronous.mail.default.max.attempts.count=5
+asynchronous.mail.send.repeat.interval=60000l           // One minute
+asynchronous.mail.expired.collector.repeat.interval=607000l
+asynchronous.mail.messages.at.once=1000
+asynchronous.mail.send.immediately=true  // since 0.1.2
+asynchronous.mail.override=false    // since 0.2.0
+asynchronous.mail.clear.after.sent=false    // since 0.2.0
+asynchronous.mail.disable=fasle    // since 0.7
+asynchronous.mail.useFlushOnSave=true
+asynchronous.mail.persistence.provider='hibernate4' // Possible values are 'hibernate', 'hibernate4', 'mongodb'
+asynchronous.mail.gparsPoolSize=3
+asynchronous.mail.newSessionOnImmediateSend=false
 
 def afterConfigMerge = {config, mergeCtx ->
     /* Validate that the application has provided all the required settings. */

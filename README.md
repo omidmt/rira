@@ -149,10 +149,46 @@ class XYZKonfig
         KONFIGS.appName = KONFIGS.appName ?: Holders.grailsApplication.mergedConfig.grails.plugin.rira.appName
         KONFIGS.StrictHostKeyChecking = ( KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'yes' || KONFIGS.StrictHostKeyChecking?.toLowerCase() == 'no' ) ? KONFIGS.StrictHostKeyChecking : 'no'
     }    
-        
     def static refreshCaches() {
         SomeClass.refresh()
     }
+}
+```
+
+### Mail Service
+Th service name that provide mailing is RiraMailService, so the service can be injected where it is required easily by
+ 
+```groovy
+def riraMailService
+```
+ 
+This service is using async-mail plugin that one also is usgin grail mail plugin. So the config of thos plugin can be 
+configured and applied in application.
+
+The application logo on mails can be overwritten by the following config with the proper image file name in asset folder.
+
+```
+grails.plugin.rira.logoSmall = 'mylogo128.png'
+```
+ 
+#### Mail Konfigs
+The following mail configuration can be set by Konfig
+
+* smtpServer  The host name of smtp server
+* smtpPort    The port number of smtp server
+* smtpUser    The user for authentication in smtp
+* smtpPassword    The password for authentication of smtp
+* sendPasswordInMail If set to true, then welcome mail include the password of user, otherwise it won't
+
+There is 2 version of sendMail of this service, one simple that get to, subject and body of mail and another one that 
+accept async-mail compatible closure.
+
+```groovy
+sendMail( String toAddr, String subj, String body )
+sendMail {
+to "toAddress@domain.com"
+subject "Subject of Mail"
+html "<body>Mail</body>"
 }
 ```
 
@@ -174,7 +210,7 @@ $( '#navmenu' ).offcanvas( 'hide' );
  - Change class to md12 when menu is off
 
 ##### Author
-Omid Mehdizadeh
+Omid M. Tourzan
 
 [Twitter Bootstrap]:http://twitter.github.com/bootstrap/
 [jQuery]:http://jquery.com

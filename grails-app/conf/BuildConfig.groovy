@@ -32,7 +32,7 @@ grails.project.dependency.resolution = {
         compile ':seed-me:0.6.5'
         compile ':console:1.5.4'  // Should be removed for production
 //        compile ':quartz:1.0.2'
-        compile ':quartz:1.0-RC11'
+        compile ":quartz:1.0.2"
         compile ':quartz-monitor:1.0'
         compile ':cookie-session:2.0.18'
         compile ':less-asset-pipeline:2.1.0'
@@ -40,6 +40,7 @@ grails.project.dependency.resolution = {
 
         compile ':plugin-config:0.2.0'
         compile ":runtime-datasources:0.2"
+        compile ":asynchronous-mail:1.2"
 
         runtime ":hibernate4:4.3.6.1"
     }
