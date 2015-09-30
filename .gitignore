@@ -1,7 +1,5 @@
 .DS_Store
 *.log
-/grails-rira-*.zip
-/grails-rira-*.zip.sha1
 /plugin.xml
 /target
 /web-app
@@ -15,3 +13,6 @@ mergePullChangesConflict.txt
 test/
 res/
 /*.rar
+/*.zip
+/*.sha1
+/archive
