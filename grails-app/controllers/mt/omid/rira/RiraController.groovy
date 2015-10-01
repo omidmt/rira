@@ -35,10 +35,12 @@ abstract class RiraController
 
 
     protected auditActivity() {
-        if( actionName == 'save' || actionName == 'update' ) {
-            Audit a = new Audit(dateTime: new Date(), user: sessionService.currentUser?.toString(), origin: WebUtils.retrieveGrailsWebRequest().request.remoteAddr, message: "$controllerName/$actionName [$params]")
+        def safeParams = params.clone()
+        safeParams.keySet().asList().each { String par -> if (par.toLowerCase().indexOf('pass') != -1 || par.toLowerCase().indexOf('cyph') != -1 || par.toLowerCase().indexOf('pswd') != -1) safeParams.remove(par) }
+        if( actionName.startsWith('save') || actionName.startsWith('update') ) {
+            Audit a = new Audit(dateTime: new Date(), user: sessionService.currentUser?.toString(), origin: WebUtils.retrieveGrailsWebRequest().request.remoteAddr, message: "$controllerName/$actionName [$safeParams]")
             if (!a.save())
-                log.error("Audit Failed: ${sessionService.currentUser} IP: ${WebUtils.retrieveGrailsWebRequest().request.remoteAddr} $controllerName/$actionName [$params]")
+                log.error("Audit Failed: ${sessionService.currentUser} IP: ${WebUtils.retrieveGrailsWebRequest().request.remoteAddr} $controllerName/$actionName [$safeParams]")
         }
     }
 
