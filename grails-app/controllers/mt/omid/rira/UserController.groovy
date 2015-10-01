@@ -11,6 +11,8 @@ class UserController extends SecureController {
 
     static scaffold = true
 
+    def riraMailService
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond User.list(params), model:[userInstanceCount: User.count()]
@@ -37,6 +39,8 @@ class UserController extends SecureController {
         }
 
         userInstance.save flush:true
+
+        riraMailService.sendWelcomeMail(userInstance, userInstance.password)
 
         request.withFormat {
             form multipartForm {
@@ -103,6 +107,7 @@ class UserController extends SecureController {
             }
             log.debug "User new pass is OK, saving..."
             user.save( true )
+            riraMailService.sendAlertMail(user, "Your password is changed, please inform admin if you did not this or not informed about it.")
             sessionService.signIn( user, session )
             redirect action: 'settings'
         }
