@@ -88,8 +88,8 @@ class User {
         phone blank:false, matches: "[0-9]+", nullable: true
         instantMessaging nullable: true
 
-        applicos display: false
-        rights dispaly: false
+        applicos display: false, nullable: true
+        rights display: false, nullable: true
     }
 
     static mapping = {

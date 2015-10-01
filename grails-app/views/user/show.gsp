@@ -33,7 +33,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputname" class="col-sm-2 control-label">name</label>
+                    <label for="inputname" class="col-sm-2 control-label">Name</label>
 					%{--<span id="name-label" class="input-group-addon property-label"><g:message code="user.name.label" default="Name" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -49,7 +49,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputemail" class="col-sm-2 control-label">email</label>
+                    <label for="inputemail" class="col-sm-2 control-label">Email</label>
 					%{--<span id="email-label" class="input-group-addon property-label"><g:message code="user.email.label" default="Email" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -65,7 +65,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputdescription" class="col-sm-2 control-label">description</label>
+                    <label for="inputdescription" class="col-sm-2 control-label">Description</label>
 					%{--<span id="description-label" class="input-group-addon property-label"><g:message code="user.description.label" default="Description" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -81,7 +81,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputaccountExpiry" class="col-sm-2 control-label">accountExpiry</label>
+                    <label for="inputaccountExpiry" class="col-sm-2 control-label">Account Expiry</label>
 					%{--<span id="accountExpiry-label" class="input-group-addon property-label"><g:message code="user.accountExpiry.label" default="Account Expiry" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -97,7 +97,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputpasswordExpiry" class="col-sm-2 control-label">passwordExpiry</label>
+                    <label for="inputpasswordExpiry" class="col-sm-2 control-label">Password Expiry</label>
 					%{--<span id="passwordExpiry-label" class="input-group-addon property-label"><g:message code="user.passwordExpiry.label" default="Password Expiry" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -113,7 +113,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputlastLogin" class="col-sm-2 control-label">lastLogin</label>
+                    <label for="inputlastLogin" class="col-sm-2 control-label">Last Login</label>
 					%{--<span id="lastLogin-label" class="input-group-addon property-label"><g:message code="user.lastLogin.label" default="Last Login" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -129,7 +129,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputlocked" class="col-sm-2 control-label">locked</label>
+                    <label for="inputlocked" class="col-sm-2 control-label">Locked</label>
 					%{--<span id="locked-label" class="input-group-addon property-label"><g:message code="user.locked.label" default="Locked" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -145,7 +145,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputfailedLogins" class="col-sm-2 control-label">failedLogins</label>
+                    <label for="inputfailedLogins" class="col-sm-2 control-label">Failed Logins</label>
 					%{--<span id="failedLogins-label" class="input-group-addon property-label"><g:message code="user.failedLogins.label" default="Failed Logins" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -161,7 +161,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputforcePasswordChange" class="col-sm-2 control-label">forcePasswordChange</label>
+                    <label for="inputforcePasswordChange" class="col-sm-2 control-label">Force Password Change</label>
 					%{--<span id="forcePasswordChange-label" class="input-group-addon property-label"><g:message code="user.forcePasswordChange.label" default="Force Password Change" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -177,7 +177,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputphone" class="col-sm-2 control-label">phone</label>
+                    <label for="inputphone" class="col-sm-2 control-label">Phone</label>
 					%{--<span id="phone-label" class="input-group-addon property-label"><g:message code="user.phone.label" default="Phone" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -193,7 +193,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputinstantMessaging" class="col-sm-2 control-label">instantMessaging</label>
+                    <label for="inputinstantMessaging" class="col-sm-2 control-label">Instant Messaging</label>
 					%{--<span id="instantMessaging-label" class="input-group-addon property-label"><g:message code="user.instantMessaging.label" default="Instant Messaging" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -209,7 +209,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputdateCreated" class="col-sm-2 control-label">dateCreated</label>
+                    <label for="inputdateCreated" class="col-sm-2 control-label">Date Created</label>
 					%{--<span id="dateCreated-label" class="input-group-addon property-label"><g:message code="user.dateCreated.label" default="Date Created" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -225,7 +225,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputlastUpdated" class="col-sm-2 control-label">lastUpdated</label>
+                    <label for="inputlastUpdated" class="col-sm-2 control-label">Last Updated</label>
 					%{--<span id="lastUpdated-label" class="input-group-addon property-label"><g:message code="user.lastUpdated.label" default="Last Updated" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -241,7 +241,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputnotifGroup" class="col-sm-2 control-label">notifGroup</label>
+                    <label for="inputnotifGroup" class="col-sm-2 control-label">Notif Group</label>
 					%{--<span id="notifGroup-label" class="input-group-addon property-label"><g:message code="user.notifGroup.label" default="Notif Group" /></span>--}%
                     <div class="col-sm-10">
 					
@@ -259,7 +259,7 @@
 
                     <div class="form-group">
                     %{--<span class="input-group-addon">@</span>--}%
-                    <label for="inputroles" class="col-sm-2 control-label">roles</label>
+                    <label for="inputroles" class="col-sm-2 control-label">Roles</label>
 					%{--<span id="roles-label" class="input-group-addon property-label"><g:message code="user.roles.label" default="Roles" /></span>--}%
                     <div class="col-sm-10">
 					

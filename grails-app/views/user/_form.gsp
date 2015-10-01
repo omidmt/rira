@@ -152,7 +152,7 @@
         </label>
 		<div class="col-sm-6">
         	<g:select name="notifGroup" class="form-control"  from="${mt.omid.rira.ntfy.NotificationGroup.list()}" multiple="multiple" optionKey="id" size="5" value="${userInstance?.notifGroup*.id}" class="many-to-many"/>
-<div class="new-item"><a class="new-item-link" href="#" data-toggle="modal" data-target="#rDialog" onclick="loadDialog( '${request.contextPath}/NotificationGroup/createEmbeded' )"> New notifGroup</a></div>
+<div class="new-item"><a class="new-item-link" href="#" data-toggle="modal" data-target="#rDialog" onclick="loadDialog( '${request.contextPath}/NotificationGroup/createEmbeded', '#notifGroup' )"> New notifGroup</a></div>
 
 		</div>
     </div>
@@ -164,29 +164,7 @@
         </label>
 		<div class="col-sm-6">
         	<g:select name="roles" class="form-control"  from="${mt.omid.rira.Role.list()}" multiple="multiple" optionKey="id" size="5" value="${userInstance?.roles*.id}" class="many-to-many"/>
-<div class="new-item"><a class="new-item-link" href="#" data-toggle="modal" data-target="#rDialog" onclick="loadDialog( '${request.contextPath}/Role/createEmbeded' )"> New roles</a></div>
-
-		</div>
-    </div>
-
-    <div class="form-group ${hasErrors(bean: userInstance, field: 'applicos', 'error')} ">
-        <label for="applicos" class="col-sm-3 control-label">
-            <g:message code="user.applicos.label" default="Applicos" />
-            
-        </label>
-		<div class="col-sm-6">
-        	
-
-		</div>
-    </div>
-
-    <div class="form-group ${hasErrors(bean: userInstance, field: 'rights', 'error')} ">
-        <label for="rights" class="col-sm-3 control-label">
-            <g:message code="user.rights.label" default="Rights" />
-            
-        </label>
-		<div class="col-sm-6">
-        	
+<div class="new-item"><a class="new-item-link" href="#" data-toggle="modal" data-target="#rDialog" onclick="loadDialog( '${request.contextPath}/Role/createEmbeded', '#roles' )"> New roles</a></div>
 
 		</div>
     </div>
