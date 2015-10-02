@@ -17,13 +17,9 @@ target(installRiraTemplates: "The description of the script goes here!") {
     else {
         ant.mkdir(dir: targetDir)
     }
-//    copyGrailsResources("$targetDir/scaffolding/", "${riraPluginDir}/src/templates/scaffoldingss/*", overwrite)
     ant.copy(todir: "$targetDir/scaffolding", verbose: true, overwrite: overwrite) {
         fileset(dir: "$riraPluginDir/src/templates/scaffolding")
     }
-//    copyGrailsResources("$targetDir/testing", "src/grails/templates/testing/*", overwrite)
-//    ant.mkdir(dir:"${targetDir}/war")
-//    copyGrailsResource("${targetDir}/war/web.xml", grailsResource("src/war/WEB-INF/web${servletVersion}.template.xml"), overwrite)
 
     event 'InstallRiraTemplates', [overwrite]
 
