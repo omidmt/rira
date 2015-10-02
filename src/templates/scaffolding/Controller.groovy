@@ -23,6 +23,10 @@ class ${className}Controller extends SecureController {
         respond new ${className}(params)
     }
 
+    def clone(${className} ${propertyName}) {
+        render view: 'create', model: [ ${propertyName}: new ${className}(${propertyName}.properties)]
+    }
+
     def createEmbeded()
     {
         render( template: "embededForm", model: [ ${propertyName}: new ${className}(params) ] )

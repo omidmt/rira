@@ -1,4 +1,5 @@
 <% import grails.persistence.Event %>
+<% import org.codehaus.groovy.grails.commons.GrailsClassUtils %>
 <%=packageName%>
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#list-${domainClass.propertyName}" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">
@@ -38,6 +38,10 @@
 					<%      } else { %>
 						<g:sortableColumn property="${p.name}" title="\${message(code: '${domainClass.propertyName}.${p.name}.label', default: '${p.naturalName}')}" />
 					<%  }   }   } %>
+						<% if(GrailsClassUtils.getStaticPropertyValue( domainClass.clazz, 'clonnable')) { %>
+						<th></th>
+						<%}%>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,6 +60,17 @@
 					<%          } else { %>
 						<td>\${fieldValue(bean: ${propertyName}, field: "${p.name}")}</td>
 					<%  }   }   } %>
+					<% if(GrailsClassUtils.getStaticPropertyValue( domainClass.clazz, 'clonnable')) { %>
+						<td class="text-center">
+							<g:link action="clone" role="button" resource="\${${propertyName}}" data-toggle="tooltip" title="Clone" class="btn btn-info"><span class="glyphicon glyphicon-copy"></span></g:link>
+						</td>
+						<%}%>
+						<td class="text-center">
+						<g:form url="[resource:${propertyName}, action:'delete']" method="DELETE">
+							<button type="submit" data-toggle="tooltip" title="Delete" class="btn btn-danger" action="delete" value="\${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('\${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');" ><span class="glyphicon glyphicon-trash"></span></button>
+							%{--<g:a role="button" data-toggle="tooltip" title="Delete" class="btn btn-danger" onclick="return confirm('\${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');"><span class="glyphicon glyphicon-trash"></span></a>--}%
+						</g:form>
+						</td>
 					</tr>
 				</g:each>
 				</tbody>

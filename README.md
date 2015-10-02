@@ -13,7 +13,7 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
 
 ### Install
     plugins {
-        compile ":rira:0.3.0"
+        compile ":rira:0.4.0"
     }
 
 ### Version
@@ -57,12 +57,21 @@ All controller which extends RiraController (and of course its child, Secure and
 
 The main layout meta tag should be removed from views if rira layout should be used for rendering.
 
+#### Scaffold
 To use RIRA scaffolding templates which is matched with the theme and make the fields compatible with it follow the following steps:
 
  1. Install scaffold templates (grails install-templates)
  2. Replace scaffold files with rira templates in src directory (src/templates/scaffolding/).
    
 It is possible to use home controller for index page. To use it, remove `/` in your grails URlMappings to use rira default one.
+
+If domain class static clonnable field set to true, then the index page and controller support the clone action to copy an object.
+
+```groovy
+static clonnable = true
+```
+
+Note that the seed for clone action on clonnable domains should be added too. 
 
 ### Security
 Each controller can be secured to be authenticated and authorized by extending the SecureController class. It is recommended to extend others by UnSecureController class to use common features of framework.
