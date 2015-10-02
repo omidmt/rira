@@ -15,6 +15,8 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
     plugins {
         compile ":rira:0.4.0"
     }
+    
+The customized scaffolding templates can be installed by the install-rira-templates command. 
 
 ### Version
 0.3.0
