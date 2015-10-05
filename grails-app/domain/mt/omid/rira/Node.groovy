@@ -27,7 +27,8 @@ class Node
 
     static hasMany = [ connectivityPlans: ConnectivityPlan ]
 
-    static clonnable = true
+    static cloneable = true
+    static deletable = true
 
     static constraints =
     {

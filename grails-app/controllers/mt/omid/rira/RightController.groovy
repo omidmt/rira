@@ -1,13 +1,14 @@
 package mt.omid.rira
 
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import mt.omid.rira.SecureController
 
 @Transactional(readOnly = true)
 class RightController extends SecureController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    static scaffold = true
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -22,9 +23,17 @@ class RightController extends SecureController {
         respond new Right(params)
     }
 
+    def clone(Right rightInstance) {
+        render view: 'create', model: [rightInstance: new Right(rightInstance.properties)]
+    }
+
+    def createEmbeded() {
+        render(template: "embededForm", model: [rightInstance: new Right(params)])
+    }
+
     @Transactional
     def save(Right rightInstance) {
-        if (!rightInstance) {
+        if (rightInstance == null) {
             notFound()
             return
         }
@@ -38,7 +47,7 @@ class RightController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'right.label', default: 'Right'), rightInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'right.label', default: 'Right'), rightInstance])
                 redirect rightInstance
             }
             '*' { respond rightInstance, [status: CREATED] }
@@ -49,9 +58,13 @@ class RightController extends SecureController {
         respond rightInstance
     }
 
+    def editEmbeded(Right rightInstance) {
+        render(template: "embededForm", model: [rightInstance: rightInstance])
+    }
+
     @Transactional
     def update(Right rightInstance) {
-        if (!rightInstance) {
+        if (rightInstance == null) {
             notFound()
             return
         }
@@ -65,7 +78,7 @@ class RightController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Right.label', default: 'Right'), rightInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Right.label', default: 'Right'), rightInstance])
                 redirect rightInstance
             }
             '*' { respond rightInstance, [status: OK] }
@@ -75,7 +88,7 @@ class RightController extends SecureController {
     @Transactional
     def delete(Right rightInstance) {
 
-        if (!rightInstance) {
+        if (rightInstance == null) {
             notFound()
             return
         }
@@ -91,7 +104,7 @@ class RightController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Right.label', default: 'Right'), rightInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Right.label', default: 'Right'), rightInstance])
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }
