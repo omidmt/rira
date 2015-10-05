@@ -15,10 +15,16 @@ grails.project.dependency.resolution = {
     dependencies {
         compile 'org.jsmpp:jsmpp:2.2.1'
 
-        build('org.bouncycastle:bcpg-jdk15on:1.47') {
-            excludes 'bcprov-jdk15on'
+        compile('org.bouncycastle:bcpg-jdk15on:1.52') {
+          //  excludes 'bcprov-jdk15on'
         }
-        build 'org.bouncycastle:bcprov-ext-jdk15on:1.47'
+        compile 'org.bouncycastle:bcprov-ext-jdk15on:1.52'
+
+        compile 'org.bouncycastle:bcpkix-jdk15on:1.52'
+
+        compile("com.lowagie:itext:2.0.8") {
+            excludes "bouncycastle:bcprov-jdk14:138", "org.bouncycastle:bcprov-jdk14:1.38"
+        }
     }
 
     plugins {

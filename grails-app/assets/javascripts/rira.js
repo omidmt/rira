@@ -53,10 +53,13 @@ $( document).ready(function()
 
 function signin()
 {
-    var cyph = do_encrypt( $( '#username')[0].value + '|' + $( '#password')[0].value );
-    //$( '#username' )[0].value = '';
-    //$( '#password' )[0].value = '';
-    $( '#cyph' )[0].value = cyph;
+    var res = encrypt( $( '#username')[0].value + '|' + $( '#password')[0].value );
+    var sk = res[0];
+    var cd = res[1];
+    $( '#username' )[0].value = '';
+    $( '#password' )[0].value = '';
+    $( '#cd' )[0].value = cd;
+    $( '#sk' )[0].value = sk;
 //    alert( 'SignIn:' + cyph );
 //    console.log( 'signin' );
     //$( '#loginForm').submit();
@@ -267,4 +270,100 @@ function dialogFailedSubmission( jqXHR )
     $( '#' + rDialogBody ).prepend( html );
 
 
+}
+
+function certParser(cert){
+    var lines = cert.split('\n');
+    var read = false;
+    var b64 = false;
+    var end = false;
+    var flag = '';
+    var retObj = {};
+    retObj.info = '';
+    retObj.salt = '';
+    retObj.iv;
+    retObj.b64 = '';
+    retObj.aes = false;
+    retObj.mode = '';
+    retObj.bits = 0;
+    for(var i=0; i< lines.length; i++){
+        flag = lines[i].substr(0,9);
+        if(i==1 && flag != 'Proc-Type' && flag.indexOf('M') == 0)//unencrypted cert?
+            b64 = true;
+        switch(flag){
+            case '-----BEGI':
+                read = true;
+                break;
+            case 'Proc-Type':
+                if(read)
+                    retObj.info = lines[i];
+                break;
+            case 'DEK-Info:':
+                if(read){
+                    var tmp = lines[i].split(',');
+                    var dek = tmp[0].split(': ');
+                    var aes = dek[1].split('-');
+                    retObj.aes = (aes[0] == 'AES')?true:false;
+                    retObj.mode = aes[2];
+                    retObj.bits = parseInt(aes[1]);
+                    retObj.salt = tmp[1].substr(0,16);
+                    retObj.iv = tmp[1];
+                }
+                break;
+            case '':
+                if(read)
+                    b64 = true;
+                break;
+            case '-----END ':
+                if(read){
+                    b64 = false;
+                    read = false;
+                }
+                break;
+            default:
+                if(read && b64)
+                    retObj.b64 += pidCryptUtil.stripLineFeeds(lines[i]);
+        }
+    }
+    return retObj;
+}
+
+var pubkey = '-----BEGIN PUBLIC KEY-----\n' +
+    'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1zPgYpxg5e8h7+FITvtz\n' +
+    'cBOblXSHVzyyoX1gCvTsFR9Q5FJ+ITBV/R3rflRpOaxQIA2cXElJx2foOK5BiDtv\n' +
+    'BWsbuSOXmPZv8xR1yURohl7Cjv9CsFGg/DpLU69J8SC4UKm+VmYz8tpNOSq0XpQ0\n' +
+    '9qCtbLcq7Pvxhe9Vg43Nv5PubCZWkdiSEVTOfsSLveox4TU3+tsrbewLVg7MdOQJ\n' +
+    'we6aDAwNp5uAclQAhVnQQKAbdqf+cry97+6lYap2Sz00RtS+UboQ+X8joJtbE44l\n' +
+    'gGqrZOd2ErDT1NOXfpWXYUmIbz77/bMU7ecwGDaG+JTuH7i5+7f/s9TheGDzIpGS\n' +
+    'NwIDAQAB\n' +
+    '-----END PUBLIC KEY-----';
+
+function encrypt(msg, noRefresh) {
+    if(typeof pidCrypt === "undefined" || typeof pidCrypt.AES === "undefined" || typeof pidCrypt.AES.CBC === "undefined" )
+    {
+        console.log("Page is not loaded correctly");
+        //alert("Page is not loaded completely");
+        if(!noRefresh) {
+            window.location.reload();
+        }
+    }
+    var aes = new pidCrypt.AES.CBC();
+    Math.seedrandom();
+    var sessionKey = Math.random().toString(36).substring(2);
+    var crypted = aes.encryptText(msg, sessionKey, {nBits: 256});
+
+    var pubk = pubkey;
+    if(typeof mypubkey !== "undefined")
+        pubk = mypubkey;
+
+    var params = certParser(pubk);
+    var key = pidCryptUtil.decodeBase64(params.b64);
+    var rsa = new pidCrypt.RSA();
+    var asn = pidCrypt.ASN1.decode(pidCryptUtil.toByteArray(key));
+    var tree = asn.toHexTree();
+    rsa.setPublicKeyFromASN(tree);
+    var sessionKeyCipher = rsa.encrypt(sessionKey);
+    sessionKeyCipher = pidCryptUtil.encodeBase64(pidCryptUtil.convertFromHex(sessionKeyCipher));
+
+    return [sessionKeyCipher, crypted];
 }

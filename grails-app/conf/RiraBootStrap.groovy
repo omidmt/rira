@@ -1,6 +1,7 @@
 import mt.omid.rira.DataConnection
 import mt.omid.rira.Konfig
 import mt.omid.rira.Node
+import mt.omid.rira.SecurityService
 
 class RiraBootStrap {
 
@@ -13,5 +14,6 @@ class RiraBootStrap {
         DataConnection.refreshCache()
         seedService.installSeedData()
         riraMailService.initialize()
+        SecurityService.init()
     }
 }

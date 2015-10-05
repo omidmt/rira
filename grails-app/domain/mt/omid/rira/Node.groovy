@@ -2,12 +2,9 @@ package mt.omid.rira
 
 import grails.util.Holders
 import groovy.util.logging.Slf4j
-import mt.omid.rira.utils.LoginMethod
 import mt.omid.rira.utils.NodeType
 import mt.omid.rira.utils.OS
 import mt.omid.rira.utils.ServerType
-import mt.omid.rira.utils.security.Encoder
-import org.codehaus.groovy.grails.validation.routines.InetAddressValidator
 
 @Slf4j
 class Node
@@ -29,6 +26,8 @@ class Node
     Date lastUpdated
 
     static hasMany = [ connectivityPlans: ConnectivityPlan ]
+
+    static clonnable = true
 
     static constraints =
     {

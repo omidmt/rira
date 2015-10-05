@@ -16,7 +16,13 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
         compile ":rira:0.4.0"
     }
     
-The customized scaffolding templates can be installed by the install-rira-templates command. 
+For using security module that needs up to date version of bouncycastle lib, add the following line in build config 
+to allow using new one. If still getting java security and mismatch exception check the version of itext or other 
+dependencies og bcprov lib and update exclusion according to them.
+    
+    build("com.lowagie:itext:2.0.8") {
+     excludes "bouncycastle:bcprov-jdk14:138", "org.bouncycastle:bcprov-jdk14:1.38" 
+    } 
 
 ### Version
 0.3.0
@@ -60,20 +66,26 @@ All controller which extends RiraController (and of course its child, Secure and
 The main layout meta tag should be removed from views if rira layout should be used for rendering.
 
 #### Scaffold
-To use RIRA scaffolding templates which is matched with the theme and make the fields compatible with it follow the following steps:
+To use RIRA customized scaffolding templates which is matched with the theme and make the fields compatible with it follow the following steps:
 
- 1. Install scaffold templates (grails install-templates)
- 2. Replace scaffold files with rira templates in src directory (src/templates/scaffolding/).
+ ```grails install-rira-templates```
    
 It is possible to use home controller for index page. To use it, remove `/` in your grails URlMappings to use rira default one.
 
-If domain class static clonnable field set to true, then the index page and controller support the clone action to copy an object.
+If domain class static cloneable field set to true, then the index page and controller support the clone action/button
+ to dulicate an object.
 
 ```groovy
-static clonnable = true
+static cloneable = true
 ```
 
-Note that the seed for clone action on clonnable domains should be added too. 
+For having a delete button on index page rhe domain must have static deletable set to true.
+ 
+```groovy
+static deletable = true
+```
+
+Note that the seed for clone action on cloneable domains should be added too. 
 
 ### Security
 Each controller can be secured to be authenticated and authorized by extending the SecureController class. It is recommended to extend others by UnSecureController class to use common features of framework.
@@ -102,7 +114,13 @@ src/seed/access.groovy:
         user( meta: [key: [ 'email' ], update: false], email: 'user@app.com', name: 'UserTest', password: 'User@1234', passwordConfirmation: 'User@1234', roles: [ [name: 'TestRole'] ]  )
     }
 ```
-    
+
+The following konfigs can be used for encryption keys.
+
+* pemPrivateKey The private key in PEM format, if not set default will be set
+* pemKeyPassword(optional)  The password of the key, if exists
+* pemPublicKey The public key in PEM format, if not set, default one will be set
+
 ### Data Sources
 The data sources can be added in run-time through the DataConnection page or its classes as domain. By adding new data 
 connection it will try to add it to application context by the defined name. That name can be used when using 

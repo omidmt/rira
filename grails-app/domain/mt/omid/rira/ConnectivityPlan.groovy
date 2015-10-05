@@ -2,10 +2,11 @@ package mt.omid.rira
 
 import grails.util.Holders
 import mt.omid.rira.utils.LoginMethod
-import mt.omid.rira.utils.security.Encoder
 import org.codehaus.groovy.grails.validation.routines.InetAddressValidator
 
 class ConnectivityPlan {
+
+    def securityService
 
     String name
     String ip
@@ -52,7 +53,7 @@ class ConnectivityPlan {
     {
         if( password && password == passwordConfirmation )
         {
-            password = Encoder.encrypt( password )
+            password = securityService.encryptAES( password )
             passwordConfirmation = password
         }
 
@@ -94,17 +95,17 @@ class ConnectivityPlan {
 
     private String decrypt(String s)
     {
-        s ? Encoder.decrypt(s) : ''
+        s ? securityService.decryptAES(s) : ''
     }
 
     private String encrypt(String s)
     {
-        s ? Encoder.encrypt(s) : s
+        s ? securityService.encryptAES(s) : s
     }
 
     private String encryptOrGetPersistentValue( String passphrase, String name )
     {
-        passphrase && isDirty(name) ? Encoder.encrypt(passphrase) : getPersistentValue(name)
+        passphrase && isDirty(name) ? securityService.encryptAES(passphrase) : getPersistentValue(name)
     }
 
     private void encryptPasswordAndConfirmation(String passwordName)
@@ -112,7 +113,7 @@ class ConnectivityPlan {
         String password = this."$passwordName"
         String passwordConfirmation = this."${passwordName}Confirmation"
         if (password && isDirty(passwordName) && password == passwordConfirmation) {
-            this."$passwordName" = this."${passwordName}Confirmation" = Encoder.encrypt(password)
+            this."$passwordName" = this."${passwordName}Confirmation" = securityService.encryptAES(password)
         }
         else {
             this."$passwordName" = getPersistentValue(passwordName)

@@ -8,7 +8,7 @@ class SessionController extends UnSecureController {
 
     static allowedMethods = [save: "POST", delete: "DELETE"]
 
-//    def sessionService
+    def securityService
 
     def create() {
         def title = "Sign In"
@@ -16,11 +16,10 @@ class SessionController extends UnSecureController {
     }
 
     @Transactional
-    def save(String username, String password)
-    {
-//        session.invalidate()
-
-        User user = User.authenticate( username, password )
+    def save() {
+        // session.invalidate()
+        def(username, password) = securityService.decryptLoginHash(params['cd'], params['sk'])
+        User user = User.authenticate(username, password)
 
         if( !user )
         {

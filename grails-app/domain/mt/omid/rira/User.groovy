@@ -81,7 +81,7 @@ class User {
 
         salt size: 1..1500, display: false, bindable: false, nullable: true // Must Be Cleared
 
-        locked nullable: true
+        locked()
         failedLogins editable: false, bindable: false
         forcePasswordChange()
 

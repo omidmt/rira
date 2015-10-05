@@ -100,6 +100,46 @@ class Konfig
         catch(e){ log.error( "Reconfiguring mail plugin failed: " + e.message ) }
 
         KONFIGS.sendPasswordInMail = new Boolean(KONFIGS.sendPasswordInMail)
+
+        KONFIGS.pemPrivateKey = KONFIGS.pemPrivateKey ?: """-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA1zPgYpxg5e8h7+FITvtzcBOblXSHVzyyoX1gCvTsFR9Q5FJ+
+ITBV/R3rflRpOaxQIA2cXElJx2foOK5BiDtvBWsbuSOXmPZv8xR1yURohl7Cjv9C
+sFGg/DpLU69J8SC4UKm+VmYz8tpNOSq0XpQ09qCtbLcq7Pvxhe9Vg43Nv5PubCZW
+kdiSEVTOfsSLveox4TU3+tsrbewLVg7MdOQJwe6aDAwNp5uAclQAhVnQQKAbdqf+
+cry97+6lYap2Sz00RtS+UboQ+X8joJtbE44lgGqrZOd2ErDT1NOXfpWXYUmIbz77
+/bMU7ecwGDaG+JTuH7i5+7f/s9TheGDzIpGSNwIDAQABAoIBAAN7D1II/Xg6me3r
+UuQUJRXW+1k7fUTn8muyP29t7rOYwhIvU2LuCTYC2eA9NUZ9hv49uh20AcF76MGh
+7+VoMK+Bv/0KmlUbB0yDNDSBKr+hoLv3XPjFGTl7J+S+nQ+NW+3SEQYMuSJgbYdT
+LX+qHgEvMB7mB4e1u35TFKsADCfhEQ2jOEb2ROUEbSYjpepW7eWsjVihuchSB/kS
+QUhXHDNWio5r86EPaSQuskRKlQrHC79OplrWZGaR8eFspTQ21oyCrg0eTpz94wt3
+Cc9BfcczRx8zSUkjHk6xtmoqWMEurMBm8LH5GKuNAxuwa28lTbg2xyEgNkk08U1x
+43eGYkECgYEA8Wdp1+OJvAYM+YavSo98F83TJ3fg5vhFEa48wTvxbhMox5bYK3Q/
+XRBiBPonrupEGJO0mY6uW2Gd1kdsZuBjBbsGk5htbigwVaZc928WqRNK6gOWq70/
+Ed6x8Zxn5xl8QNsBD0udm04IS1MfhA0pMZHjUngbWW5gr6DoaRzMn+8CgYEA5Dbn
+gQ1Uqr6lA69wDIkInFhYpAeMhafuZCLvbCpcvd5pl0wF/AoNW4LUaPNSp0nHmQUm
+MVTm9iCWQT9O0GrXlRp7b1x5I3hPwwZMkmya+s9npbuKop+7T4f/kaBN1CM68NvN
+mWVVj6/jFOcD5wJtdaqx0c0wmGdzlrL08BTHajkCgYEArTY2i+GIApGU3bX2MNmj
+gLD+wWMSzKd3Z6hNj5kjMogsyolBsmxGys/mhQu5TZhqI/hXrZbjJE52ojm9XlPC
+uWno3h6Q5mmPxOUJ78CV0ds19ZN9mNzBVGEl7Ob85qUyspZxvDfVboofCW0rP+Tx
+mc/D/HiRpym71kjuef1gFaECgYEA4DIsBjURa1g1BkTQoA/zXJzSH/qmixtp8Af+
+C9YmHAUm2JLAAlXhv3fsslnwZhXuNx6+4ZHWABANbHYEOG3t8jX88272NulX+nDy
+wppdOm6NFV0DmjWvrzcc1HSWYQRnP/2/oqXRg4I4ZO16gPR6kjEp1cFtrxtai76t
+MDpJmckCgYBxQCjWImbh7xbjM88xZzQrmwaYljvdYKbNMk2zRybdC1ojnUjAe7Fn
+B6BoiKwOU88D4NgFxgZXDHhvZBvgpCG/zCSbho6RVEy/wralfwtbtJOm+TBgvqyl
+vqNsBCUxpQS/dZlMXMn0j7AEF306dIRs+G6+MPJIxLb85eUW0SgwQA==
+-----END RSA PRIVATE KEY-----
+"""
+        KONFIGS.pemKeyPassword = KONFIGS.pemKeyPassword ?: ""
+
+        KONFIGS.pemPublicKey = KONFIGS.pemPublicKey ?: """-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1zPgYpxg5e8h7+FITvtz
+cBOblXSHVzyyoX1gCvTsFR9Q5FJ+ITBV/R3rflRpOaxQIA2cXElJx2foOK5BiDtv
+BWsbuSOXmPZv8xR1yURohl7Cjv9CsFGg/DpLU69J8SC4UKm+VmYz8tpNOSq0XpQ0
+9qCtbLcq7Pvxhe9Vg43Nv5PubCZWkdiSEVTOfsSLveox4TU3+tsrbewLVg7MdOQJ
+we6aDAwNp5uAclQAhVnQQKAbdqf+cry97+6lYap2Sz00RtS+UboQ+X8joJtbE44l
+gGqrZOd2ErDT1NOXfpWXYUmIbz77/bMU7ecwGDaG+JTuH7i5+7f/s9TheGDzIpGS
+NwIDAQAB
+-----END PUBLIC KEY-----"""
     }
 
     def static findExternalConverters()
