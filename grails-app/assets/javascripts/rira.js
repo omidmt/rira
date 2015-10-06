@@ -201,7 +201,14 @@ $.fn.serializeObject = function()
             }
             o[this.name].push(this.value || '');
         } else {
-            o[this.name] = this.value || '';
+            if(this.name.indexOf('.') > -1 ) // nested objects
+            {
+                var splt = this.name.split('.');
+                o[splt[0]] = {};
+                o[splt[0]][splt[1]] = this.value;
+            }
+            else
+                o[this.name] = this.value || '';
         }
     });
     return o;
@@ -223,7 +230,7 @@ function loadDialog( url, target )
     }
 
     $( '#' + rDialogBody ).data( 'target', target );
-    $( '#' + rDialogLabel ).html( target.camelCase() );
+    $( '#' + rDialogLabel ).html( target );
 }
 
 function dialogSuccessSubmission( data )
