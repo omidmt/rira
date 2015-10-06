@@ -56,11 +56,23 @@ class SecurityService {
 
     }
 
+    /***
+     * Decrypt encrypted text from sign-in page form
+     *
+     * @param crypted
+     * @param sessionKey
+     * @return
+     */
     public String[] decryptLoginHash( String crypted, String sessionKey) {
         if( crypted == null || sessionKey == null )
             return [null, null]
-        String [] up = decryptPGP(crypted, sessionKey).split('\\|', 2)
-        [up[0], up[1]]
+        String tmp = decryptPGP(crypted, sessionKey, 3610)
+        if(tmp) {
+            String[] up = tmp.split('\\|', 2)
+            [up[0], up[1]]
+        }
+        else
+            [null, null]
     }
 
     /*********************** PGP methods ****************************/
@@ -78,6 +90,29 @@ class SecurityService {
 
         // Decrypt data by deciphered session key
         decryptAESOpenSSL(data, key)
+    }
+
+    /***
+     * Decrypt encrypted message in PGP format with prepended 13 chars of the UTC timestamp (e.g. UTC1444081234)
+     * decrypted AES key contains key generation uC timestamp, and continue decryption of message if time difference
+     * to now is less than expiryOffset parameter in second.
+     * @param data
+     * @param sessionKey RSA crypted
+     * @param expiryOffset in second
+     * @return
+     */
+    public String decryptPGP(String data, String sessionKey, int expiryOffset) {
+        // Decrypt session key by RSA private key
+        String key = decryptRSA(sessionKey)
+
+        long keyTime = key[3..12] as long
+        long now = System.currentTimeMillis()/1000
+        if(now - keyTime > expiryOffset) {
+            log.error("Expired session key observed")
+            return null
+        }
+        // Decrypt data by deciphered session key
+        decryptAESOpenSSL(data, key[13..-1])
     }
 
     /******************** RSA PUB/PRV methods ***********************/
@@ -165,7 +200,7 @@ class SecurityService {
         // openssl non-standard extension: salt embedded at start of encrypted file
         byte [] src = msg.decodeBase64()
         byte [] pwd = password.bytes
-        byte[] salt = Arrays.copyOfRange(src, 8, 16) // 0..7 is "SALTED__", 8..15 is the salt
+        byte[] salt = Arrays.copyOfRange(src, 8, 16) // 0..7 is "SALTED__" or timestamp, 8..15 is the salt
 
         try
         {

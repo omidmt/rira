@@ -351,6 +351,7 @@ function encrypt(msg, noRefresh) {
     Math.seedrandom();
     var sessionKey = Math.random().toString(36).substring(2);
     var crypted = aes.encryptText(msg, sessionKey, {nBits: 256});
+    sessionKey = 'UTC' + (Date.now() / 1000 | 0).toString() + sessionKey;
 
     var pubk = pubkey;
     if(typeof mypubkey !== "undefined")
