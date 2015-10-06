@@ -4,7 +4,17 @@
 <html>
 <head>
     <meta name="layout" content="rira">
-    <title></title>
+    <title>Change Settings</title>
+    <asset:javascript src="pidcrypt/string_extend.js" />
+    <asset:javascript src="pidcrypt/seedrandom.js" />
+    <asset:javascript src="pidcrypt/pidcrypt_util.js" />
+    <asset:javascript src="pidcrypt/pidcrypt.js" />
+    <asset:javascript src="pidcrypt/md5.js" />
+    <asset:javascript src="pidcrypt/aes_core.js" />
+    <asset:javascript src="pidcrypt/aes_cbc.js" />
+    <asset:javascript src="pidcrypt/asn1.js" />
+    <asset:javascript src="pidcrypt/jsbn.js" />
+    <asset:javascript src="pidcrypt/rsa.js" />
 </head>
 
 <body>
@@ -36,12 +46,18 @@
                         <label class="login-field-icon fui-lock" for="confPass">Confirm Password</label>
                         <input type="password" class="form-control login-field" value="" placeholder="Confirm Password" id="confPass" name="confPass" />
                     </div>
-                    <input type="hidden" value="" id="cyph" name="cyph" />
-                    <input type="submit" value="Save" name="submit" id="submit" >
+                    <input type="hidden" value="" id="cd" name="cd" />
+                    <input type="hidden" value="" id="sk" name="sk" />
+                    <input type="submit" value="Save" name="submit" id="submit" onclick="updatePassword()" >
                 </g:form>
             </div>
         </div>
     </div>
 </div>
+<script type="application/javascript">
+    <g:if test="${mt.omid.rira.Konfig.KONFIGS['pemPublicKey']}" >
+    var mypubkey = <%=mt.omid.rira.Konfig.KONFIGS['pemPublicKey']%>;
+    </g:if>
+</script>
 </body>
 </html>

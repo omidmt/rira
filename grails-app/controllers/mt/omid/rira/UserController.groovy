@@ -11,6 +11,7 @@ class UserController extends SecureController {
 
     static scaffold = true
 
+    def securityService
     def riraMailService
 
     def index(Integer max) {
@@ -83,16 +84,10 @@ class UserController extends SecureController {
     }
 
     @Transactional
-    def updatePassword(String curPass, String newPass, String confPass)
+    def updatePassword()
     {
-
-        User user = User.get( sessionService.currentUser.id )
-//
-//        if( newPass != confPass )
-//        {
-//            flash.error = "New password is not match confirmation"
-//            redirect action: "settings"
-//        }
+        def(curPass, newPass, confPass) = securityService.decryptChangePasswordHash(params['cd'], params['sk'])
+        User user = User.get(sessionService.currentUser.id)
 
         if( user.hasPassword( curPass ) )
         {
@@ -106,10 +101,16 @@ class UserController extends SecureController {
                 return
             }
             log.debug "User new pass is OK, saving..."
-            user.save( true )
-            riraMailService.sendAlertMail(user, "Your password is changed, please inform admin if you did not this or not informed about it.")
-            sessionService.signIn( user, session )
-            redirect action: 'settings'
+            if(user.save(true)) {
+                riraMailService.sendAlertMail(user, "Your password is changed, please inform admin if you did not this or not informed about it.")
+                sessionService.signIn(user, session)
+                flash.success = "Password is updated"
+                redirect controller: 'home', action: 'index'
+            }
+            else {
+                flash.error = "Changing password failed"
+                redirect action: 'settings'
+            }
         }
         else
         {

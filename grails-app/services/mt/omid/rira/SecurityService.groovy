@@ -1,5 +1,6 @@
 package mt.omid.rira
 
+import grails.converters.JSON
 import grails.transaction.Transactional
 import groovy.util.logging.Slf4j
 import org.bouncycastle.crypto.BufferedBlockCipher
@@ -16,7 +17,7 @@ import org.bouncycastle.openssl.PEMEncryptedKeyPair
 import org.bouncycastle.openssl.PEMParser
 import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter
 import org.bouncycastle.openssl.jcajce.JcePEMDecryptorProviderBuilder
-
+import org.codehaus.groovy.grails.web.json.JSONObject
 
 import javax.annotation.PostConstruct
 import javax.crypto.Cipher
@@ -66,13 +67,43 @@ class SecurityService {
     public String[] decryptLoginHash( String crypted, String sessionKey) {
         if( crypted == null || sessionKey == null )
             return [null, null]
-        String tmp = decryptPGP(crypted, sessionKey, 3610)
-        if(tmp) {
-            String[] up = tmp.split('\\|', 2)
-            [up[0], up[1]]
+        try {
+            String tmp = decryptPGP(crypted, sessionKey, 3610)
+            if (tmp) {
+                JSONObject up = JSON.parse(tmp)
+                [up.username, up.password]
+            } else
+                [null, null]
         }
-        else
+        catch( e ) {
+            log.error('loginHash decryption failed: ' + e.message)
             [null, null]
+        }
+    }
+
+    /***
+     * Decrypt encrypted text from user setting page form for changing password
+     *
+     * @param crypted
+     * @param sessionKey
+     * @return
+     */
+    public String[] decryptChangePasswordHash( String crypted, String sessionKey) {
+        if( crypted == null || sessionKey == null )
+            return [null, null]
+        try {
+            String tmp = decryptPGP(crypted, sessionKey, 9999999)
+            if (tmp) {
+                JSONObject msg = JSON.parse(tmp)
+                return [msg.curPass, msg.newPass, msg.confPass]
+            } else
+                [null, null, null]
+        }
+        catch( e ) {
+            log.error('changePasswordHash decryption failed: ' + e.message)
+            [null, null, null]
+        }
+
     }
 
     /*********************** PGP methods ****************************/

@@ -53,16 +53,28 @@ $( document).ready(function()
 
 function signin()
 {
-    var res = encrypt( $( '#username')[0].value + '|' + $( '#password')[0].value );
+    var msg = { "username": $('#username')[0].value, "password": $('#password')[0].value };
+    var res = encrypt(JSON.stringify(msg));
     var sk = res[0];
     var cd = res[1];
     $( '#username' )[0].value = '';
     $( '#password' )[0].value = '';
     $( '#cd' )[0].value = cd;
     $( '#sk' )[0].value = sk;
-//    alert( 'SignIn:' + cyph );
-//    console.log( 'signin' );
-    //$( '#loginForm').submit();
+    return true;
+}
+
+function updatePassword()
+{
+    var msg = { "curPass": $('#curPass')[0].value, "newPass": $('#newPass')[0].value, "confPass": $('#confPass')[0].value };
+    var res = encrypt(JSON.stringify(msg));
+    var sk = res[0];
+    var cd = res[1];
+    $('#curPass')[0].value = '';
+    $('#newPass')[0].value = '';
+    $('#confPass')[0].value = '';
+    $( '#cd' )[0].value = cd;
+    $( '#sk' )[0].value = sk;
     return true;
 }
 
@@ -338,12 +350,12 @@ var pubkey = '-----BEGIN PUBLIC KEY-----\n' +
     'NwIDAQAB\n' +
     '-----END PUBLIC KEY-----';
 
-function encrypt(msg, noRefresh) {
+function encrypt(msg, refresh) {
     if(typeof pidCrypt === "undefined" || typeof pidCrypt.AES === "undefined" || typeof pidCrypt.AES.CBC === "undefined" )
     {
         console.log("Page is not loaded correctly");
         //alert("Page is not loaded completely");
-        if(!noRefresh) {
+        if(typeof refresh !== "undefined" && refresh) {
             window.location.reload();
         }
     }
