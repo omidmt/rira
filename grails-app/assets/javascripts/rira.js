@@ -38,17 +38,20 @@ $( document).ready(function()
 
 //    Sidebar menu settings
     $(function () {
-        $( '#navmenu' ).offcanvas({
-            autohide: false,
-            toggle: "offcanvas",
-            target: "#navmenu",
-            canvas: "#canvas",
-            recalc: false,
-            disableScrolling: false
-        }).offcanvas( 'show' );
+        if(typeof $('#navmenu').offcanvas !== "undefined") {
+            $('#navmenu').offcanvas({
+                autohide: false,
+                toggle: "offcanvas",
+                target: "#navmenu",
+                canvas: "#canvas",
+                recalc: false,
+                disableScrolling: false
+            }).offcanvas('show');
+        }
     });
 
     initEventHandlers();
+    $( "#loginForm" ).submit( signin )
 });
 
 function signin()

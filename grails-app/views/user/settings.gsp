@@ -56,7 +56,7 @@
 </div>
 <script type="application/javascript">
     <g:if test="${mt.omid.rira.Konfig.KONFIGS['pemPublicKey']}" >
-    var mypubkey = <%=mt.omid.rira.Konfig.KONFIGS['pemPublicKey']%>;
+    var mypubkey = `<%=mt.omid.rira.Konfig.KONFIGS['pemPublicKey']%>`;
     </g:if>
 </script>
 </body>
