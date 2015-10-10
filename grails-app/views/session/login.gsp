@@ -25,7 +25,7 @@
             <div class="login-form">
                 <g:form url="[controller: 'Session', action:'save']" name="loginForm" id="loginForm" class="form-horizontal" role="form" >
                     <div class="form-group">
-                        <input type="text" class="form-control login-field" value="" placeholder="Enter usernamee" id="username" name="username" />
+                        <input type="text" class="form-control login-field" value="" placeholder="Username" id="username" name="username" />
                         <label class="login-field-icon fui-user" for="username"></label>
                     </div>
 
