@@ -36,7 +36,7 @@
 			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
 					%{--<span class="input-group-addon">@</span>--}%
-					<label for="input${p.name}" class="col-sm-2 control-label">${p.naturalName}</label>
+					<label for="${p.name}" class="col-sm-2 control-label">${p.naturalName}</label>
 					%{--<span id="${p.name}-label" class="input-group-addon property-label"><g:message code="${domainClass.propertyName}.${p.name}.label" default="${p.naturalName}" /></span>--}%
 					<div class="col-sm-10">
 						<%  if (p.isEnum()) { %>
