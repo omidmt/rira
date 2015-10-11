@@ -13,7 +13,7 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
 
 ### Install
     plugins {
-        compile ":rira:0.4.0"
+        compile ":rira:0.4.1"
     }
     
 For using security module that needs up to date version of bouncycastle lib, add the following line in build config 
