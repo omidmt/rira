@@ -1,3 +1,5 @@
+<%@ page import="mt.omid.rira.ntfy.NotificationHistory" %>
+<!DOCTYPE html>
 <html>
 	<head>
 		<g:set var="entityName" value="${message(code: 'notificationHistory.label', default: 'NotificationHistory')}" />
@@ -25,14 +27,10 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:notificationHistoryInstance, action:'update']" method="PUT" >
+			<g:form id="notificationHistoryInstance" url="[resource:notificationHistoryInstance, action:'update']" method="PUT" class="form-horizontal" role="form" >
 				<g:hiddenField name="version" value="${notificationHistoryInstance?.version}" />
-				<fieldset class="form">
 					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="form-group">
-					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-				</fieldset>
+					<g:actionSubmit class="save" form="notificationHistoryInstance" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 			</g:form>
 		</div>
     </div>

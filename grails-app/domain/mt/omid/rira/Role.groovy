@@ -7,7 +7,8 @@ class Role {
     String name
 
     static hasMany = [ rights : Right ]
-//    static belongsTo = User
+    static deletable = true
+    static cloneable = true
 
     static constraints = {
         name size: 1..100, unique: true, blank: false

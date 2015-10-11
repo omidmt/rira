@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<g:set var="entityName" value="${message(code: 'notificationGroup.label', default: 'NotificationGroup')}" />
@@ -25,9 +26,9 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:notificationGroupInstance, action:'save']"  class="form-horizontal"   role="form" >
-				<g:render template="form"/>
-				<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+			<g:form id="notificationGroupInstance" url="[resource:notificationGroupInstance, action:'save']"  class="form-horizontal" role="form" >
+					<g:render template="form"/>
+					<g:submitButton name="create" form="notificationGroupInstance" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 			</g:form>
 		</div>
     </div>

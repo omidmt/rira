@@ -1,8 +1,6 @@
 package mt.omid.rira
 
 
-import mt.omid.rira.SecureController
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import mt.omid.rira.SecureController
@@ -25,8 +23,13 @@ class ConnectivityPlanController extends SecureController {
         respond new ConnectivityPlan(params)
     }
 
-    def createEmbeded() {
-        render(template: "embededForm", model: [connectivityPlanInstance: new ConnectivityPlan(params)])
+    def clone(ConnectivityPlan connectivityPlanInstance) {
+        render view: 'create', model: [ connectivityPlanInstance: new ConnectivityPlan(connectivityPlanInstance.properties)]
+    }
+
+    def createEmbeded()
+    {
+        render( template: "embededForm", model: [ connectivityPlanInstance: new ConnectivityPlan(params) ] )
     }
 
     @Transactional
@@ -45,7 +48,7 @@ class ConnectivityPlanController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'connectivityPlan.label', default: 'ConnectivityPlan'), connectivityPlanInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'connectivityPlan.label', default: 'ConnectivityPlan'), connectivityPlanInstance])
                 redirect connectivityPlanInstance
             }
             '*' { respond connectivityPlanInstance, [status: CREATED] }
@@ -56,8 +59,9 @@ class ConnectivityPlanController extends SecureController {
         respond connectivityPlanInstance
     }
 
-    def editEmbeded(ConnectivityPlan connectivityPlanInstance) {
-        render(template: "embededForm", model: [connectivityPlanInstance: connectivityPlanInstance])
+    def editEmbeded(ConnectivityPlan connectivityPlanInstance)
+    {
+        render( template: "embededForm", model: [ connectivityPlanInstance: connectivityPlanInstance ] )
     }
 
     @Transactional
@@ -76,10 +80,10 @@ class ConnectivityPlanController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'ConnectivityPlan.label', default: 'ConnectivityPlan'), connectivityPlanInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'ConnectivityPlan.label', default: 'ConnectivityPlan'), connectivityPlanInstance])
                 redirect connectivityPlanInstance
             }
-            '*' { respond connectivityPlanInstance, [status: OK] }
+            '*'{ respond connectivityPlanInstance, [status: OK] }
         }
     }
 
@@ -91,14 +95,14 @@ class ConnectivityPlanController extends SecureController {
             return
         }
 
-        connectivityPlanInstance.delete flush: true
+        connectivityPlanInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'ConnectivityPlan.label', default: 'ConnectivityPlan'), connectivityPlanInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'ConnectivityPlan.label', default: 'ConnectivityPlan'), connectivityPlanInstance])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NO_CONTENT }
+            '*'{ render status: NO_CONTENT }
         }
     }
 
@@ -108,7 +112,7 @@ class ConnectivityPlanController extends SecureController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'connectivityPlan.label', default: 'ConnectivityPlan'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NOT_FOUND }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

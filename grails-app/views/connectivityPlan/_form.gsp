@@ -120,7 +120,7 @@
 		<div class="col-sm-6">
         	<g:select id="node" name="node.id" class="form-control"  from="${mt.omid.rira.Node.list()}" optionKey="id" value="${connectivityPlanInstance?.node?.id}" class="many-to-one" noSelection="['null': '']"/>
 <div class="new-item">
-<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( '${request.contextPath}/Node/createEmbeded', '#node' )"> New node</a>
+<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( '${request.contextPath}/Node/createEmbeded', '#node' )"> New Node</a>
 </div>
 
 		</div>

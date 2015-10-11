@@ -28,6 +28,7 @@ class User {
     static hasMany = [ roles : Role, notifGroup: NotificationGroup ]
 
     static belongsTo = [ NotificationGroup ]
+    static deletable = true
 
     Date dateCreated
     Date lastUpdated

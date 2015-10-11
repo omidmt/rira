@@ -7,7 +7,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#create-${domainClass.propertyName}" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
         <div class="navbar">
             <div class="nav">
                 <ul class="nav nav-pills">

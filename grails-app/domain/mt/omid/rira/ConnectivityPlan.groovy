@@ -22,6 +22,9 @@ class ConnectivityPlan {
     Date dateCreated
     Date lastUpdated
 
+    static deletable = true
+    static cloneable = true
+
     static transients = [ 'passwordConfirmation' ]
 
     static belongsTo = [ node: Node ]
@@ -43,6 +46,8 @@ class ConnectivityPlan {
         passphrase nullable: true, size: 0..1500, password: true, validator: { val, self -> if( self.privateKey && !val ) [ 'Node.passphrase.required' ] }
         publicKey nullable: true, size: 0..3000, widget: 'textarea'
         node nullable: true
+
+        securityService display: false
     }
 
     static mapping ={

@@ -1,4 +1,5 @@
 
+
 <%@ page import="mt.omid.rira.User" %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#list-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">
@@ -40,6 +40,10 @@
 					
 						<g:sortableColumn property="lastLogin" title="${message(code: 'user.lastLogin.label', default: 'Last Login')}" />
 					
+						
+						
+						<th></th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -58,6 +62,15 @@
                     
 						<td><g:formatDate date="${userInstance.lastLogin}" /></td>
                     
+					
+					
+						<td class="text-center">
+						<g:form url="[resource:userInstance, action:'delete']" method="DELETE">
+							<button type="submit" data-toggle="tooltip" title="Delete" class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');" ><span class="glyphicon glyphicon-trash"></span></button>
+							%{--<g:a role="button" data-toggle="tooltip" title="Delete" class="btn btn-danger" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');"><span class="glyphicon glyphicon-trash"></span></a>--}%
+						</g:form>
+						</td>
+					
 					</tr>
 				</g:each>
 				</tbody>

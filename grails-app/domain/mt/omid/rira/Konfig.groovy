@@ -19,6 +19,9 @@ class Konfig
     Date dateCreated
     Date lastUpdated
 
+    static deletable = true
+    static cloneable = true
+
     static constraints = {
         key blank: false, size: 1..200
         value size: 0..1000

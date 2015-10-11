@@ -6,6 +6,8 @@ class NotificationGroup {
 
     String name
 
+    static deletable = true
+
     static hasMany = [  recipients : Recipient ]
 
     static constraints = {

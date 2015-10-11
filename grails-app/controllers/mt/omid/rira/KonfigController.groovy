@@ -1,14 +1,14 @@
 package mt.omid.rira
 
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import mt.omid.rira.SecureController
 
 @Transactional(readOnly = true)
 class KonfigController extends SecureController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
-    static scaffold = true
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -23,9 +23,17 @@ class KonfigController extends SecureController {
         respond new Konfig(params)
     }
 
+    def clone(Konfig konfigInstance) {
+        render view: 'create', model: [konfigInstance: new Konfig(konfigInstance.properties)]
+    }
+
+    def createEmbeded() {
+        render(template: "embededForm", model: [konfigInstance: new Konfig(params)])
+    }
+
     @Transactional
     def save(Konfig konfigInstance) {
-        if (!konfigInstance) {
+        if (konfigInstance == null) {
             notFound()
             return
         }
@@ -50,9 +58,13 @@ class KonfigController extends SecureController {
         respond konfigInstance
     }
 
+    def editEmbeded(Konfig konfigInstance) {
+        render(template: "embededForm", model: [konfigInstance: konfigInstance])
+    }
+
     @Transactional
     def update(Konfig konfigInstance) {
-        if (!konfigInstance) {
+        if (konfigInstance == null) {
             notFound()
             return
         }
@@ -76,7 +88,7 @@ class KonfigController extends SecureController {
     @Transactional
     def delete(Konfig konfigInstance) {
 
-        if (!konfigInstance) {
+        if (konfigInstance == null) {
             notFound()
             return
         }

@@ -1,8 +1,6 @@
 package mt.omid.rira
 
 
-import mt.omid.rira.SecureController
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import mt.omid.rira.SecureController
@@ -25,8 +23,13 @@ class EventController extends SecureController {
         respond new Event(params)
     }
 
-    def createEmbeded() {
-        render(template: "embededForm", model: [eventInstance: new Event(params)])
+    def clone(Event eventInstance) {
+        render view: 'create', model: [ eventInstance: new Event(eventInstance.properties)]
+    }
+
+    def createEmbeded()
+    {
+        render( template: "embededForm", model: [ eventInstance: new Event(params) ] )
     }
 
     @Transactional
@@ -45,7 +48,7 @@ class EventController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'event.label', default: 'Event'), eventInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'event.label', default: 'Event'), eventInstance])
                 redirect eventInstance
             }
             '*' { respond eventInstance, [status: CREATED] }
@@ -56,8 +59,9 @@ class EventController extends SecureController {
         respond eventInstance
     }
 
-    def editEmbeded(Event eventInstance) {
-        render(template: "embededForm", model: [eventInstance: eventInstance])
+    def editEmbeded(Event eventInstance)
+    {
+        render( template: "embededForm", model: [ eventInstance: eventInstance ] )
     }
 
     @Transactional
@@ -76,10 +80,10 @@ class EventController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Event.label', default: 'Event'), eventInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Event.label', default: 'Event'), eventInstance])
                 redirect eventInstance
             }
-            '*' { respond eventInstance, [status: OK] }
+            '*'{ respond eventInstance, [status: OK] }
         }
     }
 
@@ -91,14 +95,14 @@ class EventController extends SecureController {
             return
         }
 
-        eventInstance.delete flush: true
+        eventInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Event.label', default: 'Event'), eventInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Event.label', default: 'Event'), eventInstance])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NO_CONTENT }
+            '*'{ render status: NO_CONTENT }
         }
     }
 
@@ -108,7 +112,7 @@ class EventController extends SecureController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'event.label', default: 'Event'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NOT_FOUND }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

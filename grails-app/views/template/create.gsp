@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<g:set var="entityName" value="${message(code: 'template.label', default: 'Template')}" />
@@ -5,6 +6,7 @@
 	</head>
 	<body>
     <div class="container">
+		%{--<a href="#create-template" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
         <div class="navbar">
             <div class="nav">
                 <ul class="nav nav-pills">
@@ -25,9 +27,9 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:templateInstance, action:'save']"  class="form-horizontal"   role="form" >
-				<g:render template="form"/>
-				<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+			<g:form id="templateInstance" url="[resource:templateInstance, action:'save']"  class="form-horizontal" role="form" >
+					<g:render template="form"/>
+					<g:submitButton name="create" form="templateInstance" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 			</g:form>
 		</div>
     </div>

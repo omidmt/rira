@@ -3,20 +3,19 @@ package mt.omid.rira
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import mt.omid.rira.SecureController
 
 @Transactional(readOnly = true)
 class UserController extends SecureController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    static scaffold = true
-
     def securityService
     def riraMailService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond User.list(params), model:[userInstanceCount: User.count()]
+        respond User.list(params), model: [userInstanceCount: User.count()]
     }
 
     def show(User userInstance) {
@@ -27,9 +26,18 @@ class UserController extends SecureController {
         respond new User(params)
     }
 
+    def clone(User userInstance) {
+        render view: 'create', model: [ userInstance: new User(userInstance.properties)]
+    }
+
+    def createEmbeded()
+    {
+        render( template: "embededForm", model: [ userInstance: new User(params) ] )
+    }
+
     @Transactional
     def save(User userInstance) {
-        if (!userInstance) {
+        if (userInstance == null) {
             notFound()
             return
         }
@@ -45,7 +53,7 @@ class UserController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance])
                 redirect userInstance
             }
             '*' { respond userInstance, [status: CREATED] }
@@ -56,9 +64,14 @@ class UserController extends SecureController {
         respond userInstance
     }
 
+    def editEmbeded(User userInstance)
+    {
+        render( template: "embededForm", model: [ userInstance: userInstance ] )
+    }
+
     @Transactional
     def update(User userInstance) {
-        if (!userInstance) {
+        if (userInstance == null) {
             notFound()
             return
         }
@@ -72,7 +85,7 @@ class UserController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'User.label', default: 'User'), userInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'User.label', default: 'User'), userInstance])
                 redirect userInstance
             }
             '*'{ respond userInstance, [status: OK] }
@@ -123,7 +136,7 @@ class UserController extends SecureController {
     @Transactional
     def delete(User userInstance) {
 
-        if (!userInstance) {
+        if (userInstance == null) {
             notFound()
             return
         }
@@ -132,7 +145,7 @@ class UserController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'User.label', default: 'User'), userInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'User.label', default: 'User'), userInstance])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

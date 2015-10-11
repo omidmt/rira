@@ -7,6 +7,9 @@ class Template {
     String name
     String content
 
+    static deletable = true
+    static cloneable = true
+
     static constraints = {
         name blank: false, size: 1..100
         content blank: false, size: 1..1000

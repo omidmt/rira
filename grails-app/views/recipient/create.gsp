@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<g:set var="entityName" value="${message(code: 'recipient.label', default: 'Recipient')}" />
@@ -25,9 +26,9 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:recipientInstance, action:'save']"  class="form-horizontal"   role="form" >
-				<g:render template="form"/>
-				<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+			<g:form id="recipientInstance" url="[resource:recipientInstance, action:'save']"  class="form-horizontal" role="form" >
+					<g:render template="form"/>
+					<g:submitButton name="create" form="recipientInstance" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 			</g:form>
 		</div>
     </div>

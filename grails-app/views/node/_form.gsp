@@ -21,7 +21,7 @@
 		<div class="col-sm-6">
         	<g:select id="profile" name="profile.id" class="form-control"  from="${mt.omid.rira.NodeProfile.list()}" optionKey="id" value="${nodeInstance?.profile?.id}" class="many-to-one" noSelection="['null': '']"/>
 <div class="new-item">
-<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( '${request.contextPath}/NodeProfile/createEmbeded', '#profile' )"> New profile</a>
+<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( '${request.contextPath}/NodeProfile/createEmbeded', '#profile' )"> New Profile</a>
 </div>
 
 		</div>
@@ -64,7 +64,7 @@
 
 <div class="new-item">
 
-<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( '${request.contextPath}/connectivityPlan/createEmbeded?node.id=${nodeInstance?.id}', '#connectivityPlans' )"> New connectivityPlan</a>
+<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( '${request.contextPath}/connectivityPlan/createEmbeded?node.id=${nodeInstance?.id}', '#connectivityPlans', '#connectivityPlans' )"> New Connectivity Plan</a>
 
 </div>
 </li>

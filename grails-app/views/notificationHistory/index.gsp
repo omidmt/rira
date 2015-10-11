@@ -1,3 +1,7 @@
+
+
+<%@ page import="mt.omid.rira.ntfy.NotificationHistory" %>
+<!DOCTYPE html>
 <html>
 	<head>
 		<g:set var="entityName" value="${message(code: 'notificationHistory.label', default: 'NotificationHistory')}" />
@@ -22,26 +26,49 @@
 			<table class="table table-bordered table-striped">
 			<thead>
 					<tr>
+					
 						<g:sortableColumn property="user" title="${message(code: 'notificationHistory.user.label', default: 'User')}" />
+					
 						<g:sortableColumn property="message" title="${message(code: 'notificationHistory.message.label', default: 'Message')}" />
+					
 						<g:sortableColumn property="recipients" title="${message(code: 'notificationHistory.recipients.label', default: 'Recipients')}" />
+					
 						<g:sortableColumn property="sendDate" title="${message(code: 'notificationHistory.sendDate.label', default: 'Send Date')}" />
+					
+						
+						
+						<th></th>
+						
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${notificationHistoryInstanceList}" status="i" var="notificationHistoryInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+					
 						<td><g:link action="show" id="${notificationHistoryInstance.id}">${fieldValue(bean: notificationHistoryInstance, field: "user")}</g:link></td>
+					
 						<td>${fieldValue(bean: notificationHistoryInstance, field: "message")}</td>
+					
 						<td>${fieldValue(bean: notificationHistoryInstance, field: "recipients")}</td>
+					
 						<td><g:formatDate date="${notificationHistoryInstance.sendDate}" /></td>
+                    
+					
+					
+						<td class="text-center">
+						<g:form url="[resource:notificationHistoryInstance, action:'delete']" method="DELETE">
+							<button type="submit" data-toggle="tooltip" title="Delete" class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');" ><span class="glyphicon glyphicon-trash"></span></button>
+							%{--<g:a role="button" data-toggle="tooltip" title="Delete" class="btn btn-danger" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');"><span class="glyphicon glyphicon-trash"></span></a>--}%
+						</g:form>
+						</td>
+					
 					</tr>
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
+			<ul class="pagination">
 				<g:paginate total="${notificationHistoryInstanceCount ?: 0}" />
-			</div>
+			</ul>
 		</div>
     </div>
 	</body>

@@ -1,4 +1,5 @@
 
+
 <%@ page import="mt.omid.rira.Audit" %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#list-audit" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">
@@ -36,6 +36,8 @@
 					
 						<g:sortableColumn property="message" title="${message(code: 'audit.message.label', default: 'Message')}" />
 					
+						
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -49,6 +51,8 @@
 						<td>${fieldValue(bean: auditInstance, field: "origin")}</td>
 					
 						<td>${fieldValue(bean: auditInstance, field: "message")}</td>
+					
+					
 					
 					</tr>
 				</g:each>

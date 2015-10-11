@@ -9,6 +9,9 @@ class Recipient {
     String phone
     String instantMessaging
 
+    static deletable = true
+    static cloneable = true
+
     static hasMany = [ notifGroup : NotificationGroup ]
 
     static belongsTo = NotificationGroup

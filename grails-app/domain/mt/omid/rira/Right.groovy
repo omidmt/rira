@@ -8,6 +8,9 @@ class Right {
     String ctrl
     Applico applico
 
+    static deletable = true
+    static cloneable = true
+
     static constraints = {
         act blank: false
         ctrl blank: false

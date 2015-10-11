@@ -1,4 +1,5 @@
 
+
 <%@ page import="mt.omid.rira.Event" %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#list-event" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">
@@ -28,6 +28,8 @@
 			<thead>
 					<tr>
 					
+						<g:sortableColumn property="severity" title="${message(code: 'event.severity.label', default: 'Severity')}" />
+					
 						<g:sortableColumn property="time" title="${message(code: 'event.time.label', default: 'Time')}" />
 					
 						<g:sortableColumn property="header" title="${message(code: 'event.header.label', default: 'Header')}" />
@@ -38,16 +40,22 @@
 					
 						<g:sortableColumn property="impact" title="${message(code: 'event.impact.label', default: 'Impact')}" />
 					
-						<g:sortableColumn property="resolution" title="${message(code: 'event.resolution.label', default: 'Resolution')}" />
-					
+						
+						<th></th>
+						
+						
+						<th></th>
+						
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${eventInstanceList}" status="i" var="eventInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${eventInstance.id}">${fieldValue(bean: eventInstance, field: "time")}</g:link></td>
+						<td><g:link action="show" id="${eventInstance.id}">${fieldValue(bean: eventInstance, field: "severity")}</g:link></td>
 					
+						<td><g:formatDate date="${eventInstance.time}" /></td>
+                    
 						<td>${fieldValue(bean: eventInstance, field: "header")}</td>
 					
 						<td>${fieldValue(bean: eventInstance, field: "description")}</td>
@@ -56,7 +64,18 @@
 					
 						<td>${fieldValue(bean: eventInstance, field: "impact")}</td>
 					
-						<td>${fieldValue(bean: eventInstance, field: "resolution")}</td>
+					
+						<td class="text-center">
+							<g:link action="clone" role="button" resource="${eventInstance}" data-toggle="tooltip" title="Clone" class="btn btn-info"><span class="glyphicon glyphicon-copy"></span></g:link>
+						</td>
+					
+					
+						<td class="text-center">
+						<g:form url="[resource:eventInstance, action:'delete']" method="DELETE">
+							<button type="submit" data-toggle="tooltip" title="Delete" class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');" ><span class="glyphicon glyphicon-trash"></span></button>
+							%{--<g:a role="button" data-toggle="tooltip" title="Delete" class="btn btn-danger" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');"><span class="glyphicon glyphicon-trash"></span></a>--}%
+						</g:form>
+						</td>
 					
 					</tr>
 				</g:each>

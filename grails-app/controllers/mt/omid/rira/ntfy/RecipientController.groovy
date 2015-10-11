@@ -1,15 +1,15 @@
 package mt.omid.rira.ntfy
 
-import mt.omid.rira.SecureController
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import mt.omid.rira.SecureController
 
 @Transactional(readOnly = true)
 class RecipientController extends SecureController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    static scaffold = true
+
     static layout = "notif_admin"
 
     def index(Integer max) {
@@ -25,9 +25,17 @@ class RecipientController extends SecureController {
         respond new Recipient(params)
     }
 
+    def clone(Recipient recipientInstance) {
+        render view: 'create', model: [recipientInstance: new Recipient(recipientInstance.properties)]
+    }
+
+    def createEmbeded() {
+        render(template: "embededForm", model: [recipientInstance: new Recipient(params)])
+    }
+
     @Transactional
     def save(Recipient recipientInstance) {
-        if (!recipientInstance) {
+        if (recipientInstance == null) {
             notFound()
             return
         }
@@ -41,7 +49,7 @@ class RecipientController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'recipient.label', default: 'Recipient'), recipientInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'recipient.label', default: 'Recipient'), recipientInstance])
                 redirect recipientInstance
             }
             '*' { respond recipientInstance, [status: CREATED] }
@@ -52,9 +60,13 @@ class RecipientController extends SecureController {
         respond recipientInstance
     }
 
+    def editEmbeded(Recipient recipientInstance) {
+        render(template: "embededForm", model: [recipientInstance: recipientInstance])
+    }
+
     @Transactional
     def update(Recipient recipientInstance) {
-        if (!recipientInstance) {
+        if (recipientInstance == null) {
             notFound()
             return
         }
@@ -68,7 +80,7 @@ class RecipientController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Recipient.label', default: 'Recipient'), recipientInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Recipient.label', default: 'Recipient'), recipientInstance])
                 redirect recipientInstance
             }
             '*' { respond recipientInstance, [status: OK] }
@@ -78,7 +90,7 @@ class RecipientController extends SecureController {
     @Transactional
     def delete(Recipient recipientInstance) {
 
-        if (!recipientInstance) {
+        if (recipientInstance == null) {
             notFound()
             return
         }
@@ -87,7 +99,7 @@ class RecipientController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Recipient.label', default: 'Recipient'), recipientInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Recipient.label', default: 'Recipient'), recipientInstance])
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }

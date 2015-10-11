@@ -1,6 +1,4 @@
 <%=packageName ? "package ${packageName}\n\n" : ''%>
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import mt.omid.rira.SecureController
@@ -12,7 +10,7 @@ class ${className}Controller extends SecureController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond ${className}.list(params), model:[${propertyName}Count: ${className}.count()]
+        respond ${className}.list(params), model: [${propertyName}Count: ${className}.count()]
     }
 
     def show(${className} ${propertyName}) {
@@ -40,11 +38,11 @@ class ${className}Controller extends SecureController {
         }
 
         if (${propertyName}.hasErrors()) {
-            respond ${propertyName}.errors, view:'create'
+            respond ${propertyName}.errors, view: 'create'
             return
         }
 
-        ${propertyName}.save flush:true
+        ${propertyName}.save flush: true
 
         request.withFormat {
             form multipartForm {
@@ -72,11 +70,11 @@ class ${className}Controller extends SecureController {
         }
 
         if (${propertyName}.hasErrors()) {
-            respond ${propertyName}.errors, view:'edit'
+            respond ${propertyName}.errors, view: 'edit'
             return
         }
 
-        ${propertyName}.save flush:true
+        ${propertyName}.save flush: true
 
         request.withFormat {
             form multipartForm {
@@ -100,7 +98,7 @@ class ${className}Controller extends SecureController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: '${className}.label', default: '${className}'), ${propertyName}])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
             '*'{ render status: NO_CONTENT }
         }

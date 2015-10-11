@@ -17,6 +17,8 @@ class NodeProfile {
     // Comma separated list of connectivity plan names that nodes may have with this profile
     String defaultConnectivityPlans
 
+    static deletable = true
+    static cloneable = true
 
     private static passwordValidator = { if( it < 0 ) return "Password lifetime must be positive number" }
 

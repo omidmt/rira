@@ -9,7 +9,6 @@
 </head>
 <body>
 <div class="container">
-	%{--<a href="#show-${domainClass.propertyName}" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 	<br/>
 	<div class="navbar">
 		<div class="nav">
@@ -21,11 +20,9 @@
 		</div>
 	</div>
 	<div id="show-${domainClass.propertyName}" class="content scaffold-show" role="main">
-	%{--<h1><g:message code="default.show.label" args="[entityName]" /></h1>--}%
 		<g:if test="\${flash.message}">
 			<div class="alert message" role="status">\${flash.message}</div>
 		</g:if>
-	%{--<ol class="property-list ${domainClass.propertyName}">--}%
 		<form class="form-horizontal" role="form">
 			<%  excludedProps = Event.allEvents.toList() << 'id' << 'version'
 			allowedNames = domainClass.persistentProperties*.name << 'dateCreated' << 'lastUpdated'
@@ -33,11 +30,8 @@
 			Collections.sort(props, comparator.constructors[0].newInstance([domainClass] as Object[]))
 			props.each { p -> %>
 			<g:if test="\${${propertyName}?.${p.name}}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
 					<label for="${p.name}" class="col-sm-2 control-label">${p.naturalName}</label>
-					%{--<span id="${p.name}-label" class="input-group-addon property-label"><g:message code="${domainClass.propertyName}.${p.name}.label" default="${p.naturalName}" /></span>--}%
 					<div class="col-sm-10">
 						<%  if (p.isEnum()) { %>
 						<p id="${p.name}" class="form-control-static disabled" aria-labelledby="${p.name}-label"><g:fieldValue bean="\${${propertyName}}" field="${p.name}"/></p>
@@ -73,12 +67,10 @@
 						<p class="form-control-static disabled" aria-labelledby="${p.name}-label"><g:fieldValue bean="\${${propertyName}}" field="${p.name}"/></p>
 						<%  } %>
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			<%  } %>
 		</form>
-	%{--</ol>--}%
 		<g:form url="[resource:${propertyName}, action:'delete']" method="DELETE">
 			<div class="btn-group">
 				<fieldset class="form-group">

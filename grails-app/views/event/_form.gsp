@@ -2,6 +2,17 @@
 
 
 
+    <div class="form-group ${hasErrors(bean: eventInstance, field: 'severity', 'error')} required">
+        <label for="severity" class="col-sm-3 control-label">
+            <g:message code="event.severity.label" default="Severity" />
+            <span class="required-indicator">*</span>
+        </label>
+		<div class="col-sm-6">
+        	<g:select name="severity" class="form-control"  from="${mt.omid.rira.Event$Severity?.values()}" keys="${mt.omid.rira.Event$Severity.values()*.name()}" required="" value="${eventInstance?.severity?.name()}" />
+
+		</div>
+    </div>
+
     <div class="form-group ${hasErrors(bean: eventInstance, field: 'time', 'error')} required">
         <label for="time" class="col-sm-3 control-label">
             <g:message code="event.time.label" default="Time" />

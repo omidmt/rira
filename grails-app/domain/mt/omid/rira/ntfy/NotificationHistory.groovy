@@ -9,6 +9,8 @@ class NotificationHistory {
     Date   sendDate
     String recipients
 
+    static deletable = true
+
     static constraints =
     {
         user blank: false, size: 1..50

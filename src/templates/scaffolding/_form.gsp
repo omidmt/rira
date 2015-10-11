@@ -2,7 +2,6 @@
 <% import grails.persistence.Event %>
 
 <%  excludedProps = Event.allEvents.toList() << 'version' << 'dateCreated' << 'lastUpdated' << 'id'
-//	persistentPropNames = domainClass.persistentProperties*.name
     persistentPropNames = domainClass.properties*.name
 	boolean hasHibernate = pluginManager?.hasGrailsPlugin('hibernate') || pluginManager?.hasGrailsPlugin('hibernate4')
 	if (hasHibernate) {

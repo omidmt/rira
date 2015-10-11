@@ -17,6 +17,9 @@ class Job
     Date dateCreated
     Date lastUpdated
 
+    static deletable = true
+    static cloneable = true // fields like log, time should be cleaned
+
     static constraints = {
 
         name size: 1..50

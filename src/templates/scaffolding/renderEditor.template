@@ -113,7 +113,7 @@
  			sb << renderNoSelection(property)
  			sb << '/>'
  			sb << '\n<div class="new-item">'
- 			sb << '\n<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( \'${request.contextPath}/' << cls.simpleName << '/createEmbeded\', ' << '\'#' << property.name << '\' )"> New ' << property.name << '</a>'
+ 			sb << '\n<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( \'${request.contextPath}/' << cls.simpleName << '/createEmbeded\', ' << '\'#' << property.name << '\' )"> New ' << property.naturalName << '</a>'
  			sb << '\n</div>'
 			sb as String
         }
@@ -139,7 +139,7 @@
             sb << ' value="${' << "${domainInstance}?.${property.name}" << '*.id}"'
             sb << ' class="many-to-many"'
             sb << '/>'
-            sb << '\n<div class="new-item"><a class="new-item-link" href="#" data-toggle="modal" data-target="#rDialog" onclick="loadDialog( \'${request.contextPath}/' << cls.simpleName << '/createEmbeded\', ' << '\'#' << property.name << '\' )"> New ' << property.name << '</a></div>'
+            sb << '\n<div class="new-item"><a class="new-item-link" href="#" data-toggle="modal" data-target="#rDialog" onclick="loadDialog( \'${request.contextPath}/' << cls.simpleName << '/createEmbeded\', ' << '\'#' << property.name << '\' )"> New ' << property.naturalName << '</a></div>'
             sb as String
 
         }
@@ -158,7 +158,7 @@
         //pw.println "<g:link controller=\"${property.referencedDomainClass.propertyName}\" action=\"create\" params=\"['${domainClass.propertyName}.id': ${domainInstance}?.id]\">\${message(code: 'default.add.label', args: [message(code: '${property.referencedDomainClass.propertyName}.label', default: '${property.referencedDomainClass.shortName}')])}</g:link>"
 
         pw.println '\n<div class="new-item">'
-        pw.println '\n<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( \'${request.contextPath}/' << property.referencedDomainClass.propertyName << '/createEmbeded?' << "${domainClass.propertyName}.id" << '=' << '${' << "${domainInstance}" << '?.id}' << '\', ' << '\'#' << property.name << '\', ' << '\'#' << property.name << '\' )"> New ' << property.referencedDomainClass.propertyName << '</a>'
+        pw.println '\n<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( \'${request.contextPath}/' << property.referencedDomainClass.propertyName << '/createEmbeded?' << "${domainClass.propertyName}.id" << '=' << '${' << "${domainInstance}" << '?.id}' << '\', ' << '\'#' << property.name << '\', ' << '\'#' << property.name << '\' )"> New ' << property.referencedDomainClass.naturalName << '</a>'
         pw.println '\n</div>'
 
 		pw.println '</li>'

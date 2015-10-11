@@ -1,8 +1,9 @@
 package mt.omid.rira
 
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
-
+import mt.omid.rira.SecureController
 
 @Transactional(readOnly = true)
 class DataConnectionController extends SecureController {
@@ -11,88 +12,92 @@ class DataConnectionController extends SecureController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond DataConnection.list(params), model: [dataSourceInstanceCount: DataConnection.count()]
+        respond DataConnection.list(params), model: [dataConnectionInstanceCount: DataConnection.count()]
     }
 
-    def show(DataConnection dataSourceInstance) {
-        respond dataSourceInstance
+    def show(DataConnection dataConnectionInstance) {
+        respond dataConnectionInstance
     }
 
     def create() {
         respond new DataConnection(params)
     }
 
+    def clone(DataConnection dataConnectionInstance) {
+        render view: 'create', model: [dataConnectionInstance: new DataConnection(dataConnectionInstance.properties)]
+    }
+
     def createEmbeded() {
-        render(template: "embededForm", model: [dataSourceInstance: new DataConnection(params)])
+        render(template: "embededForm", model: [dataConnectionInstance: new DataConnection(params)])
     }
 
     @Transactional
-    def save(DataConnection dataSourceInstance) {
-        if (dataSourceInstance == null) {
+    def save(DataConnection dataConnectionInstance) {
+        if (dataConnectionInstance == null) {
             notFound()
             return
         }
 
-        if (dataSourceInstance.hasErrors()) {
-            respond dataSourceInstance.errors, view: 'create'
+        if (dataConnectionInstance.hasErrors()) {
+            respond dataConnectionInstance.errors, view: 'create'
             return
         }
 
-        dataSourceInstance.save flush: true
+        dataConnectionInstance.save flush: true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'dataSource.label', default: 'DataConnection'), dataSourceInstance.id])
-                redirect dataSourceInstance
+                flash.message = message(code: 'default.created.message', args: [message(code: 'dataConnection.label', default: 'DataConnection'), dataConnectionInstance])
+                redirect dataConnectionInstance
             }
-            '*' { respond dataSourceInstance, [status: CREATED] }
+            '*' { respond dataConnectionInstance, [status: CREATED] }
         }
     }
 
-    def edit(DataConnection dataSourceInstance) {
-        respond dataSourceInstance
+    def edit(DataConnection dataConnectionInstance) {
+        respond dataConnectionInstance
     }
 
-    def editEmbeded(DataConnection dataSourceInstance) {
-        render(template: "embededForm", model: [dataSourceInstance: dataSourceInstance])
+    def editEmbeded(DataConnection dataConnectionInstance) {
+        render(template: "embededForm", model: [dataConnectionInstance: dataConnectionInstance])
     }
 
     @Transactional
-    def update(DataConnection dataSourceInstance) {
-        if (dataSourceInstance == null) {
+    def update(DataConnection dataConnectionInstance) {
+        if (dataConnectionInstance == null) {
             notFound()
             return
         }
 
-        if (dataSourceInstance.hasErrors()) {
-            respond dataSourceInstance.errors, view: 'edit'
+        if (dataConnectionInstance.hasErrors()) {
+            respond dataConnectionInstance.errors, view: 'edit'
             return
         }
 
-        dataSourceInstance.save flush: true
+        dataConnectionInstance.save flush: true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'DataConnection.label', default: 'DataConnection'), dataSourceInstance.id])
-                redirect dataSourceInstance
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'DataConnection.label', default: 'DataConnection'), dataConnectionInstance])
+                redirect dataConnectionInstance
             }
-            '*' { respond dataSourceInstance, [status: OK] }
+            '*' { respond dataConnectionInstance, [status: OK] }
         }
     }
 
     @Transactional
-    def delete(DataConnection dataSourceInstance) {
+    def delete(DataConnection dataConnectionInstance) {
 
-        if (dataSourceInstance == null) {
+        if (dataConnectionInstance == null) {
             notFound()
             return
         }
 
-        dataSourceInstance.delete flush: true
+        dataConnectionInstance.delete flush: true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'DataConnection.label', default: 'DataConnection'), dataSourceInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'DataConnection.label', default: 'DataConnection'), dataConnectionInstance])
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }
@@ -102,7 +107,7 @@ class DataConnectionController extends SecureController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataSource.label', default: 'DataConnection'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'dataConnection.label', default: 'DataConnection'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NOT_FOUND }

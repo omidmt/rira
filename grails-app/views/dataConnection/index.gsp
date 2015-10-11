@@ -1,4 +1,5 @@
 
+
 <%@ page import="mt.omid.rira.DataConnection" %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#list-dataConnection" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">
@@ -40,6 +40,12 @@
 					
 						<g:sortableColumn property="password" title="${message(code: 'dataConnection.password.label', default: 'Password')}" />
 					
+						
+						<th></th>
+						
+						
+						<th></th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -57,6 +63,19 @@
 						<td>${fieldValue(bean: dataConnectionInstance, field: "username")}</td>
 					
                         <td></td>
+					
+					
+						<td class="text-center">
+							<g:link action="clone" role="button" resource="${dataConnectionInstance}" data-toggle="tooltip" title="Clone" class="btn btn-info"><span class="glyphicon glyphicon-copy"></span></g:link>
+						</td>
+					
+					
+						<td class="text-center">
+						<g:form url="[resource:dataConnectionInstance, action:'delete']" method="DELETE">
+							<button type="submit" data-toggle="tooltip" title="Delete" class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');" ><span class="glyphicon glyphicon-trash"></span></button>
+							%{--<g:a role="button" data-toggle="tooltip" title="Delete" class="btn btn-danger" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');"><span class="glyphicon glyphicon-trash"></span></a>--}%
+						</g:form>
+						</td>
 					
 					</tr>
 				</g:each>

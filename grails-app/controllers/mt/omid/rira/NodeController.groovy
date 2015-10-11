@@ -1,8 +1,6 @@
 package mt.omid.rira
 
 
-import mt.omid.rira.SecureController
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import mt.omid.rira.SecureController
@@ -25,8 +23,13 @@ class NodeController extends SecureController {
         respond new Node(params)
     }
 
-    def createEmbeded() {
-        render(template: "embededForm", model: [nodeInstance: new Node(params)])
+    def clone(Node nodeInstance) {
+        render view: 'create', model: [ nodeInstance: new Node(nodeInstance.properties)]
+    }
+
+    def createEmbeded()
+    {
+        render( template: "embededForm", model: [ nodeInstance: new Node(params) ] )
     }
 
     @Transactional
@@ -45,7 +48,7 @@ class NodeController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'node.label', default: 'Node'), nodeInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'node.label', default: 'Node'), nodeInstance])
                 redirect nodeInstance
             }
             '*' { respond nodeInstance, [status: CREATED] }
@@ -56,8 +59,9 @@ class NodeController extends SecureController {
         respond nodeInstance
     }
 
-    def editEmbeded(Node nodeInstance) {
-        render(template: "embededForm", model: [nodeInstance: nodeInstance])
+    def editEmbeded(Node nodeInstance)
+    {
+        render( template: "embededForm", model: [ nodeInstance: nodeInstance ] )
     }
 
     @Transactional
@@ -76,10 +80,10 @@ class NodeController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Node.label', default: 'Node'), nodeInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Node.label', default: 'Node'), nodeInstance])
                 redirect nodeInstance
             }
-            '*' { respond nodeInstance, [status: OK] }
+            '*'{ respond nodeInstance, [status: OK] }
         }
     }
 
@@ -91,14 +95,14 @@ class NodeController extends SecureController {
             return
         }
 
-        nodeInstance.delete flush: true
+        nodeInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Node.label', default: 'Node'), nodeInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Node.label', default: 'Node'), nodeInstance])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NO_CONTENT }
+            '*'{ render status: NO_CONTENT }
         }
     }
 
@@ -108,7 +112,7 @@ class NodeController extends SecureController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'node.label', default: 'Node'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NOT_FOUND }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

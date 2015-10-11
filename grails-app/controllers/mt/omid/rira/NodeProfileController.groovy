@@ -1,10 +1,6 @@
 package mt.omid.rira
 
 
-
-
-import mt.omid.rira.SecureController
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import mt.omid.rira.SecureController
@@ -16,7 +12,7 @@ class NodeProfileController extends SecureController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond NodeProfile.list(params), model:[nodeProfileInstanceCount: NodeProfile.count()]
+        respond NodeProfile.list(params), model: [nodeProfileInstanceCount: NodeProfile.count()]
     }
 
     def show(NodeProfile nodeProfileInstance) {
@@ -25,6 +21,10 @@ class NodeProfileController extends SecureController {
 
     def create() {
         respond new NodeProfile(params)
+    }
+
+    def clone(NodeProfile nodeProfileInstance) {
+        render view: 'create', model: [ nodeProfileInstance: new NodeProfile(nodeProfileInstance.properties)]
     }
 
     def createEmbeded()
@@ -40,15 +40,15 @@ class NodeProfileController extends SecureController {
         }
 
         if (nodeProfileInstance.hasErrors()) {
-            respond nodeProfileInstance.errors, view:'create'
+            respond nodeProfileInstance.errors, view: 'create'
             return
         }
 
-        nodeProfileInstance.save flush:true
+        nodeProfileInstance.save flush: true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'nodeProfile.label', default: 'NodeProfile'), nodeProfileInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'nodeProfile.label', default: 'NodeProfile'), nodeProfileInstance])
                 redirect nodeProfileInstance
             }
             '*' { respond nodeProfileInstance, [status: CREATED] }
@@ -72,15 +72,15 @@ class NodeProfileController extends SecureController {
         }
 
         if (nodeProfileInstance.hasErrors()) {
-            respond nodeProfileInstance.errors, view:'edit'
+            respond nodeProfileInstance.errors, view: 'edit'
             return
         }
 
-        nodeProfileInstance.save flush:true
+        nodeProfileInstance.save flush: true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'NodeProfile.label', default: 'NodeProfile'), nodeProfileInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'NodeProfile.label', default: 'NodeProfile'), nodeProfileInstance])
                 redirect nodeProfileInstance
             }
             '*'{ respond nodeProfileInstance, [status: OK] }
@@ -99,8 +99,8 @@ class NodeProfileController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'NodeProfile.label', default: 'NodeProfile'), nodeProfileInstance.id])
-                redirect action:"index", method:"GET"
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'NodeProfile.label', default: 'NodeProfile'), nodeProfileInstance])
+                redirect action: "index", method: "GET"
             }
             '*'{ render status: NO_CONTENT }
         }

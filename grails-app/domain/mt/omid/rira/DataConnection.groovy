@@ -18,6 +18,8 @@ class DataConnection {
     String password
     String others
 
+    static deletable = true
+    static cloneable = true
 
     static constraints = {
         name blank: false, size: 1..100, unique: true, validator: { it.contains( ' ' ) ? "Data Source Name Cannot Contain Space" : true }

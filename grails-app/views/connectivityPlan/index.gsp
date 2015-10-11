@@ -1,4 +1,5 @@
 
+
 <%@ page import="mt.omid.rira.ConnectivityPlan" %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,6 @@
 	</head>
 	<body>
     <div class="container">
-		%{--<a href="#list-connectivityPlan" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 		<br/>
         <div class="navbar">
             <div class="nav">
@@ -40,6 +40,12 @@
 					
 						<g:sortableColumn property="password" title="${message(code: 'connectivityPlan.password.label', default: 'Password')}" />
 					
+						
+						<th></th>
+						
+						
+						<th></th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -57,6 +63,19 @@
 						<td>${fieldValue(bean: connectivityPlanInstance, field: "user")}</td>
 					
                         <td></td>
+					
+					
+						<td class="text-center">
+							<g:link action="clone" role="button" resource="${connectivityPlanInstance}" data-toggle="tooltip" title="Clone" class="btn btn-info"><span class="glyphicon glyphicon-copy"></span></g:link>
+						</td>
+					
+					
+						<td class="text-center">
+						<g:form url="[resource:connectivityPlanInstance, action:'delete']" method="DELETE">
+							<button type="submit" data-toggle="tooltip" title="Delete" class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');" ><span class="glyphicon glyphicon-trash"></span></button>
+							%{--<g:a role="button" data-toggle="tooltip" title="Delete" class="btn btn-danger" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure to delete this ?')}');"><span class="glyphicon glyphicon-trash"></span></a>--}%
+						</g:form>
+						</td>
 					
 					</tr>
 				</g:each>

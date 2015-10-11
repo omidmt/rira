@@ -1,15 +1,15 @@
 package mt.omid.rira.ntfy
 
-import mt.omid.rira.SecureController
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import mt.omid.rira.SecureController
 
 @Transactional(readOnly = true)
 class TemplateController extends SecureController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    static scaffold = true
+
     static layout = 'notif_admin'
 
     def index(Integer max) {
@@ -18,16 +18,25 @@ class TemplateController extends SecureController {
     }
 
     def show(Template templateInstance) {
-        respond templateInstance //, [formats:['xml', 'json']]
+        respond templateInstance
     }
 
     def create() {
         respond new Template(params)
     }
 
+    def clone(Template templateInstance) {
+        render view: 'create', model: [ templateInstance: new Template(templateInstance.properties)]
+    }
+
+    def createEmbeded()
+    {
+        render( template: "embededForm", model: [ templateInstance: new Template(params) ] )
+    }
+
     @Transactional
     def save(Template templateInstance) {
-        if (!templateInstance) {
+        if (templateInstance == null) {
             notFound()
             return
         }
@@ -41,7 +50,7 @@ class TemplateController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'template.label', default: 'Template'), templateInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'template.label', default: 'Template'), templateInstance])
                 redirect templateInstance
             }
             '*' { respond templateInstance, [status: CREATED] }
@@ -52,9 +61,14 @@ class TemplateController extends SecureController {
         respond templateInstance
     }
 
+    def editEmbeded(Template templateInstance)
+    {
+        render( template: "embededForm", model: [ templateInstance: templateInstance ] )
+    }
+
     @Transactional
     def update(Template templateInstance) {
-        if (!templateInstance) {
+        if (templateInstance == null) {
             notFound()
             return
         }
@@ -68,29 +82,29 @@ class TemplateController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Template.label', default: 'Template'), templateInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Template.label', default: 'Template'), templateInstance])
                 redirect templateInstance
             }
-            '*' { respond templateInstance, [status: OK] }
+            '*'{ respond templateInstance, [status: OK] }
         }
     }
 
     @Transactional
     def delete(Template templateInstance) {
 
-        if (!templateInstance) {
+        if (templateInstance == null) {
             notFound()
             return
         }
 
-        templateInstance.delete flush: true
+        templateInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Template.label', default: 'Template'), templateInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Template.label', default: 'Template'), templateInstance])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NO_CONTENT }
+            '*'{ render status: NO_CONTENT }
         }
     }
 
@@ -100,7 +114,7 @@ class TemplateController extends SecureController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'template.label', default: 'Template'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NOT_FOUND }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

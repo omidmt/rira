@@ -13,6 +13,9 @@ class Event {
     String resolution
     boolean fixed
 
+    static deletable = true
+    static cloneable = true
+
     static constraints = {
         severity()
         time blank: false

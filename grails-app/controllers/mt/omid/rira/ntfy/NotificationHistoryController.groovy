@@ -1,15 +1,15 @@
 package mt.omid.rira.ntfy
 
-import mt.omid.rira.SecureController
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import mt.omid.rira.SecureController
 
 @Transactional(readOnly = true)
 class NotificationHistoryController extends SecureController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    static scaffold = true
+
     static layout = 'notif_admin'
 
     def index(Integer max) {
@@ -25,9 +25,17 @@ class NotificationHistoryController extends SecureController {
         respond new NotificationHistory(params)
     }
 
+    def clone(NotificationHistory notificationHistoryInstance) {
+        render view: 'create', model: [notificationHistoryInstance: new NotificationHistory(notificationHistoryInstance.properties)]
+    }
+
+    def createEmbeded() {
+        render(template: "embededForm", model: [notificationHistoryInstance: new NotificationHistory(params)])
+    }
+
     @Transactional
     def save(NotificationHistory notificationHistoryInstance) {
-        if (!notificationHistoryInstance) {
+        if (notificationHistoryInstance == null) {
             notFound()
             return
         }
@@ -41,7 +49,7 @@ class NotificationHistoryController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'notificationHistory.label', default: 'NotificationHistory'), notificationHistoryInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'notificationHistory.label', default: 'NotificationHistory'), notificationHistoryInstance])
                 redirect notificationHistoryInstance
             }
             '*' { respond notificationHistoryInstance, [status: CREATED] }
@@ -52,9 +60,13 @@ class NotificationHistoryController extends SecureController {
         respond notificationHistoryInstance
     }
 
+    def editEmbeded(NotificationHistory notificationHistoryInstance) {
+        render(template: "embededForm", model: [notificationHistoryInstance: notificationHistoryInstance])
+    }
+
     @Transactional
     def update(NotificationHistory notificationHistoryInstance) {
-        if (!notificationHistoryInstance) {
+        if (notificationHistoryInstance == null) {
             notFound()
             return
         }
@@ -68,7 +80,7 @@ class NotificationHistoryController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'NotificationHistory.label', default: 'NotificationHistory'), notificationHistoryInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'NotificationHistory.label', default: 'NotificationHistory'), notificationHistoryInstance])
                 redirect notificationHistoryInstance
             }
             '*' { respond notificationHistoryInstance, [status: OK] }
@@ -78,7 +90,7 @@ class NotificationHistoryController extends SecureController {
     @Transactional
     def delete(NotificationHistory notificationHistoryInstance) {
 
-        if (!notificationHistoryInstance) {
+        if (notificationHistoryInstance == null) {
             notFound()
             return
         }
@@ -87,7 +99,7 @@ class NotificationHistoryController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'NotificationHistory.label', default: 'NotificationHistory'), notificationHistoryInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'NotificationHistory.label', default: 'NotificationHistory'), notificationHistoryInstance])
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }

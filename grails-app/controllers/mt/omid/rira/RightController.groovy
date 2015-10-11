@@ -24,11 +24,12 @@ class RightController extends SecureController {
     }
 
     def clone(Right rightInstance) {
-        render view: 'create', model: [rightInstance: new Right(rightInstance.properties)]
+        render view: 'create', model: [ rightInstance: new Right(rightInstance.properties)]
     }
 
-    def createEmbeded() {
-        render(template: "embededForm", model: [rightInstance: new Right(params)])
+    def createEmbeded()
+    {
+        render( template: "embededForm", model: [ rightInstance: new Right(params) ] )
     }
 
     @Transactional
@@ -58,8 +59,9 @@ class RightController extends SecureController {
         respond rightInstance
     }
 
-    def editEmbeded(Right rightInstance) {
-        render(template: "embededForm", model: [rightInstance: rightInstance])
+    def editEmbeded(Right rightInstance)
+    {
+        render( template: "embededForm", model: [ rightInstance: rightInstance ] )
     }
 
     @Transactional
@@ -81,7 +83,7 @@ class RightController extends SecureController {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Right.label', default: 'Right'), rightInstance])
                 redirect rightInstance
             }
-            '*' { respond rightInstance, [status: OK] }
+            '*'{ respond rightInstance, [status: OK] }
         }
     }
 
@@ -100,14 +102,14 @@ class RightController extends SecureController {
         }
         roles.each{ it.removeFromRights( rightInstance ) }
 
-        rightInstance.delete flush: true
+        rightInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Right.label', default: 'Right'), rightInstance])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NO_CONTENT }
+            '*'{ render status: NO_CONTENT }
         }
     }
 
@@ -117,7 +119,7 @@ class RightController extends SecureController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'right.label', default: 'Right'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NOT_FOUND }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

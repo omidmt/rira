@@ -1,15 +1,15 @@
 package mt.omid.rira.ntfy
 
-import mt.omid.rira.SecureController
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import mt.omid.rira.SecureController
 
 @Transactional(readOnly = true)
 class NotificationGroupController extends SecureController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    static scaffold = true
+
     static layout = "notif_admin"
 
     def index(Integer max) {
@@ -25,9 +25,17 @@ class NotificationGroupController extends SecureController {
         respond new NotificationGroup(params)
     }
 
+    def clone(NotificationGroup notificationGroupInstance) {
+        render view: 'create', model: [notificationGroupInstance: new NotificationGroup(notificationGroupInstance.properties)]
+    }
+
+    def createEmbeded() {
+        render(template: "embededForm", model: [notificationGroupInstance: new NotificationGroup(params)])
+    }
+
     @Transactional
     def save(NotificationGroup notificationGroupInstance) {
-        if (!notificationGroupInstance) {
+        if (notificationGroupInstance == null) {
             notFound()
             return
         }
@@ -41,7 +49,7 @@ class NotificationGroupController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'notificationGroup.label', default: 'NotificationGroup'), notificationGroupInstance.id])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'notificationGroup.label', default: 'NotificationGroup'), notificationGroupInstance])
                 redirect notificationGroupInstance
             }
             '*' { respond notificationGroupInstance, [status: CREATED] }
@@ -52,9 +60,13 @@ class NotificationGroupController extends SecureController {
         respond notificationGroupInstance
     }
 
+    def editEmbeded(NotificationGroup notificationGroupInstance) {
+        render(template: "embededForm", model: [notificationGroupInstance: notificationGroupInstance])
+    }
+
     @Transactional
     def update(NotificationGroup notificationGroupInstance) {
-        if (!notificationGroupInstance) {
+        if (notificationGroupInstance == null) {
             notFound()
             return
         }
@@ -68,7 +80,7 @@ class NotificationGroupController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'NotificationGroup.label', default: 'NotificationGroup'), notificationGroupInstance.id])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'NotificationGroup.label', default: 'NotificationGroup'), notificationGroupInstance])
                 redirect notificationGroupInstance
             }
             '*' { respond notificationGroupInstance, [status: OK] }
@@ -78,7 +90,7 @@ class NotificationGroupController extends SecureController {
     @Transactional
     def delete(NotificationGroup notificationGroupInstance) {
 
-        if (!notificationGroupInstance) {
+        if (notificationGroupInstance == null) {
             notFound()
             return
         }
@@ -87,7 +99,7 @@ class NotificationGroupController extends SecureController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'NotificationGroup.label', default: 'NotificationGroup'), notificationGroupInstance.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'NotificationGroup.label', default: 'NotificationGroup'), notificationGroupInstance])
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }
