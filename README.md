@@ -25,7 +25,7 @@ dependencies og bcprov lib and update exclusion according to them.
     } 
 
 ### Version
-0.3.0
+0.4.1
 
 ### Tech
 
