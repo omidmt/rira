@@ -168,7 +168,7 @@ class RiraTagLib {
 
         // display next link when not on laststep unless omitNext is true
         if (!attrs.boolean('omitNext')) {
-            if(currentstep == laststep)
+            if(currentstep >= laststep)
             {
                 writer << disabledLI((attrs.next ? attrs.next : messageSource.getMessage('paginate.next', null, messageSource.getMessage('default.paginate.next', null, '&raquo;', locale), locale)))
             }
