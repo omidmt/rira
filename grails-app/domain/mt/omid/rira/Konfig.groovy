@@ -43,7 +43,7 @@ class Konfig
 
     static refreshCache()
     {
-        log.info "Initializing KONFGIS"
+        log.info "Initializing KONFIGS"
         synchronized ( KONFIGS ) {
             KONFIGS.clear()
 
