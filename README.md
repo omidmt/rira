@@ -13,19 +13,26 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
 
 ### Install
     plugins {
-        compile ":rira:0.4.1"
+        compile ":rira:0.4.2"
     }
     
-For using security module that needs up to date version of bouncycastle lib, add the following line in build config 
-to allow using new one. If still getting java security and mismatch exception check the version of itext or other 
-dependencies og bcprov lib and update exclusion according to them.
+For using security module that needs up to date version of bouncycastle lib, add the following lines in the build config 
+file (BuildConfig.groovy) to allow using new one. If still getting java security and mismatch exception check the version 
+of itext or other dependencies of bcprov lib and update exclusion according to them.
+
+BuildConfig.groovy
     
     build("com.lowagie:itext:2.0.8") {
      excludes "bouncycastle:bcprov-jdk14:138", "org.bouncycastle:bcprov-jdk14:1.38" 
     } 
 
+To use RIRA customized scaffolding templates which is matched with the theme and make the fields compatible with it follow the following steps:
+
+ ```grails install-rira-templates```
+ 
+ 
 ### Version
-0.4.1
+0.4.2
 
 ### Tech
 
