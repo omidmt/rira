@@ -1,5 +1,6 @@
 package mt.omid.rira.ntfy
 
+import asset.pipeline.grails.AssetResourceLocator
 import grails.transaction.Transactional
 import grails.util.Holders
 import groovy.util.logging.Slf4j
@@ -17,9 +18,9 @@ class RiraMailService {
 
     static byte [] logoBA
 
-    void initialize() {
+    static void initialize() {
         log.info("Initialize rira mail service")
-        logoBA = assetResourceLocator.findAssetForURI(Holders.grailsApplication.mergedConfig.grails.plugin.rira.logoSmall).getByteArray()
+        logoBA = ((AssetResourceLocator)Holders.grailsApplication.mainContext.getBean("assetResourceLocator")).findAssetForURI(Holders.grailsApplication.mergedConfig.grails.plugin.rira.logoSmall).getByteArray()
     }
 
     def sendAlertMail( User user, String msg, int severity=0 ) {
