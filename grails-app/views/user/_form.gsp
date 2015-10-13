@@ -79,28 +79,6 @@
 		</div>
     </div>
 
-    <div class="form-group ${hasErrors(bean: userInstance, field: 'lastLogin', 'error')} ">
-        <label for="lastLogin" class="col-sm-3 control-label">
-            <g:message code="user.lastLogin.label" default="Last Login" />
-            
-        </label>
-		<div class="col-sm-6">
-        	<input type=text name="lastLogin" id="lastLogin" precision="day" value="${userInstance?.lastLogin?.format('EEE MMM dd HH:mm:ss yyyy')}" class="datepicker" />
-
-		</div>
-    </div>
-
-    <div class="form-group ${hasErrors(bean: userInstance, field: 'locked', 'error')} ">
-        <label for="locked" class="col-sm-3 control-label">
-            <g:message code="user.locked.label" default="Locked" />
-            
-        </label>
-		<div class="col-sm-6">
-        	<g:checkBox name="locked" value="${userInstance?.locked}" />
-
-		</div>
-    </div>
-
     <div class="form-group ${hasErrors(bean: userInstance, field: 'failedLogins', 'error')} required">
         <label for="failedLogins" class="col-sm-3 control-label">
             <g:message code="user.failedLogins.label" default="Failed Logins" />
