@@ -206,6 +206,14 @@ The application logo on mails can be overwritten by the following config with th
 ```
 grails.plugin.rira.logoSmall = 'mylogo128.png'
 ```
+
+#### Workaround
+ There is an conflicting issue on initializing rira mail service plugin, to fix it the following line of onConfigChange
+  in MailGrailsPlugin.groovy of mail plugin should be commented out.
+     
+```groovy
+// event.ctx.getBean(MailService.class).setPoolSize(mailConfig.poolSize?:null)
+```
  
 #### Mail Konfigs
 The following mail configuration can be set by Konfig

@@ -20,7 +20,12 @@ class RiraMailService {
 
     static void initialize() {
         log.info("Initialize rira mail service")
-        logoBA = ((AssetResourceLocator)Holders.grailsApplication.mainContext.getBean("assetResourceLocator")).findAssetForURI(Holders.grailsApplication.mergedConfig.grails.plugin.rira.logoSmall).getByteArray()
+        try {
+            logoBA = ((AssetResourceLocator) Holders.grailsApplication.mainContext.getBean("assetResourceLocator"))?.findAssetForURI(Holders.grailsApplication.mergedConfig.grails.plugin.rira.logoSmall)?.getByteArray()
+        }
+        catch( e ) {
+            log.error "RiraMailService initialization failed " + e.message
+        }
     }
 
     def sendAlertMail( User user, String msg, int severity=0 ) {
