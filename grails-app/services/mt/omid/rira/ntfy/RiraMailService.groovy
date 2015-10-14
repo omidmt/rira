@@ -4,6 +4,9 @@ import asset.pipeline.grails.AssetResourceLocator
 import grails.transaction.Transactional
 import grails.util.Holders
 import groovy.util.logging.Slf4j
+import org.apache.commons.io.IOUtils
+import org.springframework.core.io.Resource
+
 import static mt.omid.rira.Konfig.KONFIGS
 import mt.omid.rira.User
 
@@ -11,8 +14,6 @@ import mt.omid.rira.User
 @Transactional
 class RiraMailService {
 
-
-    def assetResourceLocator
     def asynchronousMailService
     def grailsApplication
 
@@ -21,7 +22,8 @@ class RiraMailService {
     static void initialize() {
         log.info("Initialize rira mail service")
         try {
-            logoBA = ((AssetResourceLocator) Holders.grailsApplication.mainContext.getBean("assetResourceLocator"))?.findAssetForURI(Holders.grailsApplication.mergedConfig.grails.plugin.rira.logoSmall)?.getByteArray()
+            Resource res = ((AssetResourceLocator) Holders.grailsApplication.mainContext.getBean("assetResourceLocator"))?.findAssetForURI(Holders.grailsApplication.mergedConfig.grails.plugin.rira.logoSmall)
+            logoBA = IOUtils.toByteArray(res.getInputStream())
         }
         catch( e ) {
             log.error "RiraMailService initialization failed " + e.message
