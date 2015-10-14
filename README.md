@@ -11,6 +11,10 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
   - Node administration to manage external nodes connectivity in application
   - Notification module (email or SMS)
 
+When and where each feature or configuration may apply is indicated in parentheses by **Dev** for development or 
+**Runtime** for run-time configuration of application. For example Domain is only applicable in development stage by 
+developer, but Application Name can be applied in both development (by developer) and run-time (by administrator). 
+
 ### Install
     plugins {
         compile ":rira:0.4.2"
@@ -41,7 +45,7 @@ RIRA depends on a number of projects to work properly:
 * [Twitter Bootstrap] - great UI boilerplate for modern web apps
 * [jQuery]
 
-### Domains
+### Domains (Dev)
 The default schema of rira domains is rira, so the defined data source user must has access to that schema.
 It is possible to overwrite the default schema with grails.plugin.rira.schema config, like the following sample in Config.groovy
   
@@ -58,7 +62,7 @@ In case of H2 db you may need to add the following SQL statement at the end of d
 If application domains have dependency like association to framework tables (like User or Node domains), the schema must be overwritten for having all of the tables in the same schema and keep foreign key constraints working.    
 
 ## UI
-### Application Name
+### Application Name (Dev+Runtime)
 The application name that appear at top left corner of the every pages can be changed by the following configuration.
 
 ```groovy
@@ -67,12 +71,12 @@ grails.plugin.rira.appName = 'NewAppName'
 
 In fact it sets a default value for KONFIGS.appName, so in run-time through the Konfig page you can set the `appName` property and change it.
 
-### Layout
+### Layout (Dev)
 All controller which extends RiraController (and of course its child, Secure and UnSecure) can use rira layout by default through controller.
 
 The main layout meta tag should be removed from views if rira layout should be used for rendering.
 
-#### Scaffold
+#### Scaffold (Dev)
 To use RIRA customized scaffolding templates which is matched with the theme and make the fields compatible with it follow the following steps:
 
  ```grails install-rira-templates```
@@ -94,7 +98,7 @@ static deletable = true
 
 Note that the seed for clone action on cloneable domains should be added too. 
 
-### Security
+### Security (Dev+Runtime)
 Each controller can be secured to be authenticated and authorized by extending the SecureController class. It is recommended to extend others by UnSecureController class to use common features of framework.
 Having a secure controller means user of this should has the rights of each action to use them. While it is possible to add them after booting application through GUI, but they can be added through a seed file in src/seed directory like the following sample. A default user or applico (menu item) to provide the link to access in menu also can be defined in seed file .
 
@@ -128,7 +132,7 @@ The following konfigs can be used for encryption keys.
 * pemKeyPassword(optional)  The password of the key, if exists
 * pemPublicKey The public key in PEM format, if not set, default one will be set
 
-### Data Sources
+### Data Sources (Dev+Runtime)
 The data sources can be added in run-time through the DataConnection page or its classes as domain. By adding new data 
 connection it will try to add it to application context by the defined name. That name can be used when using 
 DataConnectionService to execute queries.
@@ -153,7 +157,7 @@ For defining a new data connection or data source the following parameters shoul
 The query result can be limited by using the sqlLimit Konfig. The default value is " limit 50000" that is mysql 
 expression that covers more than one month data of minutely data.   
 
-### Caches
+### Caches (Dev)
 In order to reduce number of DB transactions for the configurations which are mostly readable than changeable some hash 
 maps are defined as follow to ease access and improve performance of framework. They are refresh automatically on every 
 change in those domain.
@@ -165,7 +169,7 @@ Node.NODES The hostname/Node dictionary
 Node.NODES_IP the hostname/[IP1,...] dictionary that include an array of all connectivity plans' IP of the node
  DataConnection.DATASOURCES name/DataSource keep datasource
 
-### Konfig
+### Konfig (Dev+Runtime)
 Konfig domain allows to cache configuration that may be used in application that mentioned in Cache section. The value 
 of the this cache can be any kind of objects, but they are kept in DB as String, so a converter method may be required 
 to convert and make those object in run-time. Also that converter methods can initialize the default values in case it is 
@@ -191,7 +195,43 @@ class XYZKonfig
 }
 ```
 
-### Mail Service
+#### Using Konfig
+Using Konfig object in the code is easy as importing the Konfig class or import the Konfig.KONFIGS statically and point 
+to key.
+
+```groovy
+import static mt.omid.rira.Konfig.KONFIGS
+
+{
+    if(KONFIGS.debug)
+        log.debug "Debug message"
+}
+```
+
+#### Konfigurations
+
+- **debug (true|false[default])** Set logging to DEBUG level if it is true, otherwise set logging to ERROR
+- **appName (string)** Set the application name that is used in page title and layout, mails and ...
+- **StrictHostKeyChecking (yes|no[default])**
+- **allowedFailedLogin (int)**
+- **sessionInactivityTimeout (int second)**
+- **defaultHome (string relative url)**
+- **strictAuthorization (true|false[default])**
+- **passwordComplexity (string regex)**
+- **muPasswordComplexity (string regex)**
+- **sqlLimit (int)**
+- **smtpServer (string host/IP)**
+- **smtpPort (int)**
+- **smtpUser (string)**
+- **smtpPassword (string)**
+- **mailFromAddress (string[default: radmin@rira.app])**
+- **sendPasswordInMail (true|false[default])**
+- **pemPrivateKey (string)**
+- **pemKeyPassword (string)**
+- **pemPublicKey (string)**
+
+
+### Mail Service (Dev)
 Th service name that provide mailing is RiraMailService, so the service can be injected where it is required easily by
  
 ```groovy
@@ -207,7 +247,7 @@ The application logo on mails can be overwritten by the following config with th
 grails.plugin.rira.logoSmall = 'mylogo128.png'
 ```
 
-#### Workaround
+#### Workaround (Dev)
  There is an conflicting issue on initializing rira mail service plugin, to fix it the following line of onConfigChange
   in MailGrailsPlugin.groovy of mail plugin should be commented out.
      
@@ -215,7 +255,7 @@ grails.plugin.rira.logoSmall = 'mylogo128.png'
 // event.ctx.getBean(MailService.class).setPoolSize(mailConfig.poolSize?:null)
 ```
  
-#### Mail Konfigs
+#### Mail Konfigs (Runtime)
 The following mail configuration can be set by Konfig
 
 * smtpServer  The host name of smtp server
@@ -236,25 +276,19 @@ html "<body>Mail</body>"
 }
 ```
 
-### Audit Trail
+### Audit Trail (Dev)
 Each save and update action of subclass controllers of SecureController is saved as Audit instance with IP, parameters and username. Other actions 
 should be handled manually inside its controller, but they inherited the auditActivity method from RiraController.
 
-### Hiding Menu
+### Hiding Menu (Dev)
 To hide the menu at page load the following javascript method can be used. It seems it disable toggling it, and cannot 
 be shown again.
 ```javascript
 $( '#navmenu' ).offcanvas( 'hide' );
 ```
 
-### Todo's
-
- - Write Test cases
- - Use BDD to test
- - Change class to md12 when menu is off
-
 ##### Author
-Omid M. Tourzan
+Omid M. Tourzan @otourzan
 
 [Twitter Bootstrap]:http://twitter.github.com/bootstrap/
 [jQuery]:http://jquery.com
