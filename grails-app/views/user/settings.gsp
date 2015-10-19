@@ -9,6 +9,8 @@
     <asset:javascript src="pidcrypt/seedrandom.js" />
     <asset:javascript src="pidcrypt/pidcrypt_util.js" />
     <asset:javascript src="pidcrypt/pidcrypt.js" />
+    <asset:javascript src="pidcrypt/prng4.js" />
+    <asset:javascript src="pidcrypt/rng.js" />
     <asset:javascript src="pidcrypt/md5.js" />
     <asset:javascript src="pidcrypt/aes_core.js" />
     <asset:javascript src="pidcrypt/aes_cbc.js" />
