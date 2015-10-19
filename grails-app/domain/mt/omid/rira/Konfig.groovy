@@ -82,7 +82,7 @@ class Konfig
 
         KONFIGS.muPasswordComplexity = KONFIGS.muPasswordComplexity ?: /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/
 
-        KONFIGS.sqlLimit = KONFIGS.sqlLimit ?: ' limit 50000'
+        KONFIGS.sqlLimit = KONFIGS.sqlLimit ?: 'limit 50000'
 
         def mailConfig = [ grails: [ mail: [:] ]  ]
         KONFIGS.smtpServer = KONFIGS.smtpServer ?: 'localhost'

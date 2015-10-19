@@ -219,7 +219,7 @@ import static mt.omid.rira.Konfig.KONFIGS
 - **strictAuthorization (true|false[default])**
 - **passwordComplexity (string regex)**
 - **muPasswordComplexity (string regex)**
-- **sqlLimit (int)**
+- **sqlLimit (int[default: 'limit 50000'])** Limiting criteria which will be appended to the end of query (like limit 10) 
 - **smtpServer (string host/IP)**
 - **smtpPort (int)**
 - **smtpUser (string)**
