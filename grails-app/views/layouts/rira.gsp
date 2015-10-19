@@ -28,8 +28,6 @@
 		<asset:stylesheet src="jasny/css/jasny-bootstrap.css" media="screen" />
 		<asset:stylesheet src="jasny/jasny-reveal.css" media="screen" />
 
-		<asset:javascript src="util.js" />
-
 		<asset:javascript src="sticky/jquery.sticky.js" />
 		<asset:javascript src="sticky/jquery.localscroll-1.2.7-min.js" />
 		<asset:javascript src="sticky/jquery.scrollTo-1.4.2-min.js" />
