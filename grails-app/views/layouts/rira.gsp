@@ -46,7 +46,7 @@
 	<body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
-			<div class="navbar-header">%{-- centerMrgn--}%
+			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" id="toggleMenu">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -62,7 +62,7 @@
 					<li><g:link mapping="logout" data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true">Sign Out</g:link></li>
 
 				</ul>
-			</div><!-- /.navbar-collapse -->
+			</div>
 		</div>
 	</div>
 	<div class="navmenu navmenu-default navmenu-inverse navmenu-fixed-left col-md-4" id="navmenu">
@@ -97,7 +97,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">%{-- col-md-offset-1--}%
+			<div class="col-md-12">
 				<div class="row">
 					<div class="">
 						<g:layoutBody/>
