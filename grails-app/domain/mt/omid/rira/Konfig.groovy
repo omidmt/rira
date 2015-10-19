@@ -13,6 +13,8 @@ class Konfig
     static KONFIGS = [:]
     static EXTERNAL_KONFIG_CLASSES = []
 
+    public static boolean debug = false
+
     String key
     String value
     String group
@@ -60,8 +62,15 @@ class Konfig
     {
         log.info( "Converting KONFIGS values" )
         KONFIGS.debug = new Boolean( KONFIGS.debug )
-        if( KONFIGS.debug ) { Logger.getLogger( "grails.app.services.mt.omid" ).setLevel( Level.DEBUG ); Logger.getLogger( "mt.omid" ).setLevel( Level.DEBUG ) }
-        else { Logger.getLogger( "grails.app.services.mt.omid" ).setLevel( Level.ERROR ); Logger.getLogger( "mt.omid" ).setLevel( Level.ERROR ) }
+        if( KONFIGS.debug ) {
+            Logger.getLogger( "grails.app.services.mt.omid" ).setLevel( Level.DEBUG )
+            Logger.getLogger( "mt.omid" ).setLevel( Level.DEBUG )
+        }
+        else {
+            Logger.getLogger( "grails.app.services.mt.omid" ).setLevel( Level.ERROR )
+            Logger.getLogger( "mt.omid" ).setLevel( Level.ERROR )
+        }
+        Konfig.debug = KONFIGS.debug
 
         KONFIGS.appName = KONFIGS.appName ?: Holders.grailsApplication.mergedConfig.grails.plugin.rira.appName
 

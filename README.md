@@ -210,7 +210,8 @@ import static mt.omid.rira.Konfig.KONFIGS
 
 #### Konfigurations
 
-- **debug (true|false[default])** Set logging to DEBUG level if it is true, otherwise set logging to ERROR
+- **debug (true|false[default])** Set logging to DEBUG level if it is true, otherwise set logging to ERROR, it is 
+better to call static field of Konfig class, as it supposed to be more efficient (Konfig.debug). 
 - **appName (string)** Set the application name that is used in page title and layout, mails and ...
 - **StrictHostKeyChecking (yes|no[default])**
 - **allowedFailedLogin (int)**
