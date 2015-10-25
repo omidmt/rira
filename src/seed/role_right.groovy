@@ -22,6 +22,7 @@ seed = {
     applico( meta: [key: 'name', update: false ], name: 'Nodes', path: 'node', family: 'Node' )
     applico( meta: [key: 'name', update: false ], name: 'Audit Log', path: 'audit', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Connectivity Plan', path: 'connectivityPlan', family: 'Node' )
+    applico( meta: [key: 'name', update: false ], name: 'Event', path: 'event', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Data Connection', path: 'dataConnection', family: 'Admin' )
 
 
@@ -114,6 +115,9 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'audit', applico: [ name: 'Audit Log' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'audit' )
 
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'event', applico: [ name: 'Event' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'event' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'event' )
 
     print "Adding RADMIN Role"
     role( meta: [key: [ 'name' ], update: false], name: 'Radmin', rights: [ [act: 'index', ctrl: '*'],
