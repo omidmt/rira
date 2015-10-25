@@ -30,8 +30,7 @@ class Node
     static cloneable = true
     static deletable = true
 
-    static constraints =
-    {
+    static constraints = {
         name blank: false, size: 1..50
         profile nullable: true
 
@@ -47,13 +46,11 @@ class Node
         table name: 'r_node', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
-    String toString()
-    {
+    String toString() {
         name
     }
 
-    def static refreshCache()
-    {
+    def static refreshCache() {
         log.info "Refreshing NODES Cache"
         NODES.clear()
 
@@ -63,8 +60,7 @@ class Node
         refreshIPCache()
     }
 
-    def static refreshIPCache()
-    {
+    def static refreshIPCache() {
         log.info "Refreshing NODES_IP Cache"
         NODES_IP.clear()
 
@@ -79,8 +75,13 @@ class Node
     def afterUpdate = this.&afterInsert
     def afterDelete = this.&afterInsert
 
-    def afterInsert()
-    {
+    def afterInsert() {
         refreshCache()
+    }
+
+    def actives() {
+        Node.where {
+            active == true
+        }.findAll()
     }
 }
