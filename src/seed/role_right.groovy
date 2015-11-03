@@ -22,7 +22,7 @@ seed = {
     applico( meta: [key: 'name', update: false ], name: 'Nodes', path: 'node', family: 'Node' )
     applico( meta: [key: 'name', update: false ], name: 'Audit Log', path: 'audit', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Connectivity Plan', path: 'connectivityPlan', family: 'Node' )
-    applico( meta: [key: 'name', update: false ], name: 'Event', path: 'event', family: 'Admin' )
+    applico( meta: [key: 'name', update: false ], name: 'Event', path:  'event', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Data Connection', path: 'dataConnection', family: 'Admin' )
 
 
@@ -118,6 +118,16 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'event', applico: [ name: 'Event' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'event' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'event' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'applico', applico: [ name: 'Application Links' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'applico' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'applico' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'applico' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'applico' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'applico' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'updateEmbeded', ctrl: 'applico' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'applico' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'applico' )
 
     print "Adding RADMIN Role"
     role( meta: [key: [ 'name' ], update: false], name: 'Radmin', rights: [ [act: 'index', ctrl: '*'],
