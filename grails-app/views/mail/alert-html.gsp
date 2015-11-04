@@ -49,7 +49,7 @@
         </h1>
         <hr>
         <p>
-            <%="${message}"%> %>
+            <%="${message}"%>
             <br/>
             <br/>
             Best Regards<br/>

@@ -9,6 +9,7 @@ class SessionController extends UnSecureController {
     static allowedMethods = [save: "POST", delete: "DELETE"]
 
     def securityService
+    def userService
 
     def create() {
         def title = "Sign In"
@@ -21,7 +22,7 @@ class SessionController extends UnSecureController {
         def(username, password) = securityService.decryptLoginHash(params['cd'], params['sk'])
         User user = User.authenticate(username, password)
 
-        if( !user )
+        if(!user)
         {
             flash.error = "Login failed; Invalid userID or password."
             def title = "Sign in"
@@ -29,25 +30,18 @@ class SessionController extends UnSecureController {
             auditActivity( "Login Attempted, Invalid credentials [$username]" )
             redirect action: 'login'
         }
-        else if( user.locked )
+        else if(user.locked)
         {
             flash.error = "Your account is locked, contact administrator."
             def title = "Sign in"
             auditActivity( "Login Attempt, Account is locked [$username]" )
             redirect action: 'login'
         }
-        else if( user.passwordExpiry && user.passwordExpiry < new Date() )
+        else if(user.passwordExpiry && user.passwordExpiry < new Date())
         {
             flash.message = "Your password is expired, please choose new one."
             flash.user_email = user.email
             auditActivity( "Login Attempt, password is expired [$username]" )
-        }
-        // PC1002 Force Password Change
-        else if( user.forcePasswordChange )
-        {
-            flash.message = "Please change your password"
-            flash.user_email = user.email
-            auditActivity( "Login Attempt, forced to change password [$username]" )
         }
         else if( user.accountExpiry && user.accountExpiry < new Date() )
         {
@@ -61,12 +55,23 @@ class SessionController extends UnSecureController {
         {
             log.debug "Successful login"
             auditActivity( "Login Successfully [$username]" )
-            flash.success = "Welcome to ${Konfig.KONFIGS['appName']}"
-            sessionService.signIn( user, session )
 
-            user.lastLogin = new Date()
-            user.save()
-            redirectBackOr( Konfig.KONFIGS[ 'defaultHome' ] )
+            // PC1002 Force Password Change
+            if( user.forcePasswordChange ) {
+                flash.message = "Please change your password"
+                flash.user_email = user.email
+//                sessionService.signIn( user, session )
+                auditActivity( "Login Attempt, forced to change password [$username]" )
+                redirect controller: 'session', action: 'passwordChange', params: [id: user.id]
+            }
+            else {
+                flash.success = "Welcome to ${Konfig.KONFIGS['appName']}"
+                sessionService.signIn( user, session )
+
+                user.lastLogin = new Date()
+                user.save()
+                redirectBackOr( Konfig.KONFIGS[ 'defaultHome' ] )
+            }
         }
     }
 
@@ -81,6 +86,28 @@ class SessionController extends UnSecureController {
     {
         // display login page
         log.info "Render login page"
+    }
+
+    def passwordChange() {
+        render view: 'passwordChange', model: [userId: params.id]
+    }
+
+    @Transactional
+    def updatePassword() {
+        User updatedUser = userService.updateUserPassword(params['cd'], params['sk'], User.get(params['id']))
+
+        if(!updatedUser) {
+            flash.error = "Current password is not correct"
+            redirect action: "passwordChange", params: [id: params.id]
+        }
+        else if(updatedUser.hasErrors()) {
+            flash.error = "Changing password failed"
+            respond updatedUser.errors, view:'passwordChange', model: [ user: updatedUser, userId: params.id ]
+        }
+        else {
+            flash.success = "Password is updated"
+            redirect action: 'login'
+        }
     }
 
     protected void notFound() {

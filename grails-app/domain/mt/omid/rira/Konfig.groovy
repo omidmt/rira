@@ -91,6 +91,12 @@ class Konfig
 
         KONFIGS.muPasswordComplexity = KONFIGS.muPasswordComplexity ?: /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/
 
+        try { KONFIGS.passwordExpiryExtension = KONFIGS.passwordExpiryExtension.toInteger() }
+        catch(e) {
+            log.error "Invalid passwordExpiryExtension[${KONFIGS.passwordExpiryExtension}] message: [${e.message}], set to default"
+            KONFIGS.passwordExpiryExtension = 90
+        }
+
         KONFIGS.sqlLimit = KONFIGS.sqlLimit ?: 'limit 50000'
 
         def mailConfig = [ grails: [ mail: [:] ]  ]

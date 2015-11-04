@@ -1,7 +1,7 @@
 package mt.omid.rira
 
 import groovy.util.logging.Slf4j
-import org.springframework.http.HttpStatus
+import groovy.time.TimeCategory
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -15,6 +15,7 @@ class UserController extends SecureController {
 
     def securityService
     def riraMailService
+    def userService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -102,38 +103,21 @@ class UserController extends SecureController {
     @Transactional
     def updatePassword()
     {
-        def(curPass, newPass, confPass) = securityService.decryptChangePasswordHash(params['cd'], params['sk'])
-        User user = User.get(sessionService.currentUser.id)
+        User updatedUser = userService.updateUserPassword(params['cd'], params['sk'], User.get(sessionService.currentUser.id))
 
-        if( user.hasPassword( curPass ) )
-        {
-            user.password = newPass
-            user.passwordConfirmation = confPass
-            user.validate()
-            if( user.hasErrors() )
-            {
-//                log.debug "User new pass is not valid ${user.errors*.toString()}"
-                respond user.errors, view:'settings', model: [ user: user ]
-                return
-            }
-            log.debug "User new pass is OK, saving..."
-            if(user.save(true)) {
-                riraMailService.sendAlertMail(user, "Your password is changed, please inform admin if you did not this or not informed about it.")
-                sessionService.signIn(user, session)
-                flash.success = "Password is updated"
-                redirect controller: 'home', action: 'index'
-            }
-            else {
-                flash.error = "Changing password failed"
-                redirect action: 'settings'
-            }
-        }
-        else
-        {
+        if(!updatedUser) {
             flash.error = "Current password is not correct"
             redirect action: "settings"
         }
-
+        else if( updatedUser.hasErrors() )
+        {
+            flash.error = "Changing password failed"
+            respond updatedUser.errors, view:'settings', model: [ user: updatedUser ]
+        }
+        else {
+            flash.success = "Password is updated"
+            redirect controller: 'home', action: 'index'
+        }
     }
 
     @Transactional
