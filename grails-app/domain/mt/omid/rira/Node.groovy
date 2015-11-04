@@ -2,9 +2,6 @@ package mt.omid.rira
 
 import grails.util.Holders
 import groovy.util.logging.Slf4j
-import mt.omid.rira.utils.NodeType
-import mt.omid.rira.utils.OS
-import mt.omid.rira.utils.ServerType
 
 @Slf4j
 class Node
@@ -43,6 +40,9 @@ class Node
         master defaultValue: 'false'
         profile lazy: false
         connectivityPlans lazy: false
+        nodeType defaultValue: "1"
+        os defaultValue: "1"
+        serverType defaultValue: "1"
         table name: 'r_node', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
