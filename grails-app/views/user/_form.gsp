@@ -79,28 +79,6 @@
 		</div>
     </div>
 
-    <div class="form-group ${hasErrors(bean: userInstance, field: 'failedLogins', 'error')} required">
-        <label for="failedLogins" class="col-sm-3 control-label">
-            <g:message code="user.failedLogins.label" default="Failed Logins" />
-            <span class="required-indicator">*</span>
-        </label>
-		<div class="col-sm-6">
-        	<g:field name="failedLogins" class="form-control"  type="number" value="${userInstance.failedLogins}" required=""/>
-
-		</div>
-    </div>
-
-    <div class="form-group ${hasErrors(bean: userInstance, field: 'forcePasswordChange', 'error')} ">
-        <label for="forcePasswordChange" class="col-sm-3 control-label">
-            <g:message code="user.forcePasswordChange.label" default="Force Password Change" />
-            
-        </label>
-		<div class="col-sm-6">
-        	<g:checkBox name="forcePasswordChange" value="${userInstance?.forcePasswordChange}" />
-
-		</div>
-    </div>
-
     <div class="form-group ${hasErrors(bean: userInstance, field: 'phone', 'error')} ">
         <label for="phone" class="col-sm-3 control-label">
             <g:message code="user.phone.label" default="Phone" />

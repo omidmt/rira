@@ -101,6 +101,9 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'user' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'settings', ctrl: 'user' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'updatePassword', ctrl: 'user' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'lock', ctrl: 'user' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'unlock', ctrl: 'user' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'forcePasswordChange', ctrl: 'user' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'dataConnection', applico: [ name: 'Data Connection' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'dataConnection' )

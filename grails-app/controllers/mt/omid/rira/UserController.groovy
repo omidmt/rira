@@ -1,10 +1,13 @@
 package mt.omid.rira
 
+import groovy.util.logging.Slf4j
+import org.springframework.http.HttpStatus
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import mt.omid.rira.SecureController
 
+@Slf4j
 @Transactional(readOnly = true)
 class UserController extends SecureController {
 
@@ -149,6 +152,120 @@ class UserController extends SecureController {
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
+        }
+    }
+
+    @Transactional
+    def forcePasswordChange(User userInstance) {
+        if (!userInstance) {
+            auditActivity("Invalid user id is used for forcing password change [${params['id']}]")
+            log.error "Invalid user id is used for forcing password change [${params['id']}]"
+            notFound()
+            return
+        }
+
+        userInstance.forcePasswordChange = true
+
+        if (userInstance.save(true)) {
+            log.info "User ${userInstance.name} [${userInstance.email}] forced password change"
+            auditActivity("User ${userInstance.name} [${userInstance.email}] forced password change")
+            withFormat {
+                html {
+                    flash.sucess = "User ${userInstance.email} forced password change"
+                    redirect userInstance
+                }
+                '*' { respond userInstance, [status: OK] }
+            }
+        } else {
+            log.info "User ${userInstance.name} [${userInstance.email}] force password change failed"
+            auditActivity("User ${userInstance.name} [${userInstance.email}] force password change failed")
+            withFormat {
+                html {
+                    flash.message = "User ${userInstance.email} force password change failed"
+                    redirect userInstance
+                }
+                '*' { render status: UNPROCESSABLE_ENTITY }
+            }
+        }
+    }
+
+    @Transactional
+    def lock(User userInstance) {
+        if(!userInstance)
+        {
+            auditActivity("Invalid user id is used to lock [${params['id']}]")
+            log.error "Invalid user id is used to lock [${params['id']}]"
+            notFound()
+            return
+        }
+
+        userInstance.locked = true
+        if(userInstance.save(true)) {
+            log.info "User ${userInstance.name} [${userInstance.email}] locked"
+            auditActivity("User ${userInstance.name} [${userInstance.email}] loked")
+            withFormat {
+                html {
+                    flash.message = "User ${userInstance.email} is locked"
+                    redirect userInstance
+                }
+                '*' {
+                    respond userInstance, [status: OK]
+                }
+            }
+        }
+        else {
+            log.info "User ${userInstance.name} [${userInstance.email}] locking failed"
+            auditActivity("User ${userInstance.name} [${userInstance.email}] locking failed")
+            withFormat {
+                html {
+                    flash.message = "User ${userInstance.email} locking failed"
+                    redirect userInstance
+                }
+                '*' { render status: UNPROCESSABLE_ENTITY }
+            }
+        }
+    }
+
+    /***
+     * Unlocking clear failed logins counter
+     * @param userInstance
+     * @return
+     */
+    @Transactional
+    def unlock(User userInstance) {
+        if(!userInstance)
+        {
+            auditActivity("Invalid user id is used for unlocking [${params['id']}]")
+            log.error "Invalid user id is used for unlocking [${params['id']}]"
+            notFound()
+            return
+        }
+
+        userInstance.locked = false
+        userInstance.failedLogins = 0
+        if(userInstance.save(true)) {
+            log.info "User ${userInstance.name} [${userInstance.email}] unloked"
+            auditActivity("User ${userInstance.name} [${userInstance.email}] unloked")
+
+            withFormat {
+                html {
+                    flash.message = "User ${userInstance.email} is unlocked"
+                    redirect userInstance
+                }
+                '*' { render userInstance, [status: OK] }
+            }
+        }
+        else {
+            log.info "User ${userInstance.name} [${userInstance.email}] unloking failed"
+            auditActivity("User ${userInstance.name} [${userInstance.email}] unloking failed")
+
+            withFormat {
+                html {
+                    flash.message = "User ${userInstance.email} unlocking failed"
+                    redirect userInstance
+                }
+                '*' { render status: UNPROCESSABLE_ENTITY }
+            }
         }
     }
 
