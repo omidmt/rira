@@ -10,6 +10,9 @@ class Applico {
     String path
     String family
 
+    static deletable = true
+    static cloneable = true
+
     static constraints = {
         name blank: false, size: 1..50
         path blank: false, size: 1..255
