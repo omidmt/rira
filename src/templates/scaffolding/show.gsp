@@ -20,9 +20,6 @@
 		</div>
 	</div>
 	<div id="show-${domainClass.propertyName}" class="content scaffold-show" role="main">
-		%{--<g:if test="\${flash.message}">--}%
-			%{--<div class="alert message" role="status">\${flash.message}</div>--}%
-		%{--</g:if>--}%
 		<form class="form-horizontal" role="form">
 			<%  excludedProps = Event.allEvents.toList() << 'id' << 'version'
 			allowedNames = domainClass.persistentProperties*.name << 'dateCreated' << 'lastUpdated'

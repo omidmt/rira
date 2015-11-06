@@ -18,9 +18,6 @@
             </div>
         </div>
 		<div id="edit-${domainClass.propertyName}" class="content scaffold-edit" role="main">
-			<g:if test="\${flash.message}">
-			<div class="alert message" role="status">\${flash.message}</div>
-			</g:if>
 			<g:hasErrors bean="\${${propertyName}}">
 			<ul class="errors" role="alert">
 				<g:eachError bean="\${${propertyName}}" var="error">
