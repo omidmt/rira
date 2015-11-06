@@ -90,7 +90,7 @@
 
     <div class="form-group ${hasErrors(bean: nodeInstance, field: 'os', 'error')} required">
         <label for="os" class="col-sm-3 control-label">
-            <g:message code="node.os.label" default="Os" />
+            <g:message code="node.os.label" default="OS" />
             <span class="required-indicator">*</span>
         </label>
 		<div class="col-sm-6">
