@@ -40,9 +40,9 @@ class Node
         master defaultValue: 'false'
         profile lazy: false
         connectivityPlans lazy: false
-        nodeType defaultValue: "1"
-        os defaultValue: "1"
-        serverType defaultValue: "1"
+        nodeType defaultValue: "1", lazy: false
+        os defaultValue: "1", lazy: false
+        serverType defaultValue: "1", lazy: false
         table name: 'r_node', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 

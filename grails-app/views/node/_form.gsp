@@ -80,7 +80,10 @@
             <span class="required-indicator">*</span>
         </label>
 		<div class="col-sm-6">
-        	<g:select name="nodeType" class="form-control"  from="${mt.omid.rira.utils.NodeType?.values()}" keys="${mt.omid.rira.utils.NodeType.values()*.name()}" required="" value="${nodeInstance?.nodeType?.name()}" />
+        	<g:select id="nodeType" name="nodeType.id" class="form-control"  from="${mt.omid.rira.NodeType.list()}" optionKey="id" required="" value="${nodeInstance?.nodeType?.id}" class="many-to-one"/>
+<div class="new-item">
+<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( '${request.contextPath}/NodeType/createEmbeded', '#nodeType' )"> New Node Type</a>
+</div>
 
 		</div>
     </div>
@@ -91,7 +94,10 @@
             <span class="required-indicator">*</span>
         </label>
 		<div class="col-sm-6">
-        	<g:select name="os" class="form-control"  from="${mt.omid.rira.utils.OS?.values()}" keys="${mt.omid.rira.utils.OS.values()*.name()}" required="" value="${nodeInstance?.os?.name()}" />
+        	<g:select id="os" name="os.id" class="form-control"  from="${mt.omid.rira.OS.list()}" optionKey="id" required="" value="${nodeInstance?.os?.id}" class="many-to-one"/>
+<div class="new-item">
+<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( '${request.contextPath}/OS/createEmbeded', '#os' )"> New Os</a>
+</div>
 
 		</div>
     </div>
@@ -102,7 +108,10 @@
             <span class="required-indicator">*</span>
         </label>
 		<div class="col-sm-6">
-        	<g:select name="serverType" class="form-control"  from="${mt.omid.rira.utils.ServerType?.values()}" keys="${mt.omid.rira.utils.ServerType.values()*.name()}" required="" value="${nodeInstance?.serverType?.name()}" />
+        	<g:select id="serverType" name="serverType.id" class="form-control"  from="${mt.omid.rira.ServerType.list()}" optionKey="id" required="" value="${nodeInstance?.serverType?.id}" class="many-to-one"/>
+<div class="new-item">
+<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( '${request.contextPath}/ServerType/createEmbeded', '#serverType' )"> New Server Type</a>
+</div>
 
 		</div>
     </div>

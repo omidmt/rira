@@ -1,9 +1,9 @@
-<%@ page import="mt.omid.rira.Node" %>
+<%@ page import="mt.omid.rira.ServerType" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="rira">
-		<g:set var="entityName" value="${message(code: 'node.label', default: 'Node')}" />
+		<g:set var="entityName" value="${message(code: 'serverType.label', default: 'ServerType')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -17,18 +17,21 @@
                 </ul>
             </div>
         </div>
-		<div id="edit-node" class="content scaffold-edit" role="main">
-			<g:hasErrors bean="${nodeInstance}">
+		<div id="edit-serverType" class="content scaffold-edit" role="main">
+			<g:if test="${flash.message}">
+			<div class="alert message" role="status">${flash.message}</div>
+			</g:if>
+			<g:hasErrors bean="${serverTypeInstance}">
 			<ul class="errors" role="alert">
-				<g:eachError bean="${nodeInstance}" var="error">
+				<g:eachError bean="${serverTypeInstance}" var="error">
 				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form id="nodeInstance" url="[resource:nodeInstance, action:'update']" method="PUT" class="form-horizontal" role="form" >
-				<g:hiddenField name="version" value="${nodeInstance?.version}" />
+			<g:form id="serverTypeInstance" url="[resource:serverTypeInstance, action:'update']" method="PUT" class="form-horizontal" role="form" >
+				<g:hiddenField name="version" value="${serverTypeInstance?.version}" />
 					<g:render template="form"/>
-					<g:actionSubmit class="save" form="nodeInstance" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:actionSubmit class="save" form="serverTypeInstance" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 			</g:form>
 		</div>
     </div>

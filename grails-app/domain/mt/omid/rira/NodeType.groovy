@@ -1,7 +1,6 @@
 package mt.omid.rira
 
 import grails.util.Holders
-import mt.omid.rira.utils.ModuleType
 
 class NodeType {
 
@@ -19,5 +18,10 @@ class NodeType {
 
     static mapping = {
         table name: 'r_node_type', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
+        modules lazy: false
+    }
+
+    public String toString() {
+        name
     }
 }

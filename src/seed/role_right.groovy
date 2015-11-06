@@ -3,16 +3,6 @@
  */
 
 seed = {
-
-//    applico( meta: [key: 'name', update: false ], name: 'Node Group', path: '/nodeGroup', family: 'Node' )
-//    applico( meta: [key: 'name', update: false ], name: 'Node User', path: '/nodeUser', family: 'Node' )
-//    applico( meta: [key: 'name', update: false ], name: 'Access Management', path: '/access', family: 'Access' )
-//    applico( meta: [key: 'name', update: false ], name: 'Access Group', path: '/accessGroup', family: 'Access' )
-//    applico( meta: [key: 'name', update: false ], name: 'Managed Team', path: '/managedTeam', family: 'Access' )
-//    applico( meta: [key: 'name', update: false ], name: 'Managed Groups', path: '/managedGroup', family: 'Access' )
-//    applico( meta: [key: 'name', update: false ], name: 'Managed Users', path: '/managedUser', family: 'Access' )
-//    applico( meta: [key: 'name', update: false ], name: 'My MU', path: '/mu', family: 'Settings' )
-//    applico( meta: [key: 'name', update: false ], name: 'Nodes Status', path: '/nodeState', family: 'Node' )
     applico( meta: [key: 'name', update: false ], name: 'Jobs', path: 'job', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Configuration', path: 'konfig', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'User Administration', path: 'user', family: 'Admin' )
@@ -24,6 +14,10 @@ seed = {
     applico( meta: [key: 'name', update: false ], name: 'Connectivity Plan', path: 'connectivityPlan', family: 'Node' )
     applico( meta: [key: 'name', update: false ], name: 'Event', path:  'event', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Data Connection', path: 'dataConnection', family: 'Admin' )
+    applico( meta: [key: 'name', update: false ], name: 'Node Types', path: 'nodeType', family: 'Admin' )
+    applico( meta: [key: 'name', update: false ], name: 'Module Types', path: 'module', family: 'Admin' )
+    applico( meta: [key: 'name', update: false ], name: 'OS', path: 'OS', family: 'Admin' )
+    applico( meta: [key: 'name', update: false ], name: 'Server Types', path: 'serverType', family: 'Admin' )
 
 
     print "Seeding Rights"
@@ -131,6 +125,46 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'updateEmbeded', ctrl: 'applico' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'applico' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'applico' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'nodeType', applico: [ name: 'Node Types' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'nodeType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'nodeType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'nodeType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'editEmbeded', ctrl: 'nodeType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'nodeType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'nodeType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'nodeType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'nodeType' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'serverType', applico: [ name: 'Server Types' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'serverType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'serverType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'serverType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'editEmbeded', ctrl: 'serverType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'serverType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'serverType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'serverType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'serverType' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'OS', applico: [ name: 'OS' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'OS' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'OS' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'OS' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'editEmbeded', ctrl: 'OS' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'OS' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'OS' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'OS' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'OS' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'module', applico: [ name: 'Module Types' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'module' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'module' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'module' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'editEmbeded', ctrl: 'module' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'module' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'module' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'module' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'module' )
 
     print "Adding RADMIN Role"
     role( meta: [key: [ 'name' ], update: false], name: 'Radmin', rights: [ [act: 'index', ctrl: '*'],

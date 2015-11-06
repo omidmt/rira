@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="rira">
-		<g:set var="entityName" value="${message(code: 'node.label', default: 'Node')}" />
+		<g:set var="entityName" value="${message(code: 'module.label', default: 'Module')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -15,18 +15,21 @@
                 </ul>
             </div>
         </div>
-		<div id="create-node" class="content scaffold-create" role="main">
+		<div id="create-module" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-			<g:hasErrors bean="${nodeInstance}">
+			<g:if test="${flash.message}">
+			<div class="message" role="status">${flash.message}</div>
+			</g:if>
+			<g:hasErrors bean="${moduleInstance}">
 			<ul class="errors" role="alert">
-				<g:eachError bean="${nodeInstance}" var="error">
+				<g:eachError bean="${moduleInstance}" var="error">
 				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form id="nodeInstance" url="[resource:nodeInstance, action:'save']"  class="form-horizontal" role="form" >
+			<g:form id="moduleInstance" url="[resource:moduleInstance, action:'save']"  class="form-horizontal" role="form" >
 					<g:render template="form"/>
-					<g:submitButton name="create" form="nodeInstance" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="create" form="moduleInstance" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 			</g:form>
 		</div>
     </div>

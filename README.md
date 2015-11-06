@@ -17,7 +17,7 @@ developer, but Application Name can be applied in both development (by developer
 
 ### Install
     plugins {
-        compile ":rira:0.4.2"
+        compile ":rira:0.4.5"
     }
     
 For using security module that needs up to date version of bouncycastle lib, add the following lines in the build config 
@@ -36,7 +36,7 @@ To use RIRA customized scaffolding templates which is matched with the theme and
  
  
 ### Version
-0.4.2
+0.4.5
 
 ### Tech
 
