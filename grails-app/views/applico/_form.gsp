@@ -57,3 +57,36 @@
 		</div>
     </div>
 
+    <div class="form-group ${hasErrors(bean: applicoInstance, field: 'server', 'error')} ">
+        <label for="server" class="col-sm-3 control-label">
+            <g:message code="applico.server.label" default="Server" />
+            
+        </label>
+		<div class="col-sm-6">
+        	<g:textField name="server" class="form-control"  maxlength="100" value="${applicoInstance?.server}"/>
+
+		</div>
+    </div>
+
+    <div class="form-group ${hasErrors(bean: applicoInstance, field: 'port', 'error')} ">
+        <label for="port" class="col-sm-3 control-label">
+            <g:message code="applico.port.label" default="Port" />
+            
+        </label>
+		<div class="col-sm-6">
+        	<g:textField name="port" class="form-control"  maxlength="5" value="${applicoInstance?.port}"/>
+
+		</div>
+    </div>
+
+    <div class="form-group ${hasErrors(bean: applicoInstance, field: 'context', 'error')} ">
+        <label for="context" class="col-sm-3 control-label">
+            <g:message code="applico.context.label" default="Context" />
+            
+        </label>
+		<div class="col-sm-6">
+        	<g:textField name="context" class="form-control"  maxlength="100" value="${applicoInstance?.context}"/>
+
+		</div>
+    </div>
+

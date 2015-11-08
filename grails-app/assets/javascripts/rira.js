@@ -51,8 +51,28 @@ $( document).ready(function()
     });
 
     initEventHandlers();
-    $( "#loginForm" ).submit( signin )
+    $( "#loginForm" ).submit( signin );
+    adjustApplicoHrefs();
 });
+
+function adjustApplicoHrefs() {
+    $('li.applico').each( function(i) {
+        var server = window.location.hostname;
+        if($(this).data('server') !== "" )
+            server = $(this).data('server');
+
+        var port = window.location.port;
+        if($(this).data('port') !== "" )
+            port = $(this).data('port');
+
+
+        $('a', this)[0].href = window.location.protocol + "//" +
+            server + ":" +
+            port +
+            $(this).data('context') + "/" +
+            $(this).data('path') + "/";
+    });
+}
 
 function signin()
 {

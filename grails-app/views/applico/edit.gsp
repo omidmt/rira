@@ -18,9 +18,6 @@
             </div>
         </div>
 		<div id="edit-applico" class="content scaffold-edit" role="main">
-			<g:if test="${flash.message}">
-			<div class="alert message" role="status">${flash.message}</div>
-			</g:if>
 			<g:hasErrors bean="${applicoInstance}">
 			<ul class="errors" role="alert">
 				<g:eachError bean="${applicoInstance}" var="error">

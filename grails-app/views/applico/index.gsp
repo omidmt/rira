@@ -21,9 +21,6 @@
         </div>
 		<div id="list-applico" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
-			</g:if>
 			<table class="table table-bordered table-striped">
 			<thead>
 					<tr>
@@ -37,6 +34,8 @@
 						<g:sortableColumn property="iconPath" title="${message(code: 'applico.iconPath.label', default: 'Icon Path')}" />
 					
 						<g:sortableColumn property="family" title="${message(code: 'applico.family.label', default: 'Family')}" />
+					
+						<g:sortableColumn property="server" title="${message(code: 'applico.server.label', default: 'Server')}" />
 					
 						
 						<th></th>
@@ -59,6 +58,8 @@
 						<td>${fieldValue(bean: applicoInstance, field: "iconPath")}</td>
 					
 						<td>${fieldValue(bean: applicoInstance, field: "family")}</td>
+					
+						<td>${fieldValue(bean: applicoInstance, field: "server")}</td>
 					
 					
 						<td class="text-center">

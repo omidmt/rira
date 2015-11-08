@@ -20,9 +20,6 @@
 		</div>
 	</div>
 	<div id="show-applico" class="content scaffold-show" role="main">
-		<g:if test="${flash.message}">
-			<div class="alert message" role="status">${flash.message}</div>
-		</g:if>
 		<form class="form-horizontal" role="form">
 			
 			<g:if test="${applicoInstance?.name}">
@@ -75,6 +72,39 @@
 					<div class="col-sm-10">
 						
 						<p class="form-control-static disabled" aria-labelledby="family-label"><g:fieldValue bean="${applicoInstance}" field="family"/></p>
+						
+					</div>
+				</div>
+			</g:if>
+			
+			<g:if test="${applicoInstance?.server}">
+				<div class="form-group">
+					<label for="server" class="col-sm-2 control-label">Server</label>
+					<div class="col-sm-10">
+						
+						<p class="form-control-static disabled" aria-labelledby="server-label"><g:fieldValue bean="${applicoInstance}" field="server"/></p>
+						
+					</div>
+				</div>
+			</g:if>
+			
+			<g:if test="${applicoInstance?.port}">
+				<div class="form-group">
+					<label for="port" class="col-sm-2 control-label">Port</label>
+					<div class="col-sm-10">
+						
+						<p class="form-control-static disabled" aria-labelledby="port-label"><g:fieldValue bean="${applicoInstance}" field="port"/></p>
+						
+					</div>
+				</div>
+			</g:if>
+			
+			<g:if test="${applicoInstance?.context}">
+				<div class="form-group">
+					<label for="context" class="col-sm-2 control-label">Context</label>
+					<div class="col-sm-10">
+						
+						<p class="form-control-static disabled" aria-labelledby="context-label"><g:fieldValue bean="${applicoInstance}" field="context"/></p>
 						
 					</div>
 				</div>
