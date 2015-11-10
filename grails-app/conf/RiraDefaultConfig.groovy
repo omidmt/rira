@@ -35,7 +35,7 @@ grails.plugin.cookiesession.cookiename = "riracook"
 
 grails.assets.less.compiler = 'standard'
 
-grails.databinding.dateFormats = [ "EEE MMM dd HH:mm:ss yyyy", "yyyy-MM-dd HH:mm:ss" ]
+grails.databinding.dateFormats = ['EEE MMM dd HH:mm:ss yyyy', 'YYYY-MM-DD HH:mm:ss', "YYYYMMDD'T'HH:mm:ss", 'ddd MMM DD HH:mm:ss YYYY', 'MMddyyyy', 'yyyy-MM-dd HH:mm:ss.S', "yyyy-MM-dd'T'hh:mm:ss'Z'" ]
 
 grails.plugins.twitterbootstrap.fixtaglib = true
 grails.plugins.twitterbootstrap.defaultBundle = 'bundle_bootstrap'

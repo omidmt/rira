@@ -34,7 +34,14 @@ To use RIRA customized scaffolding templates which is matched with the theme and
 
  ```grails install-rira-templates```
  
- 
+#### Date Format
+At least the following date format must be added to databinding in the conf/Config.groovy file
+
+```
+grails.databinding.dateFormats = ['EEE MMM dd HH:mm:ss yyyy', ...]
+```
+
+
 ### Version
 0.4.5
 
