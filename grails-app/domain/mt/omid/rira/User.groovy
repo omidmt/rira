@@ -202,6 +202,6 @@ class User {
 
     def getApplicos()
     {
-        roles.rights.flatten().applico - null
+        roles?.rights?.flatten().applico - null
     }
 }
