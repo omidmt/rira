@@ -30,6 +30,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'connectivityPlan' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'connectivityPlan' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'connectivityPlan' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'connectivityPlan' )
 
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'job', applico: [ name: 'Jobs' ] )
@@ -43,6 +44,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'konfig' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'konfig' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'refreshCache', ctrl: 'konfig' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'konfig' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'node', applico: [ name: 'Nodes' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'node' )
@@ -53,6 +55,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'node' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'node' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'node' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'node' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'nodeProfile', applico: [ name: 'Node Profile' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'nodeProfile' )
@@ -63,6 +66,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'nodeProfile' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'nodeProfile' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'nodeProfile' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'nodeProfile' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'right', applico: [ name: 'Rights & Permissions' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'right' )
@@ -73,6 +77,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'updateEmbeded', ctrl: 'right' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'right' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'right' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'right' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'role', applico: [ name: 'Role Administration' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'role' )
@@ -83,6 +88,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'role' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'role' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'role' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'role' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'user', applico: [ name: 'User Administration' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'user' )
@@ -108,6 +114,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'updateEmbeded', ctrl: 'dataConnection' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'dataConnection' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'dataConnection' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'dataConnection' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'audit', applico: [ name: 'Audit Log' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'audit' )
@@ -125,6 +132,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'updateEmbeded', ctrl: 'applico' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'applico' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'applico' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'applico' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'nodeType', applico: [ name: 'Node Types' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'nodeType' )
@@ -135,6 +143,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'nodeType' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'nodeType' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'nodeType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'nodeType' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'serverType', applico: [ name: 'Server Types' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'serverType' )
@@ -145,6 +154,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'serverType' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'serverType' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'serverType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'serverType' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'OS', applico: [ name: 'OS' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'OS' )
@@ -155,6 +165,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'OS' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'OS' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'OS' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'OS' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'module', applico: [ name: 'Module Types' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'module' )
@@ -165,6 +176,7 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'module' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'module' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'module' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'module' )
 
     print "Adding RADMIN Role"
     role( meta: [key: [ 'name' ], update: false], name: 'Radmin', rights: [ [act: 'index', ctrl: '*'],
