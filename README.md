@@ -13,7 +13,87 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
 
 When and where each feature or configuration may apply is indicated in parentheses by **Dev** for development or 
 **Runtime** for run-time configuration of application. For example Domain is only applicable in development stage by 
-developer, but Application Name can be applied in both development (by developer) and run-time (by administrator). 
+developer, but Application Name can be applied in both development (by developer) and run-time (by administrator).
+
+
+## Quick Install
+After application creation add the following configurations.
+
+Update conf/BuildConfig.groovy with the following and keep original setting unless it is mentioned to overwrite or remove.
+
+```groovy
+dependencies {
+    compile 'mysql:mysql-connector-java:5.1.35' // In case of using mysql
+
+    build("com.lowagie:itext:2.0.8") { //
+        excludes "bouncycastle:bcprov-jdk14:138", "org.bouncycastle:bcprov-jdk14:1.38"
+    }
+}
+```
+
+Add to conf/Config.groovy
+
+```groovy
+grails.databinding.dateFormats = ['EEE MMM dd HH:mm:ss yyyy']
+
+grails.plugin.rira.appName = 'appname'
+grails.plugin.rira.schema = 'dbSchemaName'
+```
+
+Update conf/DataSource.groovy
+
+```groovy
+development {
+        dataSource {
+//            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+//            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            dbCreate = "update"
+            url = "jdbc:mysql://127.0.0.1:3306/dbSchemaName?zeroDateTimeBehavior=convertToNull" // In case of local mysql
+            driverClassName = "com.mysql.jdbc.Driver"
+            username = "myuser"
+            password = "mypassword"
+            pooled = true
+            properties {
+                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
+                jmxEnabled = true
+                initialSize = 5
+                maxActive = 50
+                minIdle = 5
+                maxIdle = 25
+                maxWait = 10000
+                maxAge = 10 * 60000
+                timeBetweenEvictionRunsMillis = 5000
+                minEvictableIdleTimeMillis = 60000
+                validationQuery = "SELECT 1"
+                validationQueryTimeout = 3
+                validationInterval = 15000
+                testOnBorrow = true
+                testWhileIdle = true
+                testOnReturn = false
+                jdbcInterceptors = "ConnectionState"
+                defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED
+        }
+    }
+```
+
+Same can be applied for production part as well.
+
+Comment the root map if nothing defien to do in conf/UrlMappings.groovy
+
+```groovy
+//"/"(view:"/index")
+```
+
+Add the following json marshaller in conf/BootStrap.groovy
+
+```groovy
+def init = { servletContext ->
+    JSON.registerObjectMarshaller(Date) {
+        return it?.format("yyyy-MM-dd HH:mm:ss")
+    }
+}
+```
+
 
 ### Install
     plugins {
