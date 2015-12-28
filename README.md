@@ -97,7 +97,7 @@ def init = { servletContext ->
 
 ### Install
     plugins {
-        compile ":rira:0.4.5"
+        compile ":rira:0.5.0"
     }
     
 For using security module that needs up to date version of bouncycastle lib, add the following lines in the build config 

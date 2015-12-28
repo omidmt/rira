@@ -1,8 +1,8 @@
 class RiraGrailsPlugin {
-    def version = "0.4.5"
+    def version = "0.5.0"
     def grailsVersion = "2.4 > *"
     def title = "RIRA Plugin"
-    def author = "Omid Mehdizadeh"
+    def author = "Omid Mehdizadeh Tourzan"
     def authorEmail = "omid . mt |@| gmail . com"
     def description = 'A framework to use in apps to provide security, notification, configuration and node management. It also render a default theme and menu.'
     def documentation = "http://grails.org/plugin/rira"
