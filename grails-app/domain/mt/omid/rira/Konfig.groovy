@@ -158,6 +158,8 @@ we6aDAwNp5uAclQAhVnQQKAbdqf+cry97+6lYap2Sz00RtS+UboQ+X8joJtbE44l
 gGqrZOd2ErDT1NOXfpWXYUmIbz77/bMU7ecwGDaG+JTuH7i5+7f/s9TheGDzIpGS
 NwIDAQAB
 -----END PUBLIC KEY-----"""
+
+        KONFIGS.invitationExpiryDays = KONFIGS.invitationExpiryDays?.isInteger() ? KONFIGS.invitationExpiryDays as int : 3
     }
 
     def static findExternalConverters()

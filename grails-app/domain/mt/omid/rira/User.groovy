@@ -1,6 +1,7 @@
 package mt.omid.rira
 
 import grails.util.Holders
+import groovy.time.TimeCategory
 import mt.omid.rira.ntfy.NotificationGroup
 
 import java.security.MessageDigest
@@ -131,6 +132,13 @@ class User {
 //        }
     }
 
+    def beforeDelete() {
+        if(roles)
+            roles.each {
+                this.removeFromRoles(it)
+            }
+    }
+
     protected void encodePassword()
     {
         salt = makeSalt()
@@ -197,11 +205,29 @@ class User {
 
     def getRights()
     {
-        roles.rights.flatten()
+        roles?.rights?.flatten()
     }
 
     def getApplicos()
     {
-        roles?.rights?.flatten().applico - null
+        List<Applico> apps = roles?.rights?.flatten()?.applico
+        if(apps) {
+            apps = apps - null
+        }
+        apps
+    }
+
+    static Date newPasswordExpiry() {
+        use(TimeCategory) {
+            return new Date() + Konfig.KONFIGS['passwordExpiryExtension'].toInteger().days
+        }
+    }
+
+    public static String generateRandomPassword() {
+        def pool = ['a'..'z','A'..'Z',0..9,'_','!', '@','#','$','%','&','*'].flatten()
+        Random rand = new Random(System.currentTimeMillis())
+        def passChars = (0..8).collect { pool[rand.nextInt(pool.size())] }
+        def password = passChars.join()
+        return password + "O@8"
     }
 }

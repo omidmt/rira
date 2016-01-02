@@ -57,6 +57,18 @@ class RiraMailService {
         }
     }
 
+    def sendInvitation(String name, String email, String uid) {
+        asynchronousMailService.sendAsynchronousMail {
+            from "${KONFIGS.appName} Admin<${KONFIGS.mailFromAddress}>"
+            to email
+            multipart true
+            subject "Invitation to ${KONFIGS.appName}"
+            inline "logo", "image/jpeg", logoBA
+            text view: "/mail/invite-txt", model: [uid: uid, name: name]
+            html view: "/mail/invite-html", model: [uid: uid, name: name]
+        }
+    }
+
     def sendMail( String toAddr, String subj, String body ) {
         try {
             asynchronousMailService.sendAsynchronousMail {

@@ -24,9 +24,7 @@ class UserService {
                 log.debug "User new pass is OK, saving..."
                 if(user.save(true)) {
                     user.forcePasswordChange = false
-                    use(TimeCategory) {
-                        user.passwordExpiry = new Date() + Konfig.KONFIGS['passwordExpiryExtension'].toInteger().days
-                    }
+                    user.passwordExpiry = User.newPasswordExpiry()
                     user.save()
                     riraMailService.sendAlertMail(user, "Your password is changed and extended to ${user.passwordExpiry}," +
                             " please inform admin if you did not change or being informed about it.")
