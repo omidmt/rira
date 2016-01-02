@@ -37,7 +37,7 @@ class RiraMailService {
             multipart true
             subject "Change of ${KONFIGS.appName} Password"
             inline "logo", "image/png", logoBA
-            text view: "/mail/alert-html", model: [message: msg]
+            text view: "/mail/alert-txt", model: [message: msg]
             html view: "/mail/alert-html", model: [message: msg]
         }
     }
