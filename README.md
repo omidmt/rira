@@ -2,7 +2,7 @@
 
 RIRA is a light boilerplate application framework to provide basic needs of it  as plugin. It is a grails plugin. It provides the following feature.
   - Access Management
-    - Authentication and Authurization
+    - Authentication and Authorization
     - User <-> (n) Role <-> (n) Right
     - Right -> Controller/Action
   - Global run-time configurable configuration (Konfig)
@@ -10,6 +10,8 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
   - Automatic menu access according to user's rights (Applico)
   - Node administration to manage external nodes connectivity in application
   - Notification module (email or SMS)
+  - Data source connection
+  - User invitation
 
 When and where each feature or configuration may apply is indicated in parentheses by **Dev** for development or 
 **Runtime** for run-time configuration of application. For example Domain is only applicable in development stage by 
@@ -317,6 +319,7 @@ better to call static field of Konfig class, as it supposed to be more efficient
 - **pemPrivateKey (string)**
 - **pemKeyPassword (string)**
 - **pemPublicKey (string)**
+- **invitationExpiryDays (int[default: 3 days])**
 
 
 ### Mail Service (Dev)
