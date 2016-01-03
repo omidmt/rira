@@ -174,10 +174,10 @@ NwIDAQAB
 
     static convertExternalValues()
     {
-        EXTERNAL_KONFIG_CLASSES.each { clsName ->
+        EXTERNAL_KONFIG_CLASSES.each { Class clsName ->
             try {
                 Object beanObj
-                Class beanClass = Class.forName( clsName )
+                Class beanClass = Class.forName( clsName.canonicalName )
                 if( beanClass.getMethod( KonfigConvertorFinder.KONFIG_CONVERTER_METHOD_NAME, (Class<?>[]) null) ) {
                     beanClass.invokeMethod(KonfigConvertorFinder.KONFIG_CONVERTER_METHOD_NAME, null)
                 }

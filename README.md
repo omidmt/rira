@@ -279,7 +279,7 @@ There is two ways to inform RIRA about converter classes.
 By adding the following configuration list in the app conf/Config.groovy the rira will be aware of konfig converter 
 classes and call converter. The class name should be defined in full name including package name.
 ```groovy
-grails.plugin.rira.konfig.converters = [mt.omid.app.MyKonfig.class]
+grails.plugin.rira.konfig.converters = [mt.omid.app.MyKonfig]
 ```
 
 #### Method 2: Convention of Konfig (disabled by default)
