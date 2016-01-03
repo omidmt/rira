@@ -5,7 +5,7 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
     - Authentication and Authorization
     - User <-> (n) Role <-> (n) Right
     - Right -> Controller/Action
-  - Global run-time configurable configuration (Konfig)
+  - Global run-time configuration (Konfig)
   - Job control as asynchronous quartz jobs
   - Automatic menu access according to user's rights (Applico)
   - Node administration to manage external nodes connectivity in application
@@ -260,17 +260,41 @@ Node.NODES_IP the hostname/[IP1,...] dictionary that include an array of all con
  DataConnection.DATASOURCES name/DataSource keep datasource
 
 ### Konfig (Dev+Runtime)
-Konfig domain allows to cache configuration that may be used in application that mentioned in Cache section. The value 
-of the this cache can be any kind of objects, but they are kept in DB as String, so a converter method may be required 
-to convert and make those object in run-time. Also that converter methods can initialize the default values in case it is 
-not added. If a key/value is not initialized it may raise an exception in run-time where it is referenced.
+Konfig domain allows to cache configuration that may be used in the different situations in the application logic 
+which mentioned in Cache section as well. The value of the this cache can be any kind of objects, but they are kept in 
+DB as String, so a converter method may be required to convert and make those object in run-time. Also that converter 
+method can initialize the default values if they are not defined. If a key/value is not initialized it may raise an 
+exception in run-time where it is referenced.
 
-Same mechanism can be used for calling cache refresh methods. Method name should be "refreshCaches" on the same class.
- The refresh method of Konfig controller is calling this method on demand.
+Same mechanism can be used for calling cache refresh methods. The static method name must be ***refreshCaches*** on the 
+same class. The refresh method of Konfig controller can call these methods on demand through the Refresh button in the 
+GUI, Konfig page.
 
-Having own converter for own configuration, a converter must be defined as a class that suffixed by Konfig and 
-the method must be static, like the following class  
+Each Konfig class must have a static method named ***convert()*** that is called on bootstrap of application or 
+refreshing the cache. Another required methid is ***refreshCache()*** that is called on refreshing all caches on demand.
 
+There is two ways to inform RIRA about converter classes.
+
+#### Method 1 : Define in Application Config
+By adding the following configuration list in the app conf/Config.groovy the rira will be aware of konfig converter 
+classes and call converter. The class name should be defined in full name including package name.
+```groovy
+grails.plugin.rira.konfig.converters = [mt.omid.app.MyKonfig.class]
+```
+
+#### Method 2: Convention of Konfig (disabled by default)
+Having own converter for own configuration, a converter must be defined as a class which its name suffixed by 
+***Konfig*** like **MyClassKonfig**. Whatever found, will be added to the list that established by first method.
+
+This method is enabled by setting the following configuration to true in  conf/Config.groovy.
+```groovy
+grails.plugin.rira.konfig.scanKonfigConverters = true
+```
+
+* WARNING: Enabling this way will delay application start up depending on class loader scanning speed, since it is 
+searching whole class path for the proper class name pattern.
+  
+Here is sample of a class that comply basic method name requirement and also second way (scan class path) convention.
 ```groovy
 class XYZKonfig
 {

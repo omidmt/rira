@@ -19,7 +19,7 @@ public class KonfigConvertorFinder
     final static String KONFIG_REFRESH_CACHE_METHOD_NAME = "refreshCaches"
     final static String RIRA_KONFOG_CLASS_NAME = "mt.omid.rira.Konfig"
 
-    def static findKonfigConvertorClass() {
+    def static findKonfigConverterClass() {
 
         def beans = []
 

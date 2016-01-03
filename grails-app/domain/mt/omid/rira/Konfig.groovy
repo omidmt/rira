@@ -160,7 +160,16 @@ NwIDAQAB
 
     def static findExternalConverters()
     {
-        EXTERNAL_KONFIG_CLASSES = KonfigConvertorFinder.findKonfigConvertorClass()
+        EXTERNAL_KONFIG_CLASSES = []
+        def konfigConverters = Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.converters
+        if(konfigConverters != null && konfigConverters.class == ArrayList.class) {
+            EXTERNAL_KONFIG_CLASSES = konfigConverters
+        }
+
+        if(Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.scanKonfigConverters == true) {
+            def scannedKonfConvs = KonfigConvertorFinder.findKonfigConverterClass()
+            EXTERNAL_KONFIG_CLASSES = (EXTERNAL_KONFIG_CLASSES + scannedKonfConvs).unique()
+        }
     }
 
     static convertExternalValues()
