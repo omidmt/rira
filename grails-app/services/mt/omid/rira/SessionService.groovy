@@ -58,7 +58,7 @@ class SessionService
     }
 
     APIKey authenticateByKey(HttpServletRequest request) {
-        String key = request.getHeader('apiKey') || request.getParameter('apiKey')
+        String key = request.getHeader('apiKey') ?: request.getParameter('apiKey')
         if(key == null) {
             return null
         }
@@ -73,11 +73,17 @@ class SessionService
 
     boolean authorize(controller, action, User user)
     {
+        if(user == null) {
+            log.error("Null user for authorization is provided")
+            return false
+        }
+
         String ctrlAct = "$controller/$action"
 
-        log.debug "Authorize ${ctrlAct} Result=${user.rights*.toString().contains( ctrlAct )}"
+        boolean authResult = user.rights*.toString().contains( ctrlAct )
+        log.debug "Authorize ${ctrlAct} Result=${authResult}"
 
-        if( user.rights*.toString().contains( ctrlAct ) )
+        if(authResult)
             return true
 
         // Common action of every user

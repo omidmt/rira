@@ -14,7 +14,7 @@ abstract class SecureController extends RiraController
 //    def sessionService
 
     def afterInterceptor = { model, modelAndView ->
-        model.applicos = sessionService.currentUser.applicos
+        model.applicos = sessionService.currentUser?.applicos
     }
 
     private authNauth() {
@@ -39,7 +39,7 @@ abstract class SecureController extends RiraController
         else {
             APIKey ak = sessionService?.authenticateByKey(request)
             if(ak) {
-                if(sessionService.authorize(controllerName, actionName)) {
+                if(sessionService.authorize(controllerName, actionName, ak.user)) {
                     return true
                 }
                 else {
