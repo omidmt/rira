@@ -5,6 +5,8 @@ import groovy.util.logging.Slf4j
 
 import org.codehaus.groovy.grails.web.util.WebUtils
 
+import javax.servlet.http.HttpServletRequest
+
 @Slf4j
 class SessionService
 {
@@ -17,7 +19,7 @@ class SessionService
     def authenticate( session )
     {
         // RequestContextHolder.currentRequestAttributes().session
-//        log.debug "Test token existence $session.token"
+        // log.debug "Test token existence $session.token"
         if ( !( session.token && session.token[ 0 ] ) )
         {
             return false
@@ -55,13 +57,24 @@ class SessionService
         return null
     }
 
+    APIKey authenticateByKey(HttpServletRequest request) {
+        String key = request.getHeader('apiKey') || request.getParameter('apiKey')
+        if(key == null) {
+            return null
+        }
+        return APIKey.authenticate(key)
+    }
+
     boolean authorize( controller, action )
     {
         def user = getCurrentUser()
+        authorize(controller, action, user)
+    }
 
+    boolean authorize(controller, action, User user)
+    {
         String ctrlAct = "$controller/$action"
 
-//        log.debug "User rights: ${user.rights*.toString()}"
         log.debug "Authorize ${ctrlAct} Result=${user.rights*.toString().contains( ctrlAct )}"
 
         if( user.rights*.toString().contains( ctrlAct ) )

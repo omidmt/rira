@@ -19,6 +19,7 @@ seed = {
     applico( meta: [key: 'name', update: false ], name: 'OS', path: 'OS', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Server Types', path: 'serverType', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Invitation', path: 'invitation', family: 'Admin' )
+    applico( meta: [key: 'name', update: false ], name: 'APIKey', path: 'APIKey', family: 'Admin' )
 
 
     print "Seeding Rights"
@@ -189,6 +190,17 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'invitation' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'invitation' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'invitation' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'APIKey', applico: [ name: 'APIKey' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'APIKey' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'APIKey' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'APIKey' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'editEmbeded', ctrl: 'APIKey' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'APIKey' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'APIKey' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'APIKey' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'APIKey' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'APIKey' )
 
     print "Adding RADMIN Role"
     role( meta: [key: [ 'name' ], update: false], name: 'Radmin', rights: [ [act: 'index', ctrl: '*'],

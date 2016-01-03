@@ -19,6 +19,7 @@ abstract class SecureController extends RiraController
 
     private authNauth() {
         log.debug "Authenticate $controllerName/$actionName"
+
 //        log.debug "Authenticate request $session"
         if (sessionService?.authenticate(session)) {
             if (sessionService.authorize(controllerName, actionName)) {
@@ -35,6 +36,20 @@ abstract class SecureController extends RiraController
 
             return false
         }
+        else {
+            APIKey ak = sessionService?.authenticateByKey(request)
+            if(ak) {
+                if(sessionService.authorize(controllerName, actionName)) {
+                    return true
+                }
+                else {
+                    def errors = [ [code: UNAUTHORIZED.toString().toInteger(), desc: 'API Authorization Failed'] ]
+                    respond errors, status: UNAUTHORIZED
+                    return false
+                }
+            }
+        }
+
 
         log.debug "Authentication failed."
         flash.error = "Please sign in by your username & password"

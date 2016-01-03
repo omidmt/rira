@@ -171,7 +171,7 @@ class User {
         user.loginFailed()
     }
 
-    static boolean authenticateWithSalt( id, salt )
+    static User authenticateWithSalt( id, salt )
     {
         def user = User.findById( id )
         return ( user && user.salt == salt && !user.locked && ( user.accountExpiry ? user.accountExpiry.after(new Date()) : true ) ) ? user : null
