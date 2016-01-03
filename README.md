@@ -12,6 +12,7 @@ RIRA is a light boilerplate application framework to provide basic needs of it  
   - Notification module (email or SMS)
   - Data source connection
   - User invitation
+  - API Key authentication
 
 When and where each feature or configuration may apply is indicated in parentheses by **Dev** for development or 
 **Runtime** for run-time configuration of application. For example Domain is only applicable in development stage by 
@@ -376,6 +377,24 @@ To hide the menu at page load the following javascript method can be used. It se
 be shown again.
 ```javascript
 $( '#navmenu' ).offcanvas( 'hide' );
+```
+
+### API Key
+To use API of rira and sub applications authentication and authorization can be done by using a API Key. Each user can 
+have one/multiple keys that admin can create on APIKey page. The auto-generated key must be used in one of the following
+2 methods to pass authentication and authorization. All security aspects of user is inherited by all keys of the user, 
+like lock, expiry, role/rights, except password expiry that belongs only to username.
+
+#### Method 1: Http Header
+Set the ***apiKey*** as a http header in the request  
+```http
+apiKey: bywnEJjpRsmLgn5hbAW!UNcGLMgIUxzEPkh7dp_N_oc88jQsLwF
+```
+
+#### Method 2: Request Parameter
+Passing the ***apiKey*** parameter and set its value to the key
+```http
+http://host/page/show?apiKey=bywnEJjpRsmLgn5hbAW!UNcGLMgIUxzEPkh7dp_N_oc88jQsLwF
 ```
 
 ##### Author
