@@ -1,0 +1,6 @@
+
+#### 0.5
+Add User Invitation
+Change Konfig scanning as optional, allow hard coding Konfig class in application Config file
+Add APIKey authentication
+
