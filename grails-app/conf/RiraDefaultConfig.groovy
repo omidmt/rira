@@ -51,6 +51,8 @@ log4j.main = {
           'net.sf.ehcache.hibernate',
 
           'mt.omid.rira.utils.connectivity.SolarisConnection'
+          'grails.plugins.cookiesession'
+          'com.granicus.grails.plugins.cookiesession'
 
 //    debug  'grails.app'
 //    debug 'seedme'
