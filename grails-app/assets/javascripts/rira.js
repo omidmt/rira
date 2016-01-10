@@ -21,7 +21,9 @@ if (typeof jQuery !== 'undefined') {
 
 $( document).ready(function()
 {
-    $( "#sticker" ).sticky( { topSpacing:0 } );
+	if($( "#sticker" ) != null && typeof $( "#sticker" ).sticky == "function") {
+		$("#sticker").sticky({topSpacing: 0});
+    }
 //    $( 'input[type=text],input[type=email], input[type=password], textarea, select' ).addClass( "form-control" );
     $( 'input[type=text],input[type=email], input[type=password], textarea' ).addClass( "form-control" );
     $( "select" ).selectpicker && $( "select" ).selectpicker( { style: 'btn-md btn-primary', menuStyle: 'dropdown-inverse' } );
