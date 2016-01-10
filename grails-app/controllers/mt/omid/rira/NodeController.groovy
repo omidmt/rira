@@ -1,5 +1,6 @@
 package mt.omid.rira
 
+import org.springframework.dao.DataIntegrityViolationException
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -95,7 +96,14 @@ class NodeController extends SecureController {
             return
         }
 
-        nodeInstance.delete flush:true
+        try {
+            nodeInstance.delete flush: true
+        }
+        catch(DataIntegrityViolationException dex) {
+            log.error("The node ${nodeInstance}, external foreignkeys is not deleted yet: [$dex.message]")
+            flash.error = "The node ${nodeInstance}, external foreignkeys is not deleted yet: [$dex.message]"
+            redirect nodeInstance
+        }
 
         request.withFormat {
             form multipartForm {
