@@ -28,7 +28,7 @@ class Node
     static deletable = true
 
     static constraints = {
-        name blank: false, size: 1..50
+        name blank: false, size: 1..50, unique: true
         profile nullable: true
 
         active()
