@@ -33,7 +33,7 @@
 					
 						<g:sortableColumn property="master" title="${message(code: 'node.master.label', default: 'Master')}" />
 					
-						<g:sortableColumn property="dateCreated" title="${message(code: 'node.dateCreated.label', default: 'Date Created')}" />
+						<g:sortableColumn property="nodeType" title="${message(code: 'node.dateCreated.label', default: 'Node Type')}" />
 					
 						<g:sortableColumn property="lastUpdated" title="${message(code: 'node.lastUpdated.label', default: 'Last Updated')}" />
 					
@@ -56,8 +56,8 @@
 						<td><g:formatBoolean boolean="${nodeInstance.active}" /></td>
 					
 						<td><g:formatBoolean boolean="${nodeInstance.master}" /></td>
-					
-						<td><g:formatDate date="${nodeInstance.dateCreated}" /></td>
+
+						<td>${fieldValue(bean: nodeInstance, field: "nodeType")}</td>
                     
 						<td><g:formatDate date="${nodeInstance.lastUpdated}" /></td>
                     
