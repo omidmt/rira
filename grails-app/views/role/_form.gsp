@@ -19,7 +19,7 @@
             
         </label>
 		<div class="col-sm-6">
-        	<g:select name="rights" class="form-control"  from="${mt.omid.rira.Right.list()}" multiple="multiple" optionKey="id" size="5" value="${roleInstance?.rights*.id}" class="many-to-many"/>
+        	<g:select name="rights" class="form-control"  from="${mt.omid.rira.Right.list()}" multiple="multiple" optionKey="id" size="15" value="${roleInstance?.rights*.id}" class="many-to-many"/>
 <div class="new-item"><a class="new-item-link" href="#" data-toggle="modal" data-target="#rDialog" onclick="loadDialog( '${request.contextPath}/Right/createEmbeded', '#rights' )"> New rights</a></div>
 
 		</div>
