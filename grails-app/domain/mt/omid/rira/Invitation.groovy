@@ -32,4 +32,8 @@ class Invitation {
     static mapping = {
         table name: 'r_invitation', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
+
+    String toString() {
+        "$email"
+    }
 }
