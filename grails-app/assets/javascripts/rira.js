@@ -152,24 +152,37 @@ function appendCollapsiblePanel( name, parent, item )
 }
 
 /****
- * generic function to submti a form by ajax
- * @param container The elemet that contains the form
+ * generic function to submit a form by ajax
+ * @param container The element that contains the form
  * @param successFunction the function ti be executed after successful ajax query
  * if it is null or a non function value, is ignored. It should accept only parameter as result data
  * @returns false to prevent form submission
  */
 function submitFormAjax( container, successFunction, errorFunction ) {
-    //var data = $( container + ' form' ).serialize();
-    var data = JSON.stringify( $( container + ' form' ).serializeObject() );
+    var url = $( container + ' form' ).attr( 'action' );
+    var method = $( container + ' form' ).attr( 'method' );
+    var form = $( container + ' form' );
+
+    if( method == undefined )
+        method = 'post';
+
+    if($(container + ' form input:file').length > 0) {
+        // file uploading form, use form request
+        submitAsForm(form, url, method, successFunction, errorFunction);
+    }
+    else {
+        submitAsJson(form, url ,method, successFunction, errorFunction);
+    }
+
+    return false;
+}
+
+function submitAsJson(form, url ,method, successFunction, errorFunction) {
+    var data = JSON.stringify( form.serializeObject() );
     if( data.length < 0 )
     {
         //return false;
     }
-    var url = $( container + ' form' ).attr( 'action' );
-    var method = $( container + ' form' ).attr( 'method' );
-
-    if( method == undefined )
-        method = 'post';
 
     $.ajax({
         type: method,
@@ -189,7 +202,30 @@ function submitFormAjax( container, successFunction, errorFunction ) {
             }
         }
     });
-    return false;
+}
+
+function submitAsForm(form, url, method, successFunction, errorFunction) {
+    var formData = new FormData(form);
+    $.ajax({
+        type: method,
+        cache: false,
+        contentType: false,
+        processData: false,
+        url: url + '.json',
+        data: formData,
+        success: function( data, textStatus, jqXHR )
+        {
+            if( $.isFunction( successFunction )) {
+                successFunction( data, textStatus, jqXHR );
+            }
+        },
+        error: function( jqXHR, textStatus, errorThrown )
+        {
+            if( $.isFunction( errorFunction )) {
+                errorFunction( jqXHR, textStatus, errorThrown );
+            }
+        }
+    });
 }
 
 /****

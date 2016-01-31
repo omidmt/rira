@@ -421,6 +421,12 @@ Passing the ***apiKey*** parameter and set its value to the key
 http://host/page/show?apiKey=bywnEJjpRsmLgn5hbAW!UNcGLMgIUxzEPkh7dp_N_oc88jQsLwF
 ```
 
+### Embeded Form
+If the form includes file type input then the form is submited as multiplepart/form not json as normal. So the method 
+in controller side still need to return json response by using respond method. It will allow to update select list with
+new created item in the dialog. Before responding it is recommended to nullify the file content property of the saved 
+instance to prevent it to be reported inside the json response.
+
 ##### Author
 Omid M. Tourzan @otourzan
 
