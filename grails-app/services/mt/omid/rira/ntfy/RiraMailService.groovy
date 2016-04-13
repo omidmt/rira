@@ -27,6 +27,7 @@ class RiraMailService {
         }
         catch( e ) {
             log.error "RiraMailService initialization failed " + e.message
+            logoBA = [0, 0, 0, 0]
         }
     }
 
@@ -46,14 +47,19 @@ class RiraMailService {
         if(!KONFIGS.sendPasswordInMail)
             password = "********"
 
-        asynchronousMailService.sendAsynchronousMail {
-            from "${KONFIGS.appName} Admin<${KONFIGS.mailFromAddress}>"
-            to user.email
-            multipart true
-            subject "Welcome to ${KONFIGS.appName}"
-            inline "logo", "image/jpeg", logoBA
-            text view: "/mail/welcome-txt", model: [user: user, password: password]
-            html view: "/mail/welcome-html", model: [user: user, password: password]
+        try {
+            asynchronousMailService.sendAsynchronousMail {
+                from "${KONFIGS.appName} Admin<${KONFIGS.mailFromAddress}>"
+                to user.email
+                multipart true
+                subject "Welcome to ${KONFIGS.appName}"
+                inline "logo", "image/jpeg", logoBA
+                text view: "/mail/welcome-txt", model: [user: user, password: password]
+                html view: "/mail/welcome-html", model: [user: user, password: password]
+            }
+        }
+        catch(e) {
+            log.error("Sending welcome mail failed, ignoring it. error: $e.message", e)
         }
     }
 
