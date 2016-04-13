@@ -1,5 +1,8 @@
 ### 0.5.4
 Add file ajax upload to dialog forms
+Add MSSQLServer support in domain classes and table column
+Introducing config grails.plugin.rira.mssqlserver as boolean to enable
+support of MSSQLServer
 
 ### 0.5.3
 Make node name as unique

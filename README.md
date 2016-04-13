@@ -41,6 +41,7 @@ grails.databinding.dateFormats = ['EEE MMM dd HH:mm:ss yyyy']
 
 grails.plugin.rira.appName = 'appname'
 grails.plugin.rira.schema = 'dbSchemaName'
+grails.plugin.rira.mssqlserver = true|false // If using MS SqlServer
 ```
 
 Update conf/DataSource.groovy
@@ -51,10 +52,10 @@ development {
 //            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
 //            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             dbCreate = "update"
-            url = "jdbc:mysql://127.0.0.1:3306/dbSchemaName?zeroDateTimeBehavior=convertToNull" // In case of local mysql
+            <pre>url = "jdbc:mysql://127.0.0.1:3306/<b>dbSchemaName</b>?zeroDateTimeBehavior=convertToNull" // In case of local mysql</pre>
             driverClassName = "com.mysql.jdbc.Driver"
-            username = "myuser"
-            password = "mypassword"
+            <pre>username = "<b>myuser</b>"</pre>
+            <pre>password = "<b>mypassword</b>"</pre>
             pooled = true
             properties {
                 // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
@@ -75,6 +76,7 @@ development {
                 testOnReturn = false
                 jdbcInterceptors = "ConnectionState"
                 defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED
+            }
         }
     }
 ```
@@ -90,6 +92,8 @@ Comment the root map if nothing defien to do in conf/UrlMappings.groovy
 Add the following json marshaller in conf/BootStrap.groovy
 
 ```groovy
+import grails.converters.JSON
+
 def init = { servletContext ->
     JSON.registerObjectMarshaller(Date) {
         return it?.format("yyyy-MM-dd HH:mm:ss")
@@ -97,10 +101,13 @@ def init = { servletContext ->
 }
 ```
 
+In case of login failure and seeing an security exception like "JCE cannot authenticate the provider BC", boucycastle library should be 
+added to jre as trusted security lib. A working solution can be found in http://stackoverflow.com/a/17400821/1477245
+
 
 ### Install
     plugins {
-        compile ":rira:0.5.0"
+        compile ":rira:0.5.4"
     }
     
 For using security module that needs up to date version of bouncycastle lib, add the following lines in the build config 
@@ -126,7 +133,12 @@ grails.databinding.dateFormats = ['EEE MMM dd HH:mm:ss yyyy', ...]
 
 
 ### Version
-0.4.5
+0.5.4
+- Add file ajax upload to dialog forms
+- Add MSSQLServer support in domain classes and table column
+- Introducing config grails.plugin.rira.mssqlserver as boolean to enable 
+support of MSSQLServer
+- Add app.css as application wide css that apply in layout level
 
 ### Tech
 
@@ -165,6 +177,8 @@ In fact it sets a default value for KONFIGS.appName, so in run-time through the 
 All controller which extends RiraController (and of course its child, Secure and UnSecure) can use rira layout by default through controller.
 
 The main layout meta tag should be removed from views if rira layout should be used for rendering.
+
+An app.css stylesheet can be defined in application that is included in rira layout to apply changes that require from application on plugin layout.
 
 #### Scaffold (Dev)
 To use RIRA customized scaffolding templates which is matched with the theme and make the fields compatible with it follow the following steps:
