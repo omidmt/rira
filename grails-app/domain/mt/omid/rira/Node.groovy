@@ -36,8 +36,8 @@ class Node
     }
 
     static mapping = {
-        active defaultValue: 'true'
-        master defaultValue: 'false'
+        active defaultValue: '1'
+        master defaultValue: '0'
         profile lazy: false
         connectivityPlans lazy: false
         nodeType defaultValue: "1", lazy: false

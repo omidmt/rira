@@ -96,9 +96,9 @@ class User {
 
     static mapping = {
         passwd defaultValue: "'NP'"
-        locked defaultValue: 'false'
+        locked defaultValue: '0'
         failedLogins defaultValue: '0'
-        forcePasswordChange defaulValue: 'false'
+        forcePasswordChange defaulValue: '0'
         table name: "r_user", schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 

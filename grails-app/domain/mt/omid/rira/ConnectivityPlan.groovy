@@ -51,7 +51,8 @@ class ConnectivityPlan {
     }
 
     static mapping ={
-                table name: 'r_connectivity_plan', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
+        table name: 'r_connectivity_plan', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
+        user column: '[user]'
     }
 
     def beforeInsert()

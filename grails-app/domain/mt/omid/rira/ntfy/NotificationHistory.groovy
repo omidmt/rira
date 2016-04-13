@@ -20,7 +20,12 @@ class NotificationHistory {
 
     static mapping =
     {
-        sendDate defaultValue: "now()"
+        if(Holders.grailsApplication.mergedConfig.grails.plugin.rira.mssqlserver) {
+            sendDate defaultValue: "GETDATE()"
+            user column: '[user]'
+        }
+        else
+            sendDate defaultValue: "now()"
         version false
         sort sendDate: "desc"
         table name: 'r_notification_history', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
