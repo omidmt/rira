@@ -205,7 +205,7 @@ function submitAsJson(form, url ,method, successFunction, errorFunction) {
 }
 
 function submitAsForm(form, url, method, successFunction, errorFunction) {
-    var formData = new FormData(form);
+    var formData = new FormData(form[0]);
     $.ajax({
         type: method,
         cache: false,
@@ -283,7 +283,7 @@ $.fn.serializeObject = function()
 function loadDialog( url, target )
 {
     target = typeof target !== 'undefined' ? target : null;
-    $( '#' + rDialogBody ).load( url )
+    $( '#' + rDialogBody ).load( url );
 
     if( target == null )
     {
