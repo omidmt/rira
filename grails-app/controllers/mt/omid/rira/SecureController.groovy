@@ -15,6 +15,7 @@ abstract class SecureController extends RiraController
 
     def afterInterceptor = { model, modelAndView ->
         model.applicos = sessionService.currentUser?.applicos
+        model.user = sessionService.currentUser
     }
 
     private authNauth() {
@@ -30,9 +31,23 @@ abstract class SecureController extends RiraController
             flash.error = "You do not have enough right to access this section."
 
             if (Konfig.KONFIGS.strictAuthorization)
-                redirect controller: "session", action: "logout"
-            else
-                redirect controller: 'home', action: 'index'
+                sessionService.signOut(session)
+
+            def errors = [ [code: UNAUTHORIZED.toString().toInteger(), desc: 'Authorization Failed'] ]
+            withFormat {
+                '*' {
+                    flash.error = "You do not have enough right to access this section."
+                    if (Konfig.KONFIGS.strictAuthorization)
+                        redirect controller: "session", action: "logout"
+                    else
+                        redirect controller: 'home', action: 'index'
+                }
+                json { respond errors, status: UNAUTHORIZED }
+                xml { respond errors, status: UNAUTHORIZED }
+            }
+            return false
+
+
 
             return false
         }
