@@ -129,4 +129,11 @@
 	</div>
 </div>
 </body>
+<script type="application/javascript">
+	<g:if test="${session.menu == '1'}" >
+	</g:if>
+	<g:else>
+	$('#navmenu').offcanvas('hide');
+	</g:else>
+</script>
 </html>

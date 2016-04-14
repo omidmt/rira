@@ -16,6 +16,8 @@ abstract class SecureController extends RiraController
     def afterInterceptor = { model, modelAndView ->
         model.applicos = sessionService.currentUser?.applicos
         model.user = sessionService.currentUser
+        if(params && params.menu)
+            session.menu = params.menu
     }
 
     private authNauth() {
