@@ -66,3 +66,11 @@ body {
     height: 300px;
     overflow-y: auto;
 }
+
+#flashClose
+{
+    float: right;
+    display: inline-block;
+    padding: 2px 5px;
+    cursor: pointer;
+}
