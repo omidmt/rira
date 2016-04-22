@@ -156,6 +156,8 @@ NwIDAQAB
 -----END PUBLIC KEY-----"""
 
         KONFIGS.invitationExpiryDays = KONFIGS.invitationExpiryDays?.isInteger() ? KONFIGS.invitationExpiryDays as int : 3
+
+        KONFIGS.hideMenu = new Boolean( KONFIGS.hideMenu )
     }
 
     def static findExternalConverters()

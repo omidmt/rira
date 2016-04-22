@@ -90,19 +90,19 @@
 			<div class="col-md-4 col-md-offset-4">
 				<g:if test="${flash.error}">
 					<div class="alert alert-danger" role="status" style="display: block">
-						<span id='flashClose' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>&#10006;</span>
+						<span id='flashClose'>&#10006;</span>
 						${flash.error}
 					</div>
 				</g:if>
 				<g:if test="${flash.success}">
 					<div class="alert alert-success" role="status" style="display: block">
-						<span id='flashClose' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>&#10006;</span>
+						<span id='flashClose'>&#10006;</span>
 						${flash.success}
 					</div>
 				</g:if>
 				<g:if test="${flash.message}">
 					<div class="alert alert-info" role="status" style="display: block">
-						<span id='flashClose' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>&#10006;</span>
+						<span id='flashClose'>&#10006;</span>
 						${flash.message}
 					</div>
 				</g:if>
@@ -139,10 +139,8 @@
 </div>
 </body>
 <script type="application/javascript">
-	<g:if test="${session.menu == '1'}" >
-	</g:if>
-	<g:else>
+	<g:if test="${session.menu == '0' || (session.menu == null && Konfig.KONFIGS['hideMenu'])}" >
 	$('#navmenu').offcanvas('hide');
-	</g:else>
+	</g:if>
 </script>
 </html>

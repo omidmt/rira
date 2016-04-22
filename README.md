@@ -139,6 +139,7 @@ grails.databinding.dateFormats = ['EEE MMM dd HH:mm:ss yyyy', ...]
 - Introducing config grails.plugin.rira.mssqlserver as boolean to enable 
 support of MSSQLServer
 - Add app.css as application wide css that apply in layout level
+- Add hideMeuu Konfig as default behavior if menu parameter or session item not exist
 
 ### Tech
 
@@ -359,6 +360,9 @@ better to call static field of Konfig class, as it supposed to be more efficient
 - **pemKeyPassword (string)**
 - **pemPublicKey (string)**
 - **invitationExpiryDays (int[default: 3 days])**
+- **hideMenu (true|false[default])** The **menu** parameter in the 
+request (that persist in session once it is set), overwrite this 
+configuration 
 
 
 ### Mail Service (Dev)

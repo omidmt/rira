@@ -55,6 +55,13 @@ $( document).ready(function()
     initEventHandlers();
     $( "#loginForm" ).submit( signin );
     adjustApplicoHrefs();
+
+    // Flash close X handler
+    $("#flashClose").click(function() {
+        $(this).parent().fadeOut("normal", function() {
+            $(this).remove();
+        });
+    });
 });
 
 function adjustApplicoHrefs() {
