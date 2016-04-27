@@ -1,0 +1,75 @@
+<plugin name='rira' version='0.6.0' grailsVersion='2.4 &gt; *'>
+  <author>Omid M. Tourzan</author>
+  <authorEmail>omid . mt |@| gmail . com</authorEmail>
+  <title>RIRA Plugin</title>
+  <description>A framework to build web apps by having security, notification, configuration and node management as built-in. It also render pages using a default theme and menu.</description>
+  <documentation>http://grails.org/plugin/rira</documentation>
+  <type>RiraGrailsPlugin</type>
+  <resources>
+    <resource>RiraBootStrap</resource>
+    <resource>RiraDefaultConfig</resource>
+    <resource>RiraUrlMappings</resource>
+    <resource>mt.omid.rira.APIKeyController</resource>
+    <resource>mt.omid.rira.ApplicoController</resource>
+    <resource>mt.omid.rira.AuditController</resource>
+    <resource>mt.omid.rira.ConnectivityPlanController</resource>
+    <resource>mt.omid.rira.DataConnectionController</resource>
+    <resource>mt.omid.rira.EventController</resource>
+    <resource>mt.omid.rira.HomeController</resource>
+    <resource>mt.omid.rira.InvitationController</resource>
+    <resource>mt.omid.rira.JobController</resource>
+    <resource>mt.omid.rira.KonfigController</resource>
+    <resource>mt.omid.rira.ModuleController</resource>
+    <resource>mt.omid.rira.NodeController</resource>
+    <resource>mt.omid.rira.NodeProfileController</resource>
+    <resource>mt.omid.rira.NodeTypeController</resource>
+    <resource>mt.omid.rira.OSController</resource>
+    <resource>mt.omid.rira.RegisterController</resource>
+    <resource>mt.omid.rira.RightController</resource>
+    <resource>mt.omid.rira.RiraController</resource>
+    <resource>mt.omid.rira.RoleController</resource>
+    <resource>mt.omid.rira.SecureController</resource>
+    <resource>mt.omid.rira.ServerTypeController</resource>
+    <resource>mt.omid.rira.SessionController</resource>
+    <resource>mt.omid.rira.UnSecureController</resource>
+    <resource>mt.omid.rira.UserController</resource>
+    <resource>mt.omid.rira.ntfy.NotificationGroupController</resource>
+    <resource>mt.omid.rira.ntfy.NotificationHistoryController</resource>
+    <resource>mt.omid.rira.ntfy.NotifyController</resource>
+    <resource>mt.omid.rira.ntfy.RecipientController</resource>
+    <resource>mt.omid.rira.ntfy.TemplateController</resource>
+    <resource>mt.omid.rira.APIKey</resource>
+    <resource>mt.omid.rira.Applico</resource>
+    <resource>mt.omid.rira.Audit</resource>
+    <resource>mt.omid.rira.ConnectivityPlan</resource>
+    <resource>mt.omid.rira.DataConnection</resource>
+    <resource>mt.omid.rira.Event</resource>
+    <resource>mt.omid.rira.Feature</resource>
+    <resource>mt.omid.rira.Invitation</resource>
+    <resource>mt.omid.rira.Job</resource>
+    <resource>mt.omid.rira.Konfig</resource>
+    <resource>mt.omid.rira.Module</resource>
+    <resource>mt.omid.rira.Node</resource>
+    <resource>mt.omid.rira.NodeProfile</resource>
+    <resource>mt.omid.rira.NodeType</resource>
+    <resource>mt.omid.rira.OS</resource>
+    <resource>mt.omid.rira.Right</resource>
+    <resource>mt.omid.rira.Role</resource>
+    <resource>mt.omid.rira.ServerType</resource>
+    <resource>mt.omid.rira.Session</resource>
+    <resource>mt.omid.rira.User</resource>
+    <resource>mt.omid.rira.ntfy.NotificationGroup</resource>
+    <resource>mt.omid.rira.ntfy.NotificationHistory</resource>
+    <resource>mt.omid.rira.ntfy.Recipient</resource>
+    <resource>mt.omid.rira.ntfy.Template</resource>
+    <resource>mt.omid.rira.DataConnectionService</resource>
+    <resource>mt.omid.rira.EventService</resource>
+    <resource>mt.omid.rira.InvitationService</resource>
+    <resource>mt.omid.rira.SecurityService</resource>
+    <resource>mt.omid.rira.SessionService</resource>
+    <resource>mt.omid.rira.UserService</resource>
+    <resource>mt.omid.rira.ntfy.RiraMailService</resource>
+    <resource>mt.omid.rira.ntfy.SMSService</resource>
+    <resource>mt.omid.rira.RiraTagLib</resource>
+  </resources>
+</plugin>

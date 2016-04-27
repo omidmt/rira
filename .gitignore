@@ -1,6 +1,5 @@
 .DS_Store
 *.log
-/plugin.xml
 /target
 /web-app
 /out
