@@ -44,6 +44,7 @@ class DataConnection {
 
     def afterInsert()
     {
+        removeDS( this.name )
         addDS( this )
     }
 
