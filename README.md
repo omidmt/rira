@@ -83,6 +83,17 @@ development {
 
 Same can be applied for production part as well.
 
+In case of using JNDI it is easy as the following and defining data source in application server.
+
+```groovy
+production {
+    dataSource {
+        dbCreate = "update"
+        jndiName = "java:comp/RiraDataSource"
+    }
+}
+```
+
 Comment the root map if nothing defien to do in conf/UrlMappings.groovy
 
 ```groovy
@@ -102,7 +113,7 @@ def init = { servletContext ->
 ```
 
 In case of login failure and seeing an security exception like "JCE cannot authenticate the provider BC", boucycastle library should be 
-added to jre as trusted security lib. A working solution can be found in http://stackoverflow.com/a/17400821/1477245
+added to jre as trusted security lib. A working solution can be found in http://stackoverflow.com/a/17400821/1477245 (Adding bc lib jars to lib/ext and update java.security)
 
 
 ### Install
