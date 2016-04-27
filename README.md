@@ -118,7 +118,7 @@ added to jre as trusted security lib. A working solution can be found in http://
 
 ### Install
     plugins {
-        compile ":rira:0.5.4"
+        compile ":rira:0.6.0"
     }
     
 For using security module that needs up to date version of bouncycastle lib, add the following lines in the build config 
