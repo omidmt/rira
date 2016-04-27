@@ -9,7 +9,7 @@ class DataConnectionService {
 
     int [] batchInsert( String dsName, int size, String query, Closure closure )
     {
-        if( !dsName )
+        if( !dsName || !DATASOURCES[ dsName ])
             return null
 
         Sql sql
@@ -26,7 +26,7 @@ class DataConnectionService {
 
     int [] batchInsert( String dsName, int size, Closure closure )
     {
-        if( !dsName )
+        if( !dsName || !DATASOURCES[ dsName ] )
             return null
 
         Sql sql
@@ -43,7 +43,7 @@ class DataConnectionService {
 
     def executeUpdate( String query, String dsName )
     {
-        if( !dsName )
+        if( !dsName || !DATASOURCES[ dsName ] )
             return null
 
         Sql sql
@@ -60,7 +60,7 @@ class DataConnectionService {
 
     def executeInsert( String query, String dsName )
     {
-        if( !dsName )
+        if( !dsName || !DATASOURCES[ dsName ] )
             return null
 
         Sql sql
@@ -77,7 +77,7 @@ class DataConnectionService {
 
     def execute( String query, String dsName )
     {
-        if( !dsName )
+        if( !dsName || !DATASOURCES[ dsName ] )
             return null
 
         Sql sql
@@ -95,7 +95,7 @@ class DataConnectionService {
 
     def executeQuery( String query, String dsName )
     {
-        if( !dsName )
+        if( !dsName || !DATASOURCES[ dsName ] )
             return null
 
         Sql sql = new Sql( DATASOURCES[ dsName ] )
