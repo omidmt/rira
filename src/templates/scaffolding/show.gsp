@@ -28,7 +28,7 @@
 			props.each { p -> %>
 			<g:if test="\${${propertyName}?.${p.name}}">
 				<div class="form-group">
-					<label for="${p.name}" class="col-sm-2 control-label">${p.naturalName}</label>
+					<label for="${p.name}" class="col-sm-2 control-label"><g:message code="${className}.${p.name}.label" default="${p.naturalName}" /></label>
 					<div class="col-sm-10">
 						<%  if (p.isEnum()) { %>
 						<p id="${p.name}" class="form-control-static disabled" aria-labelledby="${p.name}-label"><g:fieldValue bean="\${${propertyName}}" field="${p.name}"/></p>
