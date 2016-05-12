@@ -42,12 +42,14 @@ class SessionController extends UnSecureController {
             flash.message = "Your password is expired, please choose new one."
             flash.user_email = user.email
             auditActivity( "Login Attempt, password is expired [$username]" )
+            redirect action: 'login' // it should be redirected to change pass page and allow only password change
         }
         else if( user.accountExpiry && user.accountExpiry < new Date() )
         {
             flash.error = "Your account is expired."
             def title = "Sign in"
             auditActivity( "Login Attempt, account is expired [$username]" )
+            redirect action: 'login'
         }
 
         // Successful Login
