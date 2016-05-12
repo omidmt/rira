@@ -87,7 +87,7 @@ class Konfig
         KONFIGS.strictAuthorization = new Boolean( KONFIGS.strictAuthorization )
 
         // Pattern in config shouldn't be enclosed in // when defining as string
-        KONFIGS.passwordComplexity = KONFIGS.passwordComplexity ?: /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/
+        KONFIGS.passwordComplexity = KONFIGS.passwordComplexity ? /$Konfig.KONFIGS.passwordComplexity/ : /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/
 
         KONFIGS.muPasswordComplexity = KONFIGS.muPasswordComplexity ?: /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])(?=.*[\d]).*$/
 
