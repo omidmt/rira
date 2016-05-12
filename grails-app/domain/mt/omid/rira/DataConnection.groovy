@@ -3,6 +3,9 @@ package mt.omid.rira
 import grails.util.Holders
 import groovy.util.logging.Slf4j
 
+import javax.naming.Context
+import javax.naming.InitialContext
+
 @Slf4j
 class DataConnection {
 
@@ -44,7 +47,6 @@ class DataConnection {
 
     def afterInsert()
     {
-        removeDS( this.name )
         addDS( this )
     }
 
@@ -73,20 +75,25 @@ class DataConnection {
         }
 
         try {
-            Class<javax.sql.DataSource> dcCls = DataConnection.classLoader.loadClass( dc.dsClass )
-            Class.forName( dc.driver, false, DataConnection.classLoader )
 
-            DATASOURCES[ dc.name ] = runtimeDataSourceService.addDataSource( dc.name, dcCls ) {
-                driverClassName = dc.driver
-                url = dc.url
-                username = dc.username ?: ""
-                password = dc.password ?: ""
-                testWhileIdle = true
+            if(dc.url?.startsWith('java:'))
+                DATASOURCES[dc.name] = addJndiDS(dc)
+            else {
+                Class<javax.sql.DataSource> dcCls = DataConnection.classLoader.loadClass(dc.dsClass)
+                Class.forName(dc.driver, false, DataConnection.classLoader)
+
+                DATASOURCES[dc.name] = runtimeDataSourceService.addDataSource(dc.name, dcCls) {
+                    driverClassName = dc.driver
+                    url = dc.url
+                    username = dc.username ?: ""
+                    password = dc.password ?: ""
+                    testWhileIdle = true
 
 //                initialSize = 42
 //                testOnBorrow = true
 //                testOnReturn = false
 //                validationQuery = 'SELECT 1'
+                }
             }
         }
         catch( ClassNotFoundException cnfe )
@@ -97,6 +104,15 @@ class DataConnection {
         {
             log.error( "Datasource [$dc.dsClass] adding failed [$e.message] on initializing run-time datasources" )
         }
+    }
+
+    def static addJndiDS(DataConnection dc) {
+        Context initialContext = new InitialContext();
+        if ( initialContext == null){
+            log.error("JNDI problem. Cannot get InitialContext.")
+            return null
+        }
+        return initialContext.lookup(dc.url);
     }
 
     def static removeDS( String name )
