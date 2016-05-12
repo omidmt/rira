@@ -1,3 +1,9 @@
+### 0.6.1
+Supporting JNDI data source (url must start with java:)
+remove #status style as it affects status fields view
+Fix passwordComplexity non-default value string to regex issue
+Update show.gsp template labels to use message tag
+
 ### 0.5.4
 Add file ajax upload to dialog forms
 Add MSSQLServer support in domain classes and table column
