@@ -118,7 +118,7 @@ added to jre as trusted security lib. A working solution can be found in http://
 
 ### Install
     plugins {
-        compile ":rira:0.6.0"
+        compile ":rira:0.6.1"
     }
     
 For using security module that needs up to date version of bouncycastle lib, add the following lines in the build config 
@@ -253,12 +253,17 @@ The data sources can be added in run-time through the DataConnection page or its
 connection it will try to add it to application context by the defined name. That name can be used when using 
 DataConnectionService to execute queries.
 
+JNDI data source (application server defined data sources) also 
+supported by just having ***java:*** at the begining of the url. As it
+  is clear, no need to other information like driver or ouser/pass, since 
+  they are supposed to be defined in the application server.
+
 For defining a new data connection or data source the following parameters should be clear to add:
 
 * name like 'CAMP', it is the reference to use it in the classes that requires this data source
 * data source class (dsClass) like 'org.apache.tomcat.jdbc.pool.DataSource'
 * driver like 'com.mysql.jdbc.Driver'
-* url like 'jdbc:mysql://localhost/CAMP?zeroDateTimeBehavior=convertToNull'
+* url like 'jdbc:mysql://localhost/CAMP?zeroDateTimeBehavior=convertToNull' or 'java:jboss/rira'
 * username and password
 * other is reserved for future use to add some extra connection parameters.
 
@@ -358,7 +363,7 @@ better to call static field of Konfig class, as it supposed to be more efficient
 - **sessionInactivityTimeout (int second)**
 - **defaultHome (string relative url)**
 - **strictAuthorization (true|false[default])**
-- **passwordComplexity (string regex)**
+- **passwordComplexity (string regex)** it shoudln't include heading and trailing / (slash)
 - **muPasswordComplexity (string regex)**
 - **sqlLimit (int[default: 'limit 50000'])** Limiting criteria which will be appended to the end of query (like limit 10) 
 - **smtpServer (string host/IP)**
