@@ -104,12 +104,11 @@
 			// id is "x" and name is "x.id" as the label will have for="x" and "." in an id will confuse CSS
  			sb << ' id="' << property.name << '"'
  			sb << ' name="' << property.name << '.id"'
- 			sb << ' class="form-control" '
+ 			sb << ' class="many-to-one form-control" '
  			sb << ' from="${' << property.type.name << '.list()}"'
  			sb << ' optionKey="id"'
 			if (isRequired()) sb << ' required=""'
  			sb << ' value="${' << "${domainInstance}?.${property.name}" << '?.id}"'
- 			sb << ' class="many-to-one"'
  			sb << renderNoSelection(property)
  			sb << '/>'
  			sb << '\n<div class="new-item">'
@@ -130,14 +129,13 @@
         if (cls != null) {
             def sb = new StringBuilder()
             sb << '<g:select name="' << property.name << '"'
-            sb << ' class="form-control" '
+            sb << ' class="many-to-many form-control" '
             sb << ' from="${' << cls.name << '.list()}"'
             sb << ' multiple="multiple"'
             sb << ' optionKey="id"'
             sb << ' size="5"'
             if (isRequired()) sb << ' required=""'
             sb << ' value="${' << "${domainInstance}?.${property.name}" << '*.id}"'
-            sb << ' class="many-to-many"'
             sb << '/>'
             sb << '\n<div class="new-item"><a class="new-item-link" href="#" data-toggle="modal" data-target="#rDialog" onclick="loadDialog( \'${request.contextPath}/' << cls.simpleName << '/createEmbeded\', ' << '\'#' << property.name << '\' )"> New ' << property.naturalName << '</a></div>'
             sb as String
