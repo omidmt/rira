@@ -21,11 +21,6 @@
 		</div>
 	</div>
 	<div id="show-konfig" class="content scaffold-show" role="main">
-	%{--<h1><g:message code="default.show.label" args="[entityName]" /></h1>--}%
-		<g:if test="${flash.message}">
-			<div class="alert message" role="status">${flash.message}</div>
-		</g:if>
-	%{--<ol class="property-list konfig">--}%
 		<form class="form-horizontal" role="form">
 			
 			<g:if test="${konfigInstance?.key}">
