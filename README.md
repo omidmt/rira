@@ -378,7 +378,9 @@ better to call static field of Konfig class, as it supposed to be more efficient
 - **invitationExpiryDays (int[default: 3 days])**
 - **hideMenu (true|false[default])** The **menu** parameter in the 
 request (that persist in session once it is set), overwrite this 
-configuration 
+configuration is used
+- **jobLogDir** (strign[default: ./) The directory where jobs can use to 
+store their log files
 
 
 ### Mail Service (Dev)
