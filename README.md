@@ -118,7 +118,7 @@ added to jre as trusted security lib. A working solution can be found in http://
 
 ### Install
     plugins {
-        compile ":rira:0.6.1"
+        compile ":rira:0.6.2"
     }
     
 For using security module that needs up to date version of bouncycastle lib, add the following lines in the build config 
@@ -144,13 +144,7 @@ grails.databinding.dateFormats = ['EEE MMM dd HH:mm:ss yyyy', ...]
 
 
 ### Version
-0.5.4
-- Add file ajax upload to dialog forms
-- Add MSSQLServer support in domain classes and table column
-- Introducing config grails.plugin.rira.mssqlserver as boolean to enable 
-support of MSSQLServer
-- Add app.css as application wide css that apply in layout level
-- Add hideMeuu Konfig as default behavior if menu parameter or session item not exist
+Check ChangeLog file for changes in version
 
 ### Tech
 
@@ -462,6 +456,13 @@ If the form includes file type input then the form is submited as multiplepart/f
 in controller side still need to return json response by using respond method. It will allow to update select list with
 new created item in the dialog. Before responding it is recommended to nullify the file content property of the saved 
 instance to prevent it to be reported inside the json response.
+
+### Job Management
+Jobs can be defined as a quartz job by usig create-job command. Keep track of jobs in rira
+ a Job object can be defined and use log method to append notes to it and set status from JobStatus
+ to track state of it. By default job log is saved in database as log field of the domain,
+ but if logfileName property of the object is set, then a file in KONFIG.jobLogDir is created 
+ for keeping the logs.
 
 ##### Author
 Omid M. Tourzan @otourzan

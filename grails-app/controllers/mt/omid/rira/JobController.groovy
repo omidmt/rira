@@ -85,6 +85,24 @@ class JobController extends SecureController {
         }
     }
 
+    def download() {
+        def job = Job.get(params.id)
+        if(job) {
+            def file = new File("${Konfig.KONFIGS.jobLogDir}/${job.logFileName}")
+            if (file.exists()) {
+                response.setContentType("application/octet-stream")
+                response.setHeader("Content-disposition", "attachment;filename=\"${file.name}\"")
+                response.outputStream << file.bytes
+            }
+            else {
+                render "Log file doesn't exist"
+            }
+        }
+        else {
+            render "Invalid job"
+        }
+     }
+
     @Transactional
     def delete(Job jobInstance) {
 

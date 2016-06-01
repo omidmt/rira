@@ -25,40 +25,36 @@
 		<g:if test="${flash.message}">
 			<div class="alert message" role="status">${flash.message}</div>
 		</g:if>
-	%{--<ol class="property-list job">--}%
 		<form class="form-horizontal" role="form">
 			
 			<g:if test="${jobInstance?.name}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
 					<label for="name" class="col-sm-2 control-label">Name</label>
-					%{--<span id="name-label" class="input-group-addon property-label"><g:message code="job.name.label" default="Name" /></span>--}%
 					<div class="col-sm-10">
-						
 						<p class="form-control-static disabled" aria-labelledby="name-label"><g:fieldValue bean="${jobInstance}" field="name"/></p>
-						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
 			<g:if test="${jobInstance?.description}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
 					<label for="description" class="col-sm-2 control-label">Description</label>
-					%{--<span id="description-label" class="input-group-addon property-label"><g:message code="job.description.label" default="Description" /></span>--}%
 					<div class="col-sm-10">
-						
 						<p class="form-control-static disabled" aria-labelledby="description-label"><g:fieldValue bean="${jobInstance}" field="description"/></p>
-						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
-			
-			<g:if test="${jobInstance?.log}">
+
+			<g:if test="${jobInstance?.logFileName}" >
+				<div class="form-group">
+					<label for="log" class="col-sm-2 control-label">Log File</label>
+					<div class="col-sm-10">
+						<g:link id="${jobInstance?.id}" action="download" class="btn btn-info" role="button">Download</g:link>
+					</div>
+				</div>
+			</g:if>
+
+			<g:else>
 			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
 					%{--<span class="input-group-addon">@</span>--}%
@@ -71,7 +67,7 @@
 					</div>
 					%{--</li>--}%
 				</div>
-			</g:if>
+			</g:else>
 			
 			<g:if test="${jobInstance?.status}">
 			%{--<li class="fieldcontain">--}%

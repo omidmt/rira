@@ -37,6 +37,7 @@ seed = {
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'job', applico: [ name: 'Jobs' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'job' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'download', ctrl: 'job' )
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'konfig', applico: [ name: 'Configuration' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'konfig' )

@@ -1,3 +1,8 @@
+### 0.6.2
+Improve Job handling  by adding ClosureJob to use triggerNow of quartz and offering log file instead of database log
+field, toggle it on by setting logFileName property to a filename.
+jobLogDir can indicate the directory to save log files, default is './' .
+
 ### 0.6.1
 Supporting JNDI data source (url must start with java:)
 remove #status style as it affects status fields view
@@ -7,8 +12,10 @@ Update show.gsp template labels to use message tag
 ### 0.5.4
 Add file ajax upload to dialog forms
 Add MSSQLServer support in domain classes and table column
-Introducing config grails.plugin.rira.mssqlserver as boolean to enable
-support of MSSQLServer
+Introducing config grails.plugin.rira.mssqlserver as boolean to enable support of MSSQLServer
+Add app.css as application wide css that apply in layout level
+Add hideMenu Konfig as default behavior if menu parameter or session item not exist
+
 
 ### 0.5.3
 Make node name as unique

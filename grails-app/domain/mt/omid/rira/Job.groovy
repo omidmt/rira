@@ -8,6 +8,8 @@ class Job
     String description
 
     String log = ''
+    String logFileName
+    File logFile
 
     JobStatus status
 
@@ -20,16 +22,22 @@ class Job
     static deletable = true
     static cloneable = true // fields like log, time should be cleaned
 
+    static transients = ['logFile']
+
     static constraints = {
 
         name size: 1..50
         description nullable: true, size: 0..500, widget: 'textarea', editable: false
         log nullable: true, size: 0..100000, widget: 'textarea', editable: false
+        logFileName nullable: true, size: 0..1000, widget: 'textarea', editable: false
 
         status nullable: true
 
         dateCreated display: false
         lastUpdated display: false
+
+        startTime nullable: true
+        endTime nullable: true
     }
 
     static mapping = {
@@ -38,7 +46,21 @@ class Job
 
     void log( msg )
     {
-        log += "\n$msg"
+        if(logFileName) {
+            if(!logFile)
+                logFile = new File("${Konfig.KONFIGS.jobLogDir}/${logFileName}")
+            logFile.write(msg)
+        }
+        else {
+            log += "\n$msg"
+        }
+    }
+
+    def runNow(Closure cls) {
+        cls.delegate = this
+        ClosureJob.triggerNow([runnableClosure: cls])
+        this.log("Job triggered")
+        this.save(flush: true)
     }
 }
 
