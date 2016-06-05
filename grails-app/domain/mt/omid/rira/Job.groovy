@@ -49,7 +49,7 @@ class Job
         if(logFileName) {
             if(!logFile)
                 logFile = new File("${Konfig.KONFIGS.jobLogDir}/${logFileName}")
-            logFile.write(msg)
+            logFile.append(msg)
         }
         else {
             log += "\n$msg"
