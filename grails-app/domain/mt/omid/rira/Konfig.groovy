@@ -160,12 +160,15 @@ NwIDAQAB
         KONFIGS.hideMenu = new Boolean( KONFIGS.hideMenu )
 
         KONFIGS.jobLogDir = KONFIGS.jobLogDir ?: './'
+
+        KONFIGS.largeDataFetchSize = KONFIGS.largeDataFetchSize?.isInteger() ? KONFIGS.largeDataFetchSize as int : Integer.MIN_VALUE
     }
 
     def static findExternalConverters()
     {
         EXTERNAL_KONFIG_CLASSES = []
-        def konfigConverters = Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.converters
+        def konfigConverters = Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.plugins.converters
+        konfigConverters << Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.converters
         if(konfigConverters != null && konfigConverters.class == ArrayList.class) {
             EXTERNAL_KONFIG_CLASSES = konfigConverters
         }
