@@ -32,6 +32,10 @@ dependencies {
         excludes "bouncycastle:bcprov-jdk14:138", "org.bouncycastle:bcprov-jdk14:1.38"
     }
 }
+
+plugins {
+    compile ":rira:0.6.4"
+}
 ```
 
 Add to conf/Config.groovy
@@ -41,6 +45,8 @@ grails.databinding.dateFormats = ['EEE MMM dd HH:mm:ss yyyy']
 
 grails.plugin.rira.appName = 'appname'
 grails.plugin.rira.schema = 'dbSchemaName'
+grails.plugin.rira.konfig.converters = [] // Class name of Konfig converter like mt.omid.app.AppKonfig
+grails.plugin.rira.konfig.scanKonfigConverters = false
 grails.plugin.rira.mssqlserver = true|false // If using MS SqlServer
 ```
 
@@ -118,7 +124,7 @@ added to jre as trusted security lib. A working solution can be found in http://
 
 ### Install
     plugins {
-        compile ":rira:0.6.2"
+        compile ":rira:0.6.4"
     }
     
 For using security module that needs up to date version of bouncycastle lib, add the following lines in the build config 
@@ -375,6 +381,8 @@ request (that persist in session once it is set), overwrite this
 configuration is used
 - **jobLogDir** (strign[default: ./) The directory where jobs can use to 
 store their log files
+- **largeDataFetchSize** (int[default: Integer.MIN]) The fetch size for 
+retrieving large amount of data. It is used in DataConnectionService.fetchLargeData() method. 
 
 
 ### Mail Service (Dev)
