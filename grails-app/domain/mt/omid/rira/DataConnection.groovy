@@ -87,12 +87,13 @@ class DataConnection {
                     url = dc.url
                     username = dc.username ?: ""
                     password = dc.password ?: ""
-                    testWhileIdle = true
 
-//                initialSize = 42
-//                testOnBorrow = true
-//                testOnReturn = false
-//                validationQuery = 'SELECT 1'
+                    testWhileIdle = true
+                    testOnBorrow = true
+                    testOnReturn = false
+                    validationQueryTimeout = 3
+                    validationQuery = 'SELECT 1+1'
+                    maxWait = 20000
                 }
             }
         }
