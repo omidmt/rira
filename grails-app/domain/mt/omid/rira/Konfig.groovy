@@ -167,7 +167,7 @@ NwIDAQAB
     def static findExternalConverters()
     {
         EXTERNAL_KONFIG_CLASSES = []
-        def konfigConverters = Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.plugins.converters
+        def konfigConverters = Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.plugins.converters ?: []
         konfigConverters << Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.converters
         if(konfigConverters != null && konfigConverters.class == ArrayList.class) {
             EXTERNAL_KONFIG_CLASSES = konfigConverters
