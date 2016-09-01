@@ -123,7 +123,8 @@ class DataConnectionService {
             return null
 
         DataSource ds = DATASOURCES[dsName]
-        Statement stmt = ds.getConnection().createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY)
+        def conn = ds.getConnection()
+        Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY)
         stmt.setFetchSize(KONFIGS.largeDataFetchSize)
 
         try
@@ -136,6 +137,7 @@ class DataConnectionService {
             // It cannot be closed here, as it affect the result set operation with not allowed on resultset
             // ignore the above comments as the code changed to use rows method
             stmt.close()
+            conn.close()
         }
     }
 }
