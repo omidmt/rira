@@ -15,7 +15,7 @@ class UserService {
     User updateUserPassword(String cd, String sk, User user) {
         def(curPass, newPass, confPass) = securityService.decryptChangePasswordHash(cd, sk)
 
-        if(!user.locked && user?.hasPassword( curPass ))
+        if(user && !user.locked && user?.hasPassword( curPass ))
         {
             user.password = newPass
             user.passwordConfirmation = confPass

@@ -106,6 +106,7 @@ class SessionService
     void signOut( session )
     {
 //        def session = WebUtils.retrieveGrailsWebRequest().session
+        session?.removeAttribute('userId') // Added for updating expired password (no session) state
         session?.removeAttribute('token')
         session?.invalidate()
     }
