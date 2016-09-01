@@ -1,3 +1,6 @@
+### 0.7.2
+FIx updating expired password
+
 ### 0.7.0
 Add Konfig plugins converter config to handle child plugins KONFIG initialization and conversion
 grails.plugin.rira.konfig.converters=  []
