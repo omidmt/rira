@@ -1,0 +1,95 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: RIRA API
+  description: RIRA  API Specifications
+  contact:
+    name: Omid M Tourzan
+    email: omid.mt@gmail.com
+    url: https://github.com/omidmt/rira
+  license:
+    name: MIT
+    url: http://opensource.org/licenses/MIT
+host: localhost:8080
+basePath: /CAMP
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+  - application/xml
+securityDefinitions:
+  apikeyHeader:
+    type: apiKey
+    name: apiKey
+    in: header
+  apikeyQuery:
+    type: apiKey
+    name: apiKey
+    in: query
+security:
+  - apikeyHeader: []
+  - apikeyQuery: []
+responses:
+  NotAuthorized:
+    description: The requester is unauthorized.
+    schema:
+      $ref: '#/definitions/errors'
+paths:
+  /connections/{detailLevel}/{nodeType}/{connectionType}:
+    get:
+      description: Returns connectivity details of all nodes in the nodeType
+      operationId: connections
+      produces:
+        - application/json
+      parameters:
+        - name: nodeType
+          in: path
+          type: string
+          description: node type of required connection list
+          required: true
+        - name: detailLevel
+          in: path
+          type: string
+          required: true
+          description: The detail level of connectivity information, can be ip|ipNkey|ipNpswd
+        - name: connectionType
+          in: path
+          required: true
+          type: string
+          description: The type of connection, like SSH, LDAP or any user defined connection type for thos node type
+      responses:
+        '200':
+          description: connectivity list
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/connection'
+        '401':
+          $ref: '#/responses/NotAuthorized'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errors'
+definitions:
+  errors:
+    type: array
+    items: 
+      $ref: '#/definitions/error'
+  error:
+    type: object
+    required:
+      - code
+      - desc
+    properties:
+      code:
+        type: integer
+        format: int32
+      desc:
+        type: string
+  connection:
+    type: array
+    items:
+      type: string
