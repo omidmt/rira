@@ -12,6 +12,8 @@ info:
     url: http://opensource.org/licenses/MIT
 host: localhost:8080
 basePath: /CAMP
+tags:
+  - name: "node"
 schemes:
   - http
   - https
@@ -40,6 +42,8 @@ responses:
 paths:
   /connections/{detailLevel}/{nodeType}/{connectionType}:
     get:
+      tags:
+        - "node"
       description: Returns connectivity details of all nodes in the nodeType
       operationId: connections
       produces:
@@ -62,11 +66,13 @@ paths:
           description: The type of connection, like SSH, LDAP or any user defined connection type for thos node type
       responses:
         '200':
-          description: connectivity list
+          description: connections list
           schema:
             type: array
             items:
-              $ref: '#/definitions/connection'
+              type: array
+              items:
+                type: string 
         '401':
           $ref: '#/responses/NotAuthorized'
         default:
