@@ -15,7 +15,7 @@
 
     <div class="form-group ${hasErrors(bean: connectivityPlanInstance, field: 'ip', 'error')} ">
         <label for="ip" class="col-sm-3 control-label">
-            <g:message code="connectivityPlan.ip.label" default="Ip" />
+            <g:message code="connectivityPlan.ip.label" default="IP" />
             
         </label>
 		<div class="col-sm-6">
@@ -35,13 +35,16 @@
 		</div>
     </div>
 
-    <div class="form-group ${hasErrors(bean: connectivityPlanInstance, field: 'loginMethod', 'error')} required">
-        <label for="loginMethod" class="col-sm-3 control-label">
-            <g:message code="connectivityPlan.loginMethod.label" default="Login Method" />
+    <div class="form-group ${hasErrors(bean: connectivityPlanInstance, field: 'type', 'error')} required">
+        <label for="type" class="col-sm-3 control-label">
+            <g:message code="connectivityPlan.type.label" default="Type" />
             <span class="required-indicator">*</span>
         </label>
 		<div class="col-sm-6">
-        	<g:select name="loginMethod" class="form-control"  from="${mt.omid.rira.utils.LoginMethod?.values()}" keys="${mt.omid.rira.utils.LoginMethod.values()*.name()}" required="" value="${connectivityPlanInstance?.loginMethod?.name()}" />
+        	<g:select id="type" name="type.id" class="many-to-one form-control"  from="${mt.omid.rira.ConnectionType.list()}" optionKey="id" required="" value="${connectivityPlanInstance?.type?.id}"/>
+<div class="new-item">
+<a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( '${request.contextPath}/ConnectionType/createEmbeded', '#type' )"> New Type</a>
+</div>
 
 		</div>
     </div>
@@ -85,7 +88,7 @@
             
         </label>
 		<div class="col-sm-6">
-        	<g:textArea name="privateKey" cols="40" rows="5" maxlength="3000" value="${connectivityPlanInstance?.privateKey}"/>
+        	<g:textArea name="privateKey" cols="40" rows="15" maxlength="3000" value="${connectivityPlanInstance?.privateKey}"/>
 
 		</div>
     </div>
@@ -107,7 +110,18 @@
             
         </label>
 		<div class="col-sm-6">
-        	<g:textArea name="publicKey" cols="40" rows="5" maxlength="3000" value="${connectivityPlanInstance?.publicKey}"/>
+        	<g:textArea name="publicKey" cols="40" rows="15" maxlength="3000" value="${connectivityPlanInstance?.publicKey}"/>
+
+		</div>
+    </div>
+
+    <div class="form-group ${hasErrors(bean: connectivityPlanInstance, field: 'certificate', 'error')} ">
+        <label for="certificate" class="col-sm-3 control-label">
+            <g:message code="connectivityPlan.certificate.label" default="Certificate" />
+            
+        </label>
+		<div class="col-sm-6">
+        	<g:textArea name="certificate" cols="40" rows="15" maxlength="10000" value="${connectivityPlanInstance?.certificate}"/>
 
 		</div>
     </div>
@@ -118,7 +132,7 @@
             
         </label>
 		<div class="col-sm-6">
-        	<g:select id="node" name="node.id" class="form-control"  from="${mt.omid.rira.Node.list()}" optionKey="id" value="${connectivityPlanInstance?.node?.id}" class="many-to-one" noSelection="['null': '']"/>
+        	<g:select id="node" name="node.id" class="many-to-one form-control"  from="${mt.omid.rira.Node.list()}" optionKey="id" value="${connectivityPlanInstance?.node?.id}" noSelection="['null': '']"/>
 <div class="new-item">
 <a class="new-item-link" data-toggle="modal" data-target="#rDialog" href="#" onclick="loadDialog( '${request.contextPath}/Node/createEmbeded', '#node' )"> New Node</a>
 </div>
@@ -126,25 +140,4 @@
 		</div>
     </div>
 
-    <div class="form-group ${hasErrors(bean: connectivityPlanInstance, field: 'passphraseDecrypted', 'error')} ">
-        <label for="passphraseDecrypted" class="col-sm-3 control-label">
-            <g:message code="connectivityPlan.passphraseDecrypted.label" default="Passphrase Decrypted" />
-            
-        </label>
-		<div class="col-sm-6">
-        	<g:textField name="passphraseDecrypted" class="form-control"  value="${connectivityPlanInstance?.passphraseDecrypted}" />
-
-		</div>
-    </div>
-
-    <div class="form-group ${hasErrors(bean: connectivityPlanInstance, field: 'passwordDecrypted', 'error')} ">
-        <label for="passwordDecrypted" class="col-sm-3 control-label">
-            <g:message code="connectivityPlan.passwordDecrypted.label" default="Password Decrypted" />
-            
-        </label>
-		<div class="col-sm-6">
-        	<g:textField name="passwordDecrypted" class="form-control"  value="${connectivityPlanInstance?.passwordDecrypted}" />
-
-		</div>
-    </div>
 

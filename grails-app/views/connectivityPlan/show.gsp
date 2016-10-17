@@ -9,7 +9,6 @@
 </head>
 <body>
 <div class="container">
-	%{--<a href="#show-connectivityPlan" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>--}%
 	<br/>
 	<div class="navbar">
 		<div class="nav">
@@ -21,152 +20,128 @@
 		</div>
 	</div>
 	<div id="show-connectivityPlan" class="content scaffold-show" role="main">
-	%{--<h1><g:message code="default.show.label" args="[entityName]" /></h1>--}%
-		<g:if test="${flash.message}">
-			<div class="alert message" role="status">${flash.message}</div>
-		</g:if>
-	%{--<ol class="property-list connectivityPlan">--}%
 		<form class="form-horizontal" role="form">
 			
 			<g:if test="${connectivityPlanInstance?.name}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="name" class="col-sm-2 control-label">Name</label>
-					%{--<span id="name-label" class="input-group-addon property-label"><g:message code="connectivityPlan.name.label" default="Name" /></span>--}%
+					<label for="name" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.name.label" default="Name" /></label>
 					<div class="col-sm-10">
 						
 						<p class="form-control-static disabled" aria-labelledby="name-label"><g:fieldValue bean="${connectivityPlanInstance}" field="name"/></p>
 						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
 			<g:if test="${connectivityPlanInstance?.ip}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="ip" class="col-sm-2 control-label">Ip</label>
-					%{--<span id="ip-label" class="input-group-addon property-label"><g:message code="connectivityPlan.ip.label" default="Ip" /></span>--}%
+					<label for="ip" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.ip.label" default="Ip" /></label>
 					<div class="col-sm-10">
 						
 						<p class="form-control-static disabled" aria-labelledby="ip-label"><g:fieldValue bean="${connectivityPlanInstance}" field="ip"/></p>
 						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
 			<g:if test="${connectivityPlanInstance?.port}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="port" class="col-sm-2 control-label">Port</label>
-					%{--<span id="port-label" class="input-group-addon property-label"><g:message code="connectivityPlan.port.label" default="Port" /></span>--}%
+					<label for="port" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.port.label" default="Port" /></label>
 					<div class="col-sm-10">
 						
 						<p class="form-control-static disabled" aria-labelledby="port-label"><g:fieldValue bean="${connectivityPlanInstance}" field="port"/></p>
 						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
-			<g:if test="${connectivityPlanInstance?.loginMethod}">
-			%{--<li class="fieldcontain">--}%
+			<g:if test="${connectivityPlanInstance?.type}">
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="loginMethod" class="col-sm-2 control-label">Login Method</label>
-					%{--<span id="loginMethod-label" class="input-group-addon property-label"><g:message code="connectivityPlan.loginMethod.label" default="Login Method" /></span>--}%
+					<label for="type" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.type.label" default="Type" /></label>
 					<div class="col-sm-10">
 						
-						<p id="loginMethod" class="form-control-static disabled" aria-labelledby="loginMethod-label"><g:fieldValue bean="${connectivityPlanInstance}" field="loginMethod"/></p>
+						<g:select id="type"
+								  name="type.id"
+								  class="form-control"
+								  from="${mt.omid.rira.ConnectionType.list()}"
+								  optionKey="id"
+								  size="10"
+								  value="${connectivityPlanInstance?.type?.id}"
+								  class="many-to-one"
+								  disabled="disabled"
+								  noSelection="['null': '']"/>
 						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
 			<g:if test="${connectivityPlanInstance?.user}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="user" class="col-sm-2 control-label">User</label>
-					%{--<span id="user-label" class="input-group-addon property-label"><g:message code="connectivityPlan.user.label" default="User" /></span>--}%
+					<label for="user" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.user.label" default="User" /></label>
 					<div class="col-sm-10">
 						
 						<p class="form-control-static disabled" aria-labelledby="user-label"><g:fieldValue bean="${connectivityPlanInstance}" field="user"/></p>
 						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
 			<g:if test="${connectivityPlanInstance?.password}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="password" class="col-sm-2 control-label">Password</label>
-					%{--<span id="password-label" class="input-group-addon property-label"><g:message code="connectivityPlan.password.label" default="Password" /></span>--}%
+					<label for="password" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.password.label" default="Password" /></label>
 					<div class="col-sm-10">
 						
 						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
 			<g:if test="${connectivityPlanInstance?.privateKey}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="privateKey" class="col-sm-2 control-label">Private Key</label>
-					%{--<span id="privateKey-label" class="input-group-addon property-label"><g:message code="connectivityPlan.privateKey.label" default="Private Key" /></span>--}%
+					<label for="privateKey" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.privateKey.label" default="Private Key" /></label>
 					<div class="col-sm-10">
 						
 						<p class="form-control-static disabled" aria-labelledby="privateKey-label"><g:fieldValue bean="${connectivityPlanInstance}" field="privateKey"/></p>
 						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
 			<g:if test="${connectivityPlanInstance?.passphrase}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="passphrase" class="col-sm-2 control-label">Passphrase</label>
-					%{--<span id="passphrase-label" class="input-group-addon property-label"><g:message code="connectivityPlan.passphrase.label" default="Passphrase" /></span>--}%
+					<label for="passphrase" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.passphrase.label" default="Passphrase" /></label>
 					<div class="col-sm-10">
 						
 						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
 			<g:if test="${connectivityPlanInstance?.publicKey}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="publicKey" class="col-sm-2 control-label">Public Key</label>
-					%{--<span id="publicKey-label" class="input-group-addon property-label"><g:message code="connectivityPlan.publicKey.label" default="Public Key" /></span>--}%
+					<label for="publicKey" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.publicKey.label" default="Public Key" /></label>
 					<div class="col-sm-10">
 						
 						<p class="form-control-static disabled" aria-labelledby="publicKey-label"><g:fieldValue bean="${connectivityPlanInstance}" field="publicKey"/></p>
 						
 					</div>
-					%{--</li>--}%
+				</div>
+			</g:if>
+			
+			<g:if test="${connectivityPlanInstance?.certificate}">
+				<div class="form-group">
+					<label for="certificate" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.certificate.label" default="Certificate" /></label>
+					<div class="col-sm-10">
+						
+						<p class="form-control-static disabled" aria-labelledby="certificate-label"><g:fieldValue bean="${connectivityPlanInstance}" field="certificate"/></p>
+						
+					</div>
 				</div>
 			</g:if>
 			
 			<g:if test="${connectivityPlanInstance?.node}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="node" class="col-sm-2 control-label">Node</label>
-					%{--<span id="node-label" class="input-group-addon property-label"><g:message code="connectivityPlan.node.label" default="Node" /></span>--}%
+					<label for="node" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.node.label" default="Node" /></label>
 					<div class="col-sm-10">
 						
 						<g:select id="node"
@@ -181,42 +156,32 @@
 								  noSelection="['null': '']"/>
 						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
 			<g:if test="${connectivityPlanInstance?.dateCreated}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="dateCreated" class="col-sm-2 control-label">Date Created</label>
-					%{--<span id="dateCreated-label" class="input-group-addon property-label"><g:message code="connectivityPlan.dateCreated.label" default="Date Created" /></span>--}%
+					<label for="dateCreated" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.dateCreated.label" default="Date Created" /></label>
 					<div class="col-sm-10">
 						
 						<p class="form-control-static disabled" aria-labelledby="dateCreated-label"><g:formatDate date="${connectivityPlanInstance?.dateCreated}" /></p>
 						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
 			<g:if test="${connectivityPlanInstance?.lastUpdated}">
-			%{--<li class="fieldcontain">--}%
 				<div class="form-group">
-					%{--<span class="input-group-addon">@</span>--}%
-					<label for="lastUpdated" class="col-sm-2 control-label">Last Updated</label>
-					%{--<span id="lastUpdated-label" class="input-group-addon property-label"><g:message code="connectivityPlan.lastUpdated.label" default="Last Updated" /></span>--}%
+					<label for="lastUpdated" class="col-sm-2 control-label"><g:message code="ConnectivityPlan.lastUpdated.label" default="Last Updated" /></label>
 					<div class="col-sm-10">
 						
 						<p class="form-control-static disabled" aria-labelledby="lastUpdated-label"><g:formatDate date="${connectivityPlanInstance?.lastUpdated}" /></p>
 						
 					</div>
-					%{--</li>--}%
 				</div>
 			</g:if>
 			
 		</form>
-	%{--</ol>--}%
 		<g:form url="[resource:connectivityPlanInstance, action:'delete']" method="DELETE">
 			<div class="btn-group">
 				<fieldset class="form-group">

@@ -12,6 +12,7 @@ seed = {
     applico( meta: [key: 'name', update: false ], name: 'Nodes', path: 'node', family: 'Node' )
     applico( meta: [key: 'name', update: false ], name: 'Audit Log', path: 'audit', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Connectivity Plan', path: 'connectivityPlan', family: 'Node' )
+    applico( meta: [key: 'name', update: false ], name: 'Connection Types', path: 'connectionType', family: 'Node' )
     applico( meta: [key: 'name', update: false ], name: 'Event', path:  'event', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Data Connection', path: 'dataConnection', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Node Types', path: 'nodeType', family: 'Admin' )
@@ -33,6 +34,10 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'connectivityPlan' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'connectivityPlan' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'connectivityPlan' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'ip', ctrl: 'connectivityPlan' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'ipNkey', ctrl: 'connectivityPlan' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'ipNpswd', ctrl: 'connectivityPlan' )
+
 
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'job', applico: [ name: 'Jobs' ] )
@@ -202,6 +207,17 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'APIKey' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'APIKey' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'APIKey' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'connectionType', applico: [ name: 'Connection Types' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'connectionType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'connectionType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'connectionType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'editEmbeded', ctrl: 'connectionType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'connectionType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'connectionType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'connectionType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'connectionType' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'connectionType' )
 
     print "Adding RADMIN Role"
     role( meta: [key: [ 'name' ], update: false], name: 'Radmin', rights: [ [act: 'index', ctrl: '*'],

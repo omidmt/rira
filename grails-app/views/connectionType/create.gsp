@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="rira">
-		<g:set var="entityName" value="${message(code: 'connectivityPlan.label', default: 'ConnectivityPlan')}" />
+		<g:set var="entityName" value="${message(code: 'connectionType.label', default: 'ConnectionType')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -15,18 +15,18 @@
                 </ul>
             </div>
         </div>
-		<div id="create-connectivityPlan" class="content scaffold-create" role="main">
+		<div id="create-connectionType" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-			<g:hasErrors bean="${connectivityPlanInstance}">
+			<g:hasErrors bean="${connectionTypeInstance}">
 			<ul class="errors" role="alert">
-				<g:eachError bean="${connectivityPlanInstance}" var="error">
+				<g:eachError bean="${connectionTypeInstance}" var="error">
 				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form id="connectivityPlanInstance" url="[resource:connectivityPlanInstance, action:'save']"  class="form-horizontal" role="form" >
+			<g:form id="connectionTypeInstance" url="[resource:connectionTypeInstance, action:'save']"  class="form-horizontal" role="form" >
 					<g:render template="form"/>
-					<g:submitButton name="create" form="connectivityPlanInstance" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="create" form="connectionTypeInstance" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 			</g:form>
 		</div>
     </div>

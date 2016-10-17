@@ -1,5 +1,6 @@
 package mt.omid.rira
 
+import grails.converters.JSON
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -13,6 +14,33 @@ class ConnectivityPlanController extends SecureController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond ConnectivityPlan.list(params), model: [connectivityPlanInstanceCount: ConnectivityPlan.count()]
+    }
+
+    def ip() {
+        String nt = params.nodeType
+        String ct = params.connectionType
+
+        respond ConnectivityPlan.where {
+            node.nodeType.name == nt && type.name == ct
+        }.findAll().collect{[it.node?.name, it.ip, it.port]} , [formats: ['json']]
+    }
+
+    def ipNkey() {
+        String nt = params.nodeType
+        String ct = params.connectionType
+
+        respond ConnectivityPlan.where {
+            node.nodeType.name == nt && type.name == ct
+        }.findAll().collect{[it.node?.name, it.ip, it.port, it.privateKeyDecrypted, it.passphraseDecrypted]} , [formats: ['json']]
+    }
+
+    def ipNpswd() {
+        String nt = params.nodeType
+        String ct = params.connectionType
+
+        respond ConnectivityPlan.where {
+            node.nodeType.name == nt && type.name == ct
+        }.findAll().collect{[it.node?.name, it.ip, it.port, it.passwordDecrypted]} , [formats: ['json']]
     }
 
     def show(ConnectivityPlan connectivityPlanInstance) {

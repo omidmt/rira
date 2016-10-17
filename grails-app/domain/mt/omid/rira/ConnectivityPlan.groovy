@@ -1,7 +1,6 @@
 package mt.omid.rira
 
 import grails.util.Holders
-import mt.omid.rira.utils.LoginMethod
 import org.codehaus.groovy.grails.validation.routines.InetAddressValidator
 
 class ConnectivityPlan {
@@ -17,7 +16,9 @@ class ConnectivityPlan {
     String publicKey
     String privateKey
     String passphrase
-    LoginMethod loginMethod
+    String certificate
+//    LoginMethod loginMethod
+    ConnectionType type
 
     Date dateCreated
     Date lastUpdated
@@ -36,15 +37,17 @@ class ConnectivityPlan {
         name blank: false, size: 1..100
         ip nullable: true, validator: inetAddressValidator
         port nullable: true, validator: { val -> if( val < 0 || val > 65535 ) return "Port must be in the range of 0-65535" }
-        loginMethod()
+//        loginMethod()
+        type()
 
         user nullable: true, size: 0..100
         password password: true, nullable: true, size: 0..1500
         passwordConfirmation password: true, bindable: true, nullable: true,
-                             validator: { val, self -> if( (self.password || val) && self.isDirty( 'password' ) ) val && val == self.password ? true : ['User.passwordConfirmation.invalid.matchingpasswords'] }
-        privateKey nullable: true, size: 0..3000, widget: 'textarea'
+                validator: { val, self -> val == self.password ? true : [ 'User.passwordConfirmation.invalid.matchingpasswords' ] }
+        privateKey nullable: true, size: 0..3000, widget: 'textarea' // should be changed to file upload
         passphrase nullable: true, size: 0..1500, password: true, validator: { val, self -> if( self.privateKey && !val ) [ 'Node.passphrase.required' ] }
-        publicKey nullable: true, size: 0..3000, widget: 'textarea'
+        publicKey nullable: true, size: 0..3000, widget: 'textarea' // should be changed to file upload
+        certificate nullable: true, size: 0..10000, widget: 'textarea' // should be changed to file upload
         node nullable: true
 
         securityService display: false
@@ -57,13 +60,21 @@ class ConnectivityPlan {
 
     def beforeInsert()
     {
-        if( password && password == passwordConfirmation )
+        printf "${password} : ${passwordConfirmation}"
+        if(password == passwordConfirmation)
         {
             password = securityService.encryptAES( password )
             passwordConfirmation = password
         }
+        else {
+            return false
+        }
 
-        passphrase = encrypt( passphrase )
+        if(passphrase)
+            passphrase = encrypt( passphrase )
+
+        if(privateKey)
+            privateKey = encrypt(privateKey)
 
     }
 
@@ -73,6 +84,8 @@ class ConnectivityPlan {
         encryptPasswordAndConfirmation 'password'
 
         passphrase = encryptOrGetPersistentValue( passphrase, 'passphrase' )
+
+        privateKey = encryptOrGetPersistentValue(privateKey, 'privateKey')
 //        log.debug "Pass enced $password"
     }
 
@@ -86,12 +99,26 @@ class ConnectivityPlan {
 
     String getPasswordDecrypted(  )
     {
-        decrypt password
+        if(password && password.length() > 0)
+            decrypt password
+        else
+            null
     }
 
     String getPassphraseDecrypted(  )
     {
-        decrypt passphrase
+        if(passphrase && passphrase.length() > 0)
+            decrypt passphrase
+        else
+            null
+    }
+
+    String getPrivateKeyDecrypted(  )
+    {
+        if(privateKey && privateKey.length() > 0)
+            decrypt privateKey
+        else
+            null
     }
 
     String toString()

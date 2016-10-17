@@ -13,6 +13,10 @@ class RiraUrlMappings {
             action = "logout"
         }
 
+        "/connections/ip/$nodeType/$connectionType" (controller: "connectivityPlan", action: "ip")
+        "/connections/ipNkey/$nodeType/$connectionType" (controller: "connectivityPlan", action: "ipNkey")
+        "/connections/ipNpswd/$nodeType/$connectionType" (controller: "connectivityPlan", action: "ipNpswd")
+
         "/" {
             controller = "home"
             action = "index"
