@@ -92,7 +92,7 @@ class SessionController extends UnSecureController {
     }
 
     def passwordChange() {
-        long userId = params.id ?: session['userId']
+        long userId = params.id as long ?: session['userId'] as long
         render view: 'passwordChange', model: [userId: userId]
     }
 
