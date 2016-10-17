@@ -13,6 +13,13 @@ class DataConnectionService {
 
     static transactional = false
 
+    public boolean isDataConnectionExist(String connectionName) {
+        if(!DATASOURCES[connectionName])
+            return false
+        else
+            return true
+    }
+
     int [] batchInsert( String dsName, int size, String query, Closure closure )
     {
         if( !dsName || !DATASOURCES[ dsName ])
