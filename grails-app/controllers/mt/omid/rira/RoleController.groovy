@@ -71,6 +71,12 @@ class RoleController extends SecureController {
             return
         }
 
+        roleInstance.rights.clear()
+        params.rights.each {
+            roleInstance.addToRights(Right.get(it))
+        }
+        roleInstance.validate()
+
         if (roleInstance.hasErrors()) {
             respond roleInstance.errors, view: 'edit'
             return
