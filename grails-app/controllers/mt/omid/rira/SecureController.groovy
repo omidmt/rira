@@ -30,7 +30,6 @@ abstract class SecureController extends RiraController
             }
 
             log.debug "Authorization failed"
-            flash.error = "You do not have enough right to access this section."
 
             if (Konfig.KONFIGS.strictAuthorization)
                 sessionService.signOut(session)
