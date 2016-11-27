@@ -40,6 +40,12 @@
 	<asset:javascript src="jasny/js/jasny-bootstrap.js" />
 	<asset:stylesheet src="app.css" media="screen" />
 
+	<g:javascript>
+    window.grails = {
+        baseUrl: '${raw(g.createLink(absolute:true, uri:"/"))}',
+        assetsUrl : '${ raw(asset.assetPath(src: '')) }'
+    };
+	</g:javascript>
 	<g:layoutHead/>
 
 	<r:layoutResources />
@@ -57,7 +63,7 @@
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-collapse-01">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#home">Home</a></li>
+				<li class="active"><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#home" onclick="location.href=window.grails.baseUrl;">Home</a></li>
 				<li><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#about">About</a></li>
 				<li><g:link controller="user" action="settings" data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true">${user ? user.name : 'Setting'}</g:link></li>
 				<li><g:link mapping="logout" data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true">Sign Out</g:link></li>
@@ -142,5 +148,15 @@
 	<g:if test="${session.menu == '0' || (session.menu == null && Konfig.KONFIGS['hideMenu'])}" >
 	$('#navmenu').offcanvas('hide');
 	</g:if>
+
+	try {
+		<g:applyCodec encodeAs="none">
+		${mt.omid.rira.Konfig.KONFIGS.riraLayoutScript}
+		</g:applyCodec>
+	}
+	catch(ex) {
+		console.log('layout custom script failed to execute');
+		console.log(ex.message);
+	}
 </script>
 </html>
