@@ -21,8 +21,8 @@ if (typeof jQuery !== 'undefined') {
 
 $( document).ready(function()
 {
-	if($( "#sticker" ) != null && typeof $( "#sticker" ).sticky == "function") {
-		$("#sticker").sticky({topSpacing: 0});
+    if($( "#sticker" ) != null && typeof $( "#sticker" ).sticky == "function") {
+        $("#sticker").sticky({topSpacing: 0});
     }
 //    $( 'input[type=text],input[type=email], input[type=password], textarea, select' ).addClass( "form-control" );
     $( 'input[type=text],input[type=email], input[type=password], textarea' ).addClass( "form-control" );
@@ -477,15 +477,15 @@ var RIRA =  (function (rira) {
         var contentType = '';
         var extension = '';
         switch(type) {
-            case REQUEST_TYPE_HTML:
+            case rira.REQUEST_TYPE_HTML:
                 contentType = 'text/html';
                 extension = '';
                 break;
-            case REQUEST_TYPE_JSON:
+            case rira.REQUEST_TYPE_JSON:
                 contentType = 'application/json';
                 extension = '.json'
                 break;
-            case REQUEST_TYPE_XML:
+            case rira.REQUEST_TYPE_XML:
                 contentType = 'application/xml';
                 extension = '.xml'
                 break;
@@ -506,15 +506,15 @@ var RIRA =  (function (rira) {
     };
 
     rira.requestJSON = function(method, controller, action, successFunc, errorFunc, postData, id) {
-        return request(method, REQUEST_TYPE_JSON, controller, action, successFunc, errorFunc, postData, id);
+        return rira.request(method, rira.REQUEST_TYPE_JSON, controller, action, successFunc, errorFunc, postData, id);
     };
 
     rira.requestHTML = function(method, controller, action, successFunc, errorFunc, postData, id) {
-        return request(method, REQUEST_TYPE_HTML, controller, action, successFunc, errorFunc, postData, id);
+        return rira.request(method, rira.REQUEST_TYPE_HTML, controller, action, successFunc, errorFunc, postData, id);
     };
 
     rira.requestXML = function(method, controller, action, successFunc, errorFunc, postData, id) {
-        return request(method, REQUEST_TYPE_XML, controller, action, successFunc, errorFunc, postData, id);
+        return rira.request(method, rira.REQUEST_TYPE_XML, controller, action, successFunc, errorFunc, postData, id);
     };
 
     rira.getMessage = function(jqXHR) {
