@@ -17,9 +17,6 @@
             </div>
         </div>
 		<div id="edit-recipient" class="content scaffold-edit" role="main">
-			<g:if test="${flash.message}">
-			<div class="alert message" role="status">${flash.message}</div>
-			</g:if>
 			<g:hasErrors bean="${recipientInstance}">
 			<ul class="errors" role="alert">
 				<g:eachError bean="${recipientInstance}" var="error">

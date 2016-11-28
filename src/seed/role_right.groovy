@@ -21,6 +21,8 @@ seed = {
     applico( meta: [key: 'name', update: false ], name: 'Server Types', path: 'serverType', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'Invitation', path: 'invitation', family: 'Admin' )
     applico( meta: [key: 'name', update: false ], name: 'APIKey', path: 'APIKey', family: 'Admin' )
+    applico( meta: [key: 'name', update: false ], name: 'Notification Settings', path: 'notificationGroup', family: 'Admin' )
+    applico( meta: [key: 'name', update: false ], name: 'SMS Notification', path: 'notify', family: 'Admin' )
 
 
     print "Seeding Rights"
@@ -37,8 +39,6 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'ip', ctrl: 'connectivityPlan' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'ipNkey', ctrl: 'connectivityPlan' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'ipNpswd', ctrl: 'connectivityPlan' )
-
-
 
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'job', applico: [ name: 'Jobs' ] )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'job' )
@@ -218,6 +218,54 @@ seed = {
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'connectionType' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'connectionType' )
     right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'connectionType' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'notificationGroup', applico: [ name: 'Notification Settings' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'notificationGroup' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'notificationGroup' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'notificationGroup' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'editEmbeded', ctrl: 'notificationGroup' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'notificationGroup' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'notificationGroup' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'notificationGroup' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'notificationGroup' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'notificationGroup' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'notificationHistory' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'notificationHistory' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'notificationHistory' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'notificationHistory' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'editEmbeded', ctrl: 'notificationHistory' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'notificationHistory' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'notificationHistory' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'notificationHistory' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'notificationHistory' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'notificationHistory' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'recipient' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'recipient' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'recipient' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'recipient' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'editEmbeded', ctrl: 'recipient' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'recipient' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'recipient' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'recipient' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'recipient' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'recipient' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'template' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'show', ctrl: 'template' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'edit', ctrl: 'template' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'create', ctrl: 'template' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'editEmbeded', ctrl: 'template' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'createEmbeded', ctrl: 'template' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'update', ctrl: 'template' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'save', ctrl: 'template' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'delete', ctrl: 'template' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'clone', ctrl: 'template' )
+
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'index', ctrl: 'notify', applico: [ name: 'SMS Notification' ] )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'send', ctrl: 'notify' )
+    right( meta: [key: [ 'act', 'ctrl' ], update: false], act: 'admin', ctrl: 'notify' )
 
     print "Adding RADMIN Role"
     role( meta: [key: [ 'name' ], update: false], name: 'Radmin', rights: [ [act: 'index', ctrl: '*'],

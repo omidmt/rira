@@ -34,7 +34,13 @@ class RecipientController extends SecureController {
     }
 
     @Transactional
-    def save(Recipient recipientInstance) {
+    def save() {
+        Recipient recipientInstance = new Recipient(name: params.name,
+                email: params.email,
+                instantMessaging: params.instantMessaging,
+                phone: params.phone
+        )
+        recipientInstance.validate()
         if (recipientInstance == null) {
             notFound()
             return
@@ -45,6 +51,10 @@ class RecipientController extends SecureController {
             return
         }
 
+        recipientInstance.save()
+
+        updateGroups(recipientInstance, params.notifGroup)
+        recipientInstance.validate()
         recipientInstance.save flush: true
 
         request.withFormat {
@@ -65,12 +75,21 @@ class RecipientController extends SecureController {
     }
 
     @Transactional
-    def update(Recipient recipientInstance) {
+    def update() {
+        Recipient recipientInstance = Recipient.get(params.id)
         if (recipientInstance == null) {
             notFound()
             return
         }
 
+        recipientInstance.name = params.name
+        recipientInstance.email = params.email
+        recipientInstance.phone = params.phone
+        recipientInstance.instantMessaging = params.instantMessaging
+
+        updateGroups(recipientInstance, params.notifGroup)
+
+        recipientInstance.validate()
         if (recipientInstance.hasErrors()) {
             respond recipientInstance.errors, view: 'edit'
             return
@@ -113,6 +132,31 @@ class RecipientController extends SecureController {
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NOT_FOUND }
+        }
+    }
+
+    private void updateGroups(Recipient recipientInstance, notifGrpParam) {
+        if(notifGrpParam) {
+            // http://stackoverflow.com/questions/17420675/grails-controller-access-to-parameter-that-has-a-list-of-elements
+            long [] notifGroups = notifGrpParam*.toLong()
+
+            recipientInstance.groups.each { NotificationGroupMember ngm ->
+                if(!(ngm.notificationGroupId in notifGroups)) {
+                    ngm.delete()
+                }
+            }
+            recipientInstance.groups?.clear()
+
+            notifGroups.each {
+                def group = NotificationGroupMember.findOrSaveByNotificationGroupAndRecipient(NotificationGroup.get(it), recipientInstance)
+                recipientInstance.addToGroups(group)
+            }
+        }
+        else {
+            recipientInstance.groups.each { NotificationGroupMember ngm ->
+                ngm.delete()
+            }
+            recipientInstance.groups?.clear()
         }
     }
 }

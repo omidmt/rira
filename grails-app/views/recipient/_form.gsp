@@ -1,7 +1,4 @@
 <%@ page import="mt.omid.rira.ntfy.Recipient" %>
-
-
-
     <div class="form-group ${hasErrors(bean: recipientInstance, field: 'name', 'error')} required">
         <label for="name" class="col-sm-3 control-label">
             <g:message code="recipient.name.label" default="Name" />

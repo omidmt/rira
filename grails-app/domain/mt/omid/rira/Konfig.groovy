@@ -162,6 +162,18 @@ NwIDAQAB
         KONFIGS.jobLogDir = KONFIGS.jobLogDir ?: './'
 
         KONFIGS.largeDataFetchSize = KONFIGS.largeDataFetchSize?.isInteger() ? KONFIGS.largeDataFetchSize as int : Integer.MIN_VALUE
+
+        KONFIGS.smppSourceAddress = KONFIGS.smppSourceAddress ?: 'Rira'
+
+        KONFIGS.smppIP = KONFIGS.smppIP ?: 'localhost'
+
+        KONFIGS.smppPort = KONFIGS.smppPort?.isInteger() ? KONFIGS.smppPort as int : 2775
+
+        KONFIGS.smppSysId = KONFIGS.smppSysId ?: 'sysid'
+
+        KONFIGS.smppSysPass = KONFIGS.smppSysPass ?: 'syspass'
+
+        KONFIGS.smppSysType = KONFIGS.smppSysType ?: 'systype'
     }
 
     def static findExternalConverters()

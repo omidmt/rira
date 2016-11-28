@@ -1,24 +1,16 @@
 package mt.omid.rira.ntfy
 
+import groovy.util.logging.Slf4j
 import org.jsmpp.InvalidResponseException
 import org.jsmpp.PDUException
-import org.jsmpp.bean.Alphabet
-import org.jsmpp.bean.BindType
-import org.jsmpp.bean.ESMClass
-import org.jsmpp.bean.GeneralDataCoding
-import org.jsmpp.bean.MessageClass
-import org.jsmpp.bean.NumberingPlanIndicator
-import org.jsmpp.bean.OptionalParameter
-import org.jsmpp.bean.RegisteredDelivery
-import org.jsmpp.bean.SMSCDeliveryReceipt
-import org.jsmpp.bean.TypeOfNumber
-import org.jsmpp.extra.NegativeResponseException
-import org.jsmpp.extra.ResponseTimeoutException
-import org.jsmpp.session.BindParameter
-import org.jsmpp.session.SMPPSession
-import org.jsmpp.util.AbsoluteTimeFormatter
-import org.jsmpp.util.TimeFormatter
+import org.jsmpp.bean.*
+import org.jsmpp.extra.*
+import org.jsmpp.session.*
+import org.jsmpp.util.*
 
+import static mt.omid.rira.Konfig.KONFIGS
+
+@Slf4j
 class SMSService {
 
     static transactional = false
@@ -27,13 +19,12 @@ class SMSService {
 
     private static TimeFormatter timeFormatter = new AbsoluteTimeFormatter()
 
-    def sendSMS( recipient, text )
-    {
+    def sendSMS( recipient, String text) {
         def gaConf = grailsApplication.mergedConfig.grails.plugin
         SMPPSession session = new SMPPSession()
         try {
-            session.connectAndBind( gaConf.smscIP, gaConf.smppPort,
-                  new BindParameter( BindType.BIND_TX, gaConf.sysId, gaConf.sysPass, gaConf.sysType, gaConf.typeOfNumber, gaConf.npIndicator, null))
+            session.connectAndBind( KONFIGS.smppIP, KONFIGS.smppPort,
+                  new BindParameter( BindType.BIND_TX, KONFIGS.sysId, KONFIGS.sysPass, KONFIGS.sysType, TypeOfNumber.NATIONAL, NumberingPlanIndicator.UNKNOWN, null))
         } catch (IOException e) {
             log.error( "Failed connect and bind to host", e )
         }
@@ -41,7 +32,7 @@ class SMSService {
         try {
             String messageId = session.dataShortMessage( "",
                     TypeOfNumber.UNKNOWN,
-                    NumberingPlanIndicator.UNKNOWN, "6655",
+                    NumberingPlanIndicator.UNKNOWN, KONFIGS.smppSourceAddress,
                     TypeOfNumber.UNKNOWN,
                     NumberingPlanIndicator.UNKNOWN, recipient,
                     new ESMClass(),

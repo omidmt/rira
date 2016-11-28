@@ -17,9 +17,6 @@
             </div>
         </div>
 		<div id="edit-notificationGroup" class="content scaffold-edit" role="main">
-			<g:if test="${flash.message}">
-			<div class="alert message" role="status">${flash.message}</div>
-			</g:if>
 			<g:hasErrors bean="${notificationGroupInstance}">
 			<ul class="errors" role="alert">
 				<g:eachError bean="${notificationGroupInstance}" var="error">
