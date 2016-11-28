@@ -1,4 +1,4 @@
-<plugin name='rira' version='0.7.3' grailsVersion='2.4 &gt; *'>
+<plugin name='rira' version='0.7.4' grailsVersion='2.4 &gt; *'>
   <author>Omid M. Tourzan</author>
   <authorEmail>omid . mt |@| gmail . com</authorEmail>
   <title>RIRA Plugin</title>
@@ -61,6 +61,7 @@
     <resource>mt.omid.rira.Session</resource>
     <resource>mt.omid.rira.User</resource>
     <resource>mt.omid.rira.ntfy.NotificationGroup</resource>
+    <resource>mt.omid.rira.ntfy.NotificationGroupMember</resource>
     <resource>mt.omid.rira.ntfy.NotificationHistory</resource>
     <resource>mt.omid.rira.ntfy.Recipient</resource>
     <resource>mt.omid.rira.ntfy.Template</resource>
