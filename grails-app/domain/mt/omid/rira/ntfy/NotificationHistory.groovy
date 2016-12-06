@@ -13,7 +13,7 @@ class NotificationHistory {
 
     static constraints =
     {
-        user blank: false, size: 1..100
+        user blank: false, size: 1..500
         message blank: false, size: 1..100000
         recipients blank: false, size: 1..200000
     }
