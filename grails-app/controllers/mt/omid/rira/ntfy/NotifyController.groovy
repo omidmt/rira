@@ -38,7 +38,7 @@ class NotifyController extends SecureController {
 
         if( message.size() > 700 )
         {
-            flash.error = "Message can't be more than 700 character [English]."
+            flash.error = "Message can't be more than 700 characters [English]."
             redirect( action: "index" )
             return
         }
@@ -49,9 +49,7 @@ class NotifyController extends SecureController {
 
         try
         {
-            phones.flatten().unique().each {
-                SMSService.sendSMS(it, message)
-            }
+            SMSService.sendSMS(phones.flatten().unique(), message)
 
             nh.user = "${sessionService.currentUser?.name} [${sessionService.currentUser?.email}]"
             nh.message = message
@@ -66,7 +64,7 @@ class NotifyController extends SecureController {
         catch ( e )
         {
             flash.error = "Error in sending notification [$e.message]"
-            log.error( e.message, e)
+            log.error(e.message, e)
         }
 
         redirect action: "index"
