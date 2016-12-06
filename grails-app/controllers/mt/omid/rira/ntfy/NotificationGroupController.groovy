@@ -50,7 +50,7 @@ class NotificationGroupController extends SecureController {
 
         notificationGroupInstance.save()
 
-        updateMembers(notificationGroupInstance, params.recipients)
+        updateMembers(notificationGroupInstance, params.list('recipients'))
         notificationGroupInstance.validate()
         notificationGroupInstance.save(flush: true)
 
@@ -81,7 +81,7 @@ class NotificationGroupController extends SecureController {
         }
 
         notificationGroupInstance.name = params.name
-        updateMembers(notificationGroupInstance, params.recipients)
+        updateMembers(notificationGroupInstance, params.list('recipients'))
 
         notificationGroupInstance.validate()
         if (notificationGroupInstance.hasErrors()) {
