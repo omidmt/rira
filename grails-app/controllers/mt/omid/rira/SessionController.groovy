@@ -39,10 +39,10 @@ class SessionController extends UnSecureController {
         }
         else if(user.passwordExpiry && user.passwordExpiry < new Date())
         {
-            flash.message = "Your password is expired, please choose new one."
+            flash.message = "Your password has been expired, please set new one."
             flash.user_email = user.email
             auditActivity( "Login Attempt, password is expired [$username]" )
-            session['userId'] = user.id as int
+            session['userId'] = user.id as long
             redirect action: 'passwordChange' // it should be redirected to change pass page and allow only password change
         }
         else if( user.accountExpiry && user.accountExpiry < new Date() )
@@ -92,7 +92,7 @@ class SessionController extends UnSecureController {
     }
 
     def passwordChange() {
-        long userId = params.id as long ?: session['userId'] as long
+        long userId = params.id ? params.id as long : session['userId'] as long
         render view: 'passwordChange', model: [userId: userId]
     }
 
