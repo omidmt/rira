@@ -163,7 +163,7 @@ NwIDAQAB
 
         KONFIGS.largeDataFetchSize = KONFIGS.largeDataFetchSize?.isInteger() ? KONFIGS.largeDataFetchSize as int : Integer.MIN_VALUE
 
-        KONFIGS.smppSourceAddress = KONFIGS.smppSourceAddress ?: 'Rira'
+        KONFIGS.smppFromAddress = KONFIGS.smppFromAddress ?: 'Rira'
 
         KONFIGS.smppIP = KONFIGS.smppIP ?: 'localhost'
 

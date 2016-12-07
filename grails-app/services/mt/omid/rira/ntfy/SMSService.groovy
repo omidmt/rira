@@ -64,7 +64,8 @@ class SMSService {
         SMPPSession session = new SMPPSession()
         try {
             session.connectAndBind( KONFIGS.smppIP, KONFIGS.smppPort,
-                    new BindParameter( BindType.BIND_TX, KONFIGS.smppSysId, KONFIGS.smppSysPass, KONFIGS.smppSysType, TypeOfNumber.NATIONAL, NumberingPlanIndicator.UNKNOWN, null))
+                    new BindParameter(BindType.BIND_TX, KONFIGS.smppSysId, KONFIGS.smppSysPass, KONFIGS.smppSysType,
+                            TypeOfNumber.NATIONAL, NumberingPlanIndicator.UNKNOWN, null))
         } catch (IOException e) {
             log.error("Failed to connect and bind to host", e)
             throw new Exception("Failed to connect and bind to host")
@@ -75,7 +76,7 @@ class SMSService {
             try {
                 String messageId = session.dataShortMessage("",
                         TypeOfNumber.UNKNOWN,
-                        NumberingPlanIndicator.UNKNOWN, KONFIGS.smppSourceAddress,
+                        NumberingPlanIndicator.UNKNOWN, KONFIGS.smppFromAddress,
                         TypeOfNumber.UNKNOWN,
                         NumberingPlanIndicator.UNKNOWN, recipient,
                         new ESMClass(),
