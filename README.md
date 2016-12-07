@@ -379,10 +379,16 @@ better to call static field of Konfig class, as it supposed to be more efficient
 - **hideMenu (true|false[default])** The **menu** parameter in the 
 request (that persist in session once it is set), overwrite this 
 configuration is used
-- **jobLogDir** (strign[default: ./) The directory where jobs can use to 
+- **jobLogDir** (string[default: ./) The directory where jobs can use to 
 store their log files
 - **largeDataFetchSize** (int[default: Integer.MIN]) The fetch size for 
-retrieving large amount of data. It is used in DataConnectionService.fetchLargeData() method. 
+retrieving large amount of data. It is used in DataConnectionService.fetchLargeData() method.
+- **smppFromAddress** (string[default: Rira] The from address of sms message
+- **smppIP (string[default: localhost]) The host address of SMSC or SMPP gateway
+- **smppPort (int[default: 2775]) The port of smpp server
+- **smppSysId (string[default: sysid]) The user id for smpp authentication
+- **smppSysPass (string[default: syspass]) The password for smpp authentication
+- **smppSysType (string[default: systype]) The system type for smpp connection
 
 
 ### Mail Service (Dev)
