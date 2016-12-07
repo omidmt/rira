@@ -13,7 +13,7 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        compile 'org.jsmpp:jsmpp:2.2.1'
+        compile 'org.jsmpp:jsmpp:2.3.2'
 
         compile('org.bouncycastle:bcpg-jdk15on:1.52') {
           //  excludes 'bcprov-jdk15on'
