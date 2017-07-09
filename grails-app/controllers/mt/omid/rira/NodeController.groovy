@@ -1,12 +1,8 @@
 package mt.omid.rira
 
-import org.springframework.dao.DataIntegrityViolationException
-
-import java.sql.SQLException
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
-import mt.omid.rira.SecureController
 
 @Transactional(readOnly = true)
 class NodeController extends SecureController {
@@ -15,7 +11,12 @@ class NodeController extends SecureController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Node.list(params), model: [nodeInstanceCount: Node.count()]
+        if(params.nodeType) {
+            NodeType nt = NodeType.findByName params.nodeType
+            respond Node.where { eq 'nodeType', nt }.list()
+        }
+        else
+            respond Node.list(params), model: [nodeInstanceCount: Node.count()]
     }
 
     def show(Node nodeInstance) {
