@@ -34,7 +34,7 @@ dependencies {
 }
 
 plugins {
-    compile ":rira:0.6.4"
+    compile ":rira:0.7.6"
 }
 ```
 
@@ -45,7 +45,7 @@ grails.databinding.dateFormats = ['EEE MMM dd HH:mm:ss yyyy']
 
 grails.plugin.rira.appName = 'appname'
 grails.plugin.rira.schema = 'dbSchemaName'
-grails.plugin.rira.konfig.converters = [] // Class name of Konfig converter like mt.omid.app.AppKonfig
+grails.plugin.rira.konfig.converters = [] // A list of class names of Konfig converter like [mt.omid.app.AppKonfig, ...]
 grails.plugin.rira.konfig.scanKonfigConverters = false
 grails.plugin.rira.mssqlserver = true|false // If using MS SqlServer
 ```
@@ -124,7 +124,7 @@ added to jre as trusted security lib. A working solution can be found in http://
 
 ### Install
     plugins {
-        compile ":rira:0.6.4"
+        compile ":rira:0.7.6"
     }
     
 For using security module that needs up to date version of bouncycastle lib, add the following lines in the build config 
@@ -477,6 +477,12 @@ Jobs can be defined as a quartz job by usig create-job command. Keep track of jo
  to track state of it. By default job log is saved in database as log field of the domain,
  but if logfileName property of the object is set, then a file in KONFIG.jobLogDir is created 
  for keeping the logs.
+
+### ToDos
+- Implement dynamic server side generated key for client encryption. 
+The security service uses client side time to validate that is not good option when different time-zone is in use.
+If the key is generted dynamically in server side and expired there, then the man in middle cannot reuse exposed 
+encrypted session data.
 
 ##### Author
 Omid M. Tourzan @otourzan

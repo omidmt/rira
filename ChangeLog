@@ -1,3 +1,6 @@
+### 0.7.6
+Fix the mail issue on new user creation by changing the mail and aync-mail plugin , async-mail 1.2-1
+
 ### 0.7.3
 Add connection type and fix connectivity plan
 

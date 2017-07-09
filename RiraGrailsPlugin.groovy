@@ -1,5 +1,5 @@
 class RiraGrailsPlugin {
-    def version = "0.7.5"
+    def version = "0.7.6"
     def grailsVersion = "2.4 > *"
     def title = "RIRA Plugin"
     def author = "Omid M. Tourzan"

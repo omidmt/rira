@@ -46,7 +46,7 @@ grails.project.dependency.resolution = {
 
         compile ':plugin-config:0.2.0'
         compile ":runtime-datasources:0.2"
-        compile ":asynchronous-mail:1.2"
+        compile ":asynchronous-mail:1.2-1"
 
         runtime ":hibernate4:4.3.6.1"
     }
