@@ -17,6 +17,7 @@
 
 	<asset:stylesheet href="rira.css"/>
 	<asset:javascript src="rira.js"/>
+	<asset:javascript src="rira-tools.js"/>
 
 	<asset:stylesheet href="bootstrap/bootstrap.css" />
 	<asset:javascript src="bootstrap/bootstrap.js" />
