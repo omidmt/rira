@@ -40,6 +40,36 @@ responses:
     schema:
       $ref: '#/definitions/errors'
 paths:
+  /nodes:
+    get:
+      tags:
+        - "node"
+      description: Return list of nodes
+      operationId: nodes
+      produces:
+        - application/json
+      parameters:
+        - name: nodeType
+          in: query
+          type: string
+          description: The node type of the returned list 
+          required: false
+        - name: max
+          in: query
+          type: number
+          description: The maxmimum number of items in returned list
+          required: false
+      responses:
+        '200':
+          description: nodes' list
+          schema:
+            $ref: '#/definitions/nodes'
+        '401':
+          $ref: '#/responses/NotAuthorized'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errors'
   /connections/{detailLevel}/{nodeType}/{connectionType}:
     get:
       tags:
@@ -99,3 +129,29 @@ definitions:
     type: array
     items:
       type: string
+  nodes:
+    type: array
+    items:
+      $ref: '#/definitions/node'
+  node:
+    type: object
+    properties:
+      class:
+        type: string
+      id:
+        type: integer
+        format: int64
+      active:
+        type: boolean
+      connectivityPlans:
+        type: array
+        items:
+          $ref: '#/definitions/connection'
+      nodeType:
+        type: object
+      os:
+        type: object
+      profile:
+        type: object
+      serverType:
+        type: object
