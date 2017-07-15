@@ -41,7 +41,8 @@ plugins {
 Add to conf/Config.groovy
 
 ```groovy
-grails.databinding.dateFormats = ['EEE MMM dd HH:mm:ss yyyy']
+grails.databinding.dateFormats = ['EEE MMM dd HH:mm:ss yyyy', 'YYYY-MM-DD HH:mm:ss', "YYYYMMDD'T'HH:mm:ss", 'ddd MMM DD HH:mm:ss YYYY', 'MMddyyyy', 'yyyy-MM-dd HH:mm:ss.S', "yyyy-MM-dd'T'hh:mm:ss'Z'" ]
+
 
 grails.plugin.rira.appName = 'appname'
 grails.plugin.rira.schema = 'dbSchemaName'
