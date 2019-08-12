@@ -89,8 +89,8 @@ function signin()
     var res = encrypt(JSON.stringify(msg));
     var sk = res[0];
     var cd = res[1];
-    $( '#username' )[0].value = '';
-    $( '#password' )[0].value = '';
+    // $( '#username' )[0].value = '';
+    // $( '#password' )[0].value = '';
     $( '#cd' )[0].value = cd;
     $( '#sk' )[0].value = sk;
     return true;
