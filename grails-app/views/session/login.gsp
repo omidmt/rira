@@ -1,3 +1,4 @@
+<%@ page import="mt.omid.rira.Konfig" %>
 <%--
   @author eomimeh
 --%>
@@ -5,7 +6,7 @@
 <html>
 <head>
     <meta name="layout" content="rira">
-    <title>CAMP Sign In</title>
+    <title>${mt.omid.rira.Konfig.KONFIGS.appName} Sign In</title>
     <asset:javascript src="pidcrypt/string_extend.js" />
     <asset:javascript src="pidcrypt/seedrandom.js" />
     <asset:javascript src="pidcrypt/pidcrypt_util.js" />

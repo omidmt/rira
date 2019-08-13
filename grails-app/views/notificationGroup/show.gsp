@@ -19,9 +19,6 @@
 		</div>
 	</div>
 	<div id="show-notificationGroup" class="content scaffold-show" role="main">
-		<g:if test="${flash.message}">
-			<div class="alert message" role="status">${flash.message}</div>
-		</g:if>
 		<form class="form-horizontal" role="form">
 			
 			<g:if test="${notificationGroupInstance?.name}">

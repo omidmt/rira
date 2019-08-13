@@ -13,7 +13,7 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        compile 'org.jsmpp:jsmpp:2.2.1'
+        compile 'org.jsmpp:jsmpp:2.3.2'
 
         compile('org.bouncycastle:bcpg-jdk15on:1.52') {
           //  excludes 'bcprov-jdk15on'
@@ -34,7 +34,7 @@ grails.project.dependency.resolution = {
         }
 
         compile ':scaffolding:2.1.2'
-        compile ':asset-pipeline:2.1.5'
+        compile ':asset-pipeline:2.9.1'
         compile ':seed-me:0.6.5'
         compile ':console:1.5.4'  // Should be removed for production
 //        compile ':quartz:1.0.2'
@@ -46,7 +46,7 @@ grails.project.dependency.resolution = {
 
         compile ':plugin-config:0.2.0'
         compile ":runtime-datasources:0.2"
-        compile ":asynchronous-mail:1.2"
+        compile ":asynchronous-mail:1.2-1"
 
         runtime ":hibernate4:4.3.6.1"
     }

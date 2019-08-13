@@ -12,7 +12,7 @@ class Template {
 
     static constraints = {
         name blank: false, size: 1..100
-        content blank: false, size: 1..1000
+        content blank: false, size: 1..100000
     }
 
     String toString()

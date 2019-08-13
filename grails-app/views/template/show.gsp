@@ -21,9 +21,6 @@
 	</div>
 	<div id="show-template" class="content scaffold-show" role="main">
 	%{--<h1><g:message code="default.show.label" args="[entityName]" /></h1>--}%
-		<g:if test="${flash.message}">
-			<div class="alert message" role="status">${flash.message}</div>
-		</g:if>
 	%{--<ol class="property-list template">--}%
 		<form class="form-horizontal" role="form">
 			

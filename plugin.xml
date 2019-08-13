@@ -1,4 +1,4 @@
-<plugin name='rira' version='0.6.2' grailsVersion='2.4 &gt; *'>
+<plugin name='rira' version='0.7.6' grailsVersion='2.4 &gt; *'>
   <author>Omid M. Tourzan</author>
   <authorEmail>omid . mt |@| gmail . com</authorEmail>
   <title>RIRA Plugin</title>
@@ -12,6 +12,7 @@
     <resource>mt.omid.rira.APIKeyController</resource>
     <resource>mt.omid.rira.ApplicoController</resource>
     <resource>mt.omid.rira.AuditController</resource>
+    <resource>mt.omid.rira.ConnectionTypeController</resource>
     <resource>mt.omid.rira.ConnectivityPlanController</resource>
     <resource>mt.omid.rira.DataConnectionController</resource>
     <resource>mt.omid.rira.EventController</resource>
@@ -41,6 +42,7 @@
     <resource>mt.omid.rira.APIKey</resource>
     <resource>mt.omid.rira.Applico</resource>
     <resource>mt.omid.rira.Audit</resource>
+    <resource>mt.omid.rira.ConnectionType</resource>
     <resource>mt.omid.rira.ConnectivityPlan</resource>
     <resource>mt.omid.rira.DataConnection</resource>
     <resource>mt.omid.rira.Event</resource>
@@ -59,6 +61,7 @@
     <resource>mt.omid.rira.Session</resource>
     <resource>mt.omid.rira.User</resource>
     <resource>mt.omid.rira.ntfy.NotificationGroup</resource>
+    <resource>mt.omid.rira.ntfy.NotificationGroupMember</resource>
     <resource>mt.omid.rira.ntfy.NotificationHistory</resource>
     <resource>mt.omid.rira.ntfy.Recipient</resource>
     <resource>mt.omid.rira.ntfy.Template</resource>

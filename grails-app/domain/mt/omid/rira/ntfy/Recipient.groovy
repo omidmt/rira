@@ -12,12 +12,12 @@ class Recipient {
     static deletable = true
     static cloneable = true
 
-    static hasMany = [ notifGroup : NotificationGroup ]
+    static hasMany = [ groups : NotificationGroupMember ]
 
-    static belongsTo = NotificationGroup
+    static transients = ['notifGroup']
 
     static constraints = {
-        name size: 1..45, blank: false
+        name size: 1..45, blank: false, unique: true
         email email: true
         phone nullable: true, matches: "[0-9]+"
         instantMessaging nullable: true
@@ -27,8 +27,11 @@ class Recipient {
         table name: 'r_recipient', schema: Holders.grailsApplication.mergedConfig.grails.plugin.rira.schema
     }
 
-    String toString()
-    {
+    String toString() {
         "$email [$phone]"
+    }
+
+    def getNotifGroup() {
+        groups.findAll()*.notificationGroup
     }
 }

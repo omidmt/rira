@@ -10,7 +10,13 @@ class ${className}Controller extends SecureController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond ${className}.list(params), model: [${propertyName}Count: ${className}.count()]
+        withFormat {
+            'html' {
+                respond ${className}.list(params), model: [${propertyName}Count: ${className}.count()]
+            }
+            'json' { respond ${className}.list(), [status: CREATED] }
+            'xml' { respond ${className}.list(), [status: CREATED] }
+        }
     }
 
     def show(${className} ${propertyName}) {

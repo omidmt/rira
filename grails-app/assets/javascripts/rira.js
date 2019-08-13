@@ -21,8 +21,8 @@ if (typeof jQuery !== 'undefined') {
 
 $( document).ready(function()
 {
-	if($( "#sticker" ) != null && typeof $( "#sticker" ).sticky == "function") {
-		$("#sticker").sticky({topSpacing: 0});
+    if($( "#sticker" ) != null && typeof $( "#sticker" ).sticky == "function") {
+        $("#sticker").sticky({topSpacing: 0});
     }
 //    $( 'input[type=text],input[type=email], input[type=password], textarea, select' ).addClass( "form-control" );
     $( 'input[type=text],input[type=email], input[type=password], textarea' ).addClass( "form-control" );
@@ -89,8 +89,10 @@ function signin()
     var res = encrypt(JSON.stringify(msg));
     var sk = res[0];
     var cd = res[1];
-    $( '#username' )[0].value = '';
-    $( '#password' )[0].value = '';
+    $( '#username' )[0].disabled = true;
+    $( '#password' )[0].disabled = true;
+    // $( '#username' )[0].value = '';
+    // $( '#password' )[0].value = '';
     $( '#cd' )[0].value = cd;
     $( '#sk' )[0].value = sk;
     return true;
@@ -308,7 +310,7 @@ function dialogSuccessSubmission( data )
 
     if( typeof target === 'undefined' )
     {
-        console.log( 'Type of taget is undefined.' );
+        console.log( 'Type of target is undefined.' );
         return;
     }
 
@@ -323,7 +325,7 @@ function dialogSuccessSubmission( data )
         }
         else if( typeOfTarget.toUpperCase() == 'UL'  )
         {
-            var link = $( taget ).data( 'link' );
+            var link = $( target ).data( 'link' );
             var html = '<li><a href="' + link + data.id + '">' + 'name' in data ? data.name : data.id + '</li>';
             $( target ).prepend( html );
         }
@@ -455,3 +457,4 @@ function encrypt(msg, refresh) {
 
     return [sessionKeyCipher, crypted];
 }
+

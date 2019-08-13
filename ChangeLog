@@ -1,3 +1,23 @@
+### 0.7.6
+Fix the mail issue on new user creation by changing the mail and aync-mail plugin , async-mail 1.2-1
+
+### 0.7.3
+Add connection type and fix connectivity plan
+
+### 0.7.2
+FIx updating expired password
+
+### 0.7.0
+Add Konfig plugins converter config to handle child plugins KONFIG initialization and conversion
+grails.plugin.rira.konfig.converters=  []
+
+### 0.6.4
+Add fetchLargeData(sql, dataSource, resultSetClousre)
+Add KONFIGS.largeDataFetchSize
+
+### 0.6.3
+Upgrade asset-pipeline plugin to 2.9.1
+
 ### 0.6.2
 Improve Job handling  by adding ClosureJob to use triggerNow of quartz and offering log file instead of database log
 field, toggle it on by setting logFileName property to a filename.

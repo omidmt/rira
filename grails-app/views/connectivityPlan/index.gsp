@@ -21,9 +21,6 @@
         </div>
 		<div id="list-connectivityPlan" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
-			</g:if>
 			<table class="table table-bordered table-striped">
 			<thead>
 					<tr>
@@ -34,7 +31,7 @@
 					
 						<g:sortableColumn property="port" title="${message(code: 'connectivityPlan.port.label', default: 'Port')}" />
 					
-						<g:sortableColumn property="loginMethod" title="${message(code: 'connectivityPlan.loginMethod.label', default: 'Login Method')}" />
+						<th><g:message code="connectivityPlan.type.label" default="Type" /></th>
 					
 						<g:sortableColumn property="user" title="${message(code: 'connectivityPlan.user.label', default: 'User')}" />
 					
@@ -58,7 +55,7 @@
 					
 						<td>${fieldValue(bean: connectivityPlanInstance, field: "port")}</td>
 					
-						<td>${fieldValue(bean: connectivityPlanInstance, field: "loginMethod")}</td>
+						<td>${fieldValue(bean: connectivityPlanInstance, field: "type")}</td>
 					
 						<td>${fieldValue(bean: connectivityPlanInstance, field: "user")}</td>
 					

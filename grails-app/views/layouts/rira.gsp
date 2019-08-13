@@ -8,7 +8,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title><g:layoutTitle default="CAMP"/></title>
+	<title><g:layoutTitle default="RIRA"/></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
@@ -17,6 +17,7 @@
 
 	<asset:stylesheet href="rira.css"/>
 	<asset:javascript src="rira.js"/>
+	<asset:javascript src="rira-tools.js"/>
 
 	<asset:stylesheet href="bootstrap/bootstrap.css" />
 	<asset:javascript src="bootstrap/bootstrap.js" />
@@ -40,6 +41,12 @@
 	<asset:javascript src="jasny/js/jasny-bootstrap.js" />
 	<asset:stylesheet src="app.css" media="screen" />
 
+	<g:javascript>
+    window.grails = {
+        baseUrl: '${raw(g.createLink(absolute:true, uri:"/"))}',
+        assetsUrl : '${ raw(asset.assetPath(src: '')) }'
+    };
+	</g:javascript>
 	<g:layoutHead/>
 
 	<r:layoutResources />
@@ -57,7 +64,7 @@
 		</div>
 		<div class="navbar-collapse collapse" id="navbar-collapse-01">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#home">Home</a></li>
+				<li class="active"><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#home" onclick="location.href=window.grails.baseUrl;">Home</a></li>
 				<li><a data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true" href="#about">About</a></li>
 				<li><g:link controller="user" action="settings" data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true">${user ? user.name : 'Setting'}</g:link></li>
 				<li><g:link mapping="logout" data-scroll="" data-speed="2000" data-easing="easeOutQuint" data-url="true">Sign Out</g:link></li>
@@ -142,5 +149,15 @@
 	<g:if test="${session.menu == '0' || (session.menu == null && Konfig.KONFIGS['hideMenu'])}" >
 	$('#navmenu').offcanvas('hide');
 	</g:if>
+
+	try {
+		<g:applyCodec encodeAs="none">
+		${mt.omid.rira.Konfig.KONFIGS.riraLayoutScript}
+		</g:applyCodec>
+	}
+	catch(ex) {
+		console.log('layout custom script failed to execute');
+		console.log(ex.message);
+	}
 </script>
 </html>

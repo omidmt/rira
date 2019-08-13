@@ -1,7 +1,4 @@
 <%@ page import="mt.omid.rira.ntfy.NotificationHistory" %>
-
-
-
     <div class="form-group ${hasErrors(bean: notificationHistoryInstance, field: 'user', 'error')} required">
         <label for="user" class="col-sm-3 control-label">
             <g:message code="notificationHistory.user.label" default="User" />

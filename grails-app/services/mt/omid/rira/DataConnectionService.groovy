@@ -1,11 +1,24 @@
 package mt.omid.rira
 
 import groovy.sql.Sql
+
+import javax.sql.DataSource
+import java.sql.ResultSet
+import java.sql.Statement
+import static mt.omid.rira.Konfig.KONFIGS
+
 import static mt.omid.rira.DataConnection.DATASOURCES
 
 class DataConnectionService {
 
     static transactional = false
+
+    public boolean isDataConnectionExist(String connectionName) {
+        if(!DATASOURCES[connectionName])
+            return false
+        else
+            return true
+    }
 
     int [] batchInsert( String dsName, int size, String query, Closure closure )
     {
@@ -109,6 +122,29 @@ class DataConnectionService {
             // It cannot be closed here, as it affect the result set operation with not allowed on resultset
             // ignore the above comments as the code changed to use rows method
             sql.close()
+        }
+    }
+
+    def fetchLargeData(String query, String dsName, Closure cls) {
+        if(!dsName || !DATASOURCES[ dsName ])
+            return null
+
+        DataSource ds = DATASOURCES[dsName]
+        def conn = ds.getConnection()
+        Statement stmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY)
+        stmt.setFetchSize(KONFIGS.largeDataFetchSize)
+
+        try
+        {
+            ResultSet rs = stmt.executeQuery(query)
+            cls.call(rs)
+        }
+        finally
+        {
+            // It cannot be closed here, as it affect the result set operation with not allowed on resultset
+            // ignore the above comments as the code changed to use rows method
+            stmt.close()
+            conn.close()
         }
     }
 }

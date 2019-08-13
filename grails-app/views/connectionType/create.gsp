@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<g:set var="entityName" value="${message(code: 'notificationGroup.label', default: 'NotificationGroup')}" />
+		<meta name="layout" content="rira">
+		<g:set var="entityName" value="${message(code: 'connectionType.label', default: 'ConnectionType')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -14,18 +15,18 @@
                 </ul>
             </div>
         </div>
-		<div id="create-notificationGroup" class="content scaffold-create" role="main">
+		<div id="create-connectionType" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-			<g:hasErrors bean="${notificationGroupInstance}">
+			<g:hasErrors bean="${connectionTypeInstance}">
 			<ul class="errors" role="alert">
-				<g:eachError bean="${notificationGroupInstance}" var="error">
+				<g:eachError bean="${connectionTypeInstance}" var="error">
 				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form id="notificationGroupInstance" url="[resource:notificationGroupInstance, action:'save']"  class="form-horizontal" role="form" >
+			<g:form id="connectionTypeInstance" url="[resource:connectionTypeInstance, action:'save']"  class="form-horizontal" role="form" >
 					<g:render template="form"/>
-					<g:submitButton name="create" form="notificationGroupInstance" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="create" form="connectionTypeInstance" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 			</g:form>
 		</div>
     </div>

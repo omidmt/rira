@@ -1,0 +1,1 @@
+curl -X POST -H "content-type:application/json" -d '{"options": {"packageName": "rira_api"},"swaggerUrl":"https://raw.githubusercontent.com/omidmt/rira/0.7.x/api/swagger-api.yaml"}' http://generator.swagger.io/api/gen/clients/python 

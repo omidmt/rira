@@ -1,14 +1,9 @@
-<%--
-  @author eomimeh
---%>
-
 <html>
 <head>
-    %{--<meta name="layout" content="rira">--}%
-    <g:javascript src="notify.js" />
-  <title>
-    SMS Notifier
-  </title>
+    <asset:javascript src="notify" />
+    <title>
+        SMS Notifier
+    </title>
 </head>
 <body>
 <div class="col-md-6">
@@ -19,11 +14,11 @@
         </div>
         <div class="form-group">
             <label for="templates">Template</label>
-            <g:select name="templates" class="form-control" from="${templates}" value="${templates.name}" multiple="false" optionKey="id" onchange="${remoteFunction(controller: 'template', action: 'show', onSuccess: 'loadTemplate(data)', dataType: 'json', params: '{ id : this.value }' )}" />
+            <g:select id="template" name="templates" class="form-control" from="${templates}" value="${templates.name}" multiple="false" optionKey="id" />
         </div>
         <div class="form-group">
             <label for="history">Sent Messages</label>
-            <g:select name="history" class="form-control" from="${history}" multiple="false" optionKey="id" optionValue="${{((String)it.sendDate) + ' ' + it.message.take( 50 )}}" onchange="${remoteFunction(controller: 'notificationHistory', action: 'show', onSuccess: 'loadTemplate(data)', dataType: 'json', params: '{ id : this.value }' )}" />
+            <g:select id="history" name="history" class="form-control" from="${history}" multiple="false" optionKey="id" optionValue="${{((String)it.sendDate) + ' ' + it.message.take( 50 )}}" />
         </div>
         <div class="form-group">
             <label for="message">Message Content</label> <span id="msgLen" name="msgLen"></span>

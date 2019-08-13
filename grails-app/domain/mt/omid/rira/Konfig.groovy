@@ -160,12 +160,28 @@ NwIDAQAB
         KONFIGS.hideMenu = new Boolean( KONFIGS.hideMenu )
 
         KONFIGS.jobLogDir = KONFIGS.jobLogDir ?: './'
+
+        KONFIGS.largeDataFetchSize = KONFIGS.largeDataFetchSize?.isInteger() ? KONFIGS.largeDataFetchSize as int : Integer.MIN_VALUE
+
+        KONFIGS.smppFromAddress = KONFIGS.smppFromAddress ?: 'Rira'
+
+        KONFIGS.smppIP = KONFIGS.smppIP ?: 'localhost'
+
+        KONFIGS.smppPort = KONFIGS.smppPort?.isInteger() ? KONFIGS.smppPort as int : 2775
+
+        KONFIGS.smppSysId = KONFIGS.smppSysId ?: 'sysid'
+
+        KONFIGS.smppSysPass = KONFIGS.smppSysPass ?: 'syspass'
+
+        KONFIGS.smppSysType = KONFIGS.smppSysType ?: 'systype'
     }
 
     def static findExternalConverters()
     {
         EXTERNAL_KONFIG_CLASSES = []
-        def konfigConverters = Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.converters
+        def konfigConverters = Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.plugins.converters ?: []
+        if(Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.converters)
+            konfigConverters << Holders.grailsApplication.mergedConfig.grails.plugin.rira.konfig.converters ?: []
         if(konfigConverters != null && konfigConverters.class == ArrayList.class) {
             EXTERNAL_KONFIG_CLASSES = konfigConverters
         }
@@ -178,35 +194,34 @@ NwIDAQAB
 
     static convertExternalValues()
     {
-        EXTERNAL_KONFIG_CLASSES.each { Class clsName ->
-            try {
-                Object beanObj
-                Class beanClass = Class.forName( clsName.canonicalName )
-                if( beanClass.getMethod( KonfigConvertorFinder.KONFIG_CONVERTER_METHOD_NAME, (Class<?>[]) null) ) {
-                    beanClass.invokeMethod(KonfigConvertorFinder.KONFIG_CONVERTER_METHOD_NAME, null)
+        EXTERNAL_KONFIG_CLASSES.each { clsList ->
+            clsList.each { Class clsName ->
+                try {
+                    Class beanClass = Class.forName(clsName.canonicalName)
+                    if (beanClass.getMethod(KonfigConvertorFinder.KONFIG_CONVERTER_METHOD_NAME, (Class<?>[]) null)) {
+                        beanClass.invokeMethod(KonfigConvertorFinder.KONFIG_CONVERTER_METHOD_NAME, null)
+                    }
                 }
-            }
-            catch( e )
-            {
-                log.error "convert() method of class [$clsName] could not be invoked successfully [$e.message]"
+                catch (e) {
+                    log.error("convert() method of class [$clsName] could not be invoked successfully [$e.message]", e)
+                }
             }
         }
     }
 
     static refreshExternalCaches()
     {
-        EXTERNAL_KONFIG_CLASSES.each { clsName ->
-            try {
-                Object beanObj
-                Class beanClass = Class.forName( clsName )
-                if( beanClass.getMethod( KonfigConvertorFinder.KONFIG_REFRESH_CACHE_METHOD_NAME, (Class<?>[]) null) )
-                {
-                    beanClass.invokeMethod( KonfigConvertorFinder.KONFIG_REFRESH_CACHE_METHOD_NAME, null )
+        EXTERNAL_KONFIG_CLASSES.each { clsList ->
+            clsList.each { clsName ->
+                try {
+                    Class beanClass = Class.forName(clsName.canonicalName)
+                    if (beanClass.getMethod(KonfigConvertorFinder.KONFIG_REFRESH_CACHE_METHOD_NAME, (Class<?>[]) null)) {
+                        beanClass.invokeMethod(KonfigConvertorFinder.KONFIG_REFRESH_CACHE_METHOD_NAME, null)
+                    }
                 }
-            }
-            catch( e )
-            {
-                log.error "convert() method of class [$clsName] could not be invoked successfully [$e.message]"
+                catch (e) {
+                    log.error("convert() method of class [$clsName] could not be invoked successfully [$e.message]", e)
+                }
             }
         }
     }

@@ -87,12 +87,25 @@ class DataConnection {
                     url = dc.url
                     username = dc.username ?: ""
                     password = dc.password ?: ""
-                    testWhileIdle = true
 
-//                initialSize = 42
-//                testOnBorrow = true
-//                testOnReturn = false
-//                validationQuery = 'SELECT 1'
+                    jmxEnabled = true
+                    initialSize = 5
+                    maxActive = 50
+                    minIdle = 5
+                    maxIdle = 25
+                    maxWait = 10000
+                    maxAge = 20000 // MySQL default is 28800
+//               maxConnectionAge = 20000
+                    timeBetweenEvictionRunsMillis = 5000
+                    minEvictableIdleTimeMillis = 60000
+                    validationQuery = "SELECT 1+1"
+                    validationQueryTimeout = 3
+                    validationInterval = 15000
+                    testOnBorrow = true
+                    testWhileIdle = true
+                    testOnReturn = true
+                    jdbcInterceptors = "ConnectionState"
+                    defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED
                 }
             }
         }
